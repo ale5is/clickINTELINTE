@@ -1,39 +1,44 @@
 # Referencias visuales para Click Inteligente
 
-Estas referencias se usan para reproducir la estructura de las interfaces publicitarias. No se deben sustituir por miniaturas geométricas, logos dibujados ni composiciones inventadas.
+Las pantallas de práctica cargan imágenes reales de referencia desde `Assets/Resources/AdReferences`. No se generan creatividades publicitarias con primitivas geométricas ni se dibujan logos aproximados para reemplazar las marcas.
 
-## YouTube
+## Recursos conectados
 
-### In-feed / Home
-- Captura reciente de un anuncio In-feed integrado en el feed: https://www.kickads.co/images/blog/youtube-ads-complete-guide/in-feed-video-ad.webp
-- Captura adicional de anuncios In-feed en Home: https://www.dropandhookcontent.com/hs-fs/hubfs/GA%20Blog%204.png?height=538&name=GA+Blog+4.png&width=1024
-- Estructura oficial: miniatura, título y hasta dos líneas de texto; puede variar según la ubicación: https://support.google.com/google-ads/answer/6227733
+| Plataforma | Variante | Recurso local | Fuente |
+|---|---|---|---|
+| YouTube | In-feed | `YouTube_InFeed_2023` | [Strike Social](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png) |
+| YouTube | In-stream | `YouTube_InStream_2025` | [ComputerHoy](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg) |
+| YouTube | Shorts | `YouTube_Shorts_Interactive_2025` | [Squarespace CDN](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png) |
+| Google Play | Búsqueda patrocinada | `GooglePlay_SearchSponsored_2025` | [Indian Express](https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg) |
+| Google Play | Sugerencias oscuras | `GooglePlay_SuggestedDark_2026` | [AppTweak](https://www.apptweak.com/img/2026/01/image8.png) |
+| Google Play | Sugerencias claras | `GooglePlay_SuggestedLight_2024` | [Digital Trends](https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720) |
+| TikTok | In-feed | `TikTok_InFeed_Creative_2026` | [TikTok for Business](https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-52DY2FWG6YW1lkjzUCrIi7.jpg) |
+| TikTok | TopView | `TikTok_TopView_2022` | [MegalDigital](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png) |
+| TikTok | Carrusel | `TikTok_Carousel_2025` | [Webflow CDN](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png) |
 
-### Shorts
-- Ejemplo móvil de Shorts Ads con CTA y productos asociados: https://t5y6k8a5.rocketcdn.me/wp-content/uploads/2024/04/HvSWsl6afqwqIynxmj8V49tOiGcYwO348dxs.gif
-- Ejemplo de Shorts con CTA de compra: https://blog.storeya.com/2024/04/youtube-shorts-video/
-- Documentación oficial de formatos: https://support.google.com/youtube/answer/2375464
+Los casos, títulos y mensajes que aparecen en el ejercicio siguen siendo ficticios y están marcados como tales. Las imágenes sirven como referencias visuales reales; no se afirma que las marcas o anunciantes de las capturas originales sean los responsables de los casos ficticios.
 
-### In-stream
-- Referencia de anuncios in-stream con botón para omitir, duración y CTA: https://www.azahcccs.gov/Resources/Downloads/Grants/SABG/2025SubstanceUseBlockGrantReport.pdf
-- Mantener separados el reproductor, el temporizador, la identidad del anunciante, el CTA y el control para omitir. No reutilizar la plantilla In-feed.
+## Correspondencia con el código
 
-## Google Play
+- `ClickInteligenteController.CreateAdArtwork` carga imágenes de YouTube y TikTok según plataforma y variante.
+- `BuildPlatformMockup` selecciona una captura real distinta para cada variante de Google Play.
+- `CreateReferenceImage` carga los archivos desde `Resources/AdReferences` y ajusta la relación de aspecto.
+- Si una imagen falta, el juego muestra un aviso de recurso no importado. No sustituye la imagen por una ilustración inventada.
 
-### Resultados patrocinados / relacionados con la búsqueda
-- Captura de Play Store en modo oscuro con sección “Sponsored · Related to your search”: https://4pda.to/s/as6yz1WSnHWexz0W8hLeEUc6z1GKs0I.jpg
-- Captura de la interfaz Play Store con recomendaciones patrocinadas de aplicaciones y juegos: https://ujletoltes.hu/Pics/Google-Play-Store-Webaruhaz-42x-Android-alkalmazas-letoltes.webp
-- La presentación debe distinguir los resultados de búsqueda de la sección de aplicaciones relacionadas; no inventar botones ni etiquetas de patrocinio.
+## Importación
 
-## TikTok
+En Unity 2022.3.62f3, ejecutar **Click Inteligente > Importar referencias visuales**. El importador del Editor descarga y valida PNG/JPEG en `Assets/Resources/AdReferences`. El workflow de GitHub Actions ejecuta también `Scripts/Import-AdReferences.ps1` antes del build de Windows.
 
-Se mantienen las referencias aprobadas anteriormente para In-feed, TopView y carrusel. Cada formato debe conservar su estructura independiente.
+El juego no realiza solicitudes de red en tiempo de ejecución. Las imágenes deben estar presentes localmente antes de compilar para que aparezcan en el ejecutable.
 
-## Reglas de implementación
+## Exactitud y permisos
 
-1. Las capturas son referencias visuales, no fondos que deban incrustarse completas dentro de otro teléfono o pantalla.
-2. No generar miniaturas publicitarias con primitivas geométricas ni logotipos aproximados.
-3. Usar recursos visuales reales solo cuando su origen, resolución y permiso de reutilización estén verificados.
-4. Si una imagen de referencia no se puede incorporar legal o técnicamente como recurso local, conservarla como referencia de diseño y reproducir su estructura con componentes UI.
-5. No descargar automáticamente imágenes de terceros al iniciar el juego. La experiencia educativa debe funcionar sin conexión.
-6. Mantener los ejemplos de anuncios ficticios y sin enlaces activos, descargas ni formularios reales.
+La documentación oficial confirma que los anuncios In-feed de YouTube incluyen miniatura, título y texto, y que los Shorts aparecen integrados en el feed vertical. TikTok describe In-Feed como un anuncio nativo del feed Para ti y el carrusel como varias imágenes que se recorren deslizando. Google Play permite que las fichas utilicen iconos, capturas y videos de vista previa.
+
+- [YouTube: formatos de anuncios](https://support.google.com/google-ads/answer/2375464)
+- [YouTube: anuncios In-feed](https://support.google.com/google-ads/answer/6227733)
+- [TikTok for Business: guía de anuncios de video](https://ads.tiktok.com/business/en/guides/video-advertising-guide)
+- [TikTok: anuncios carrusel](https://ads.tiktok.com/help/article/carousel-ads?lang=en)
+- [Google Play: recursos de vista previa](https://support.google.com/googleplay/android-developer/answer/9866151)
+
+La integración técnica no otorga derechos de redistribución. Antes de publicar o distribuir el juego, verificar las licencias y permisos de cada imagen de terceros; reemplazar cualquier recurso que no pueda reutilizarse legalmente. No presentar la descarga de una imagen pública como autorización para redistribuirla.
