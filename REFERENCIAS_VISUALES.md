@@ -20,8 +20,10 @@ Los casos, títulos y mensajes que aparecen en el ejercicio siguen siendo fictic
 
 ## Correspondencia con el código
 
-- `BuildPlatformMockup` selecciona una captura real distinta para cada una de las nueve variantes de YouTube, Google Play y TikTok; no dibuja una segunda interfaz alrededor de esas capturas.
+- `BuildPlatformMockup` selecciona una captura real distinta para cada una de las nueve variantes de YouTube, Google Play y TikTok.
 - `CreateReferenceImage` carga los archivos desde `Resources/AdReferences`, recorta las mitades clara/oscura de la captura comparativa de Play Store y ajusta la relación de aspecto.
+- `CreateScenarioAdOverlay` coloca anunciante, título, mensaje y llamada a la acción ficticios dentro del área publicitaria de cada captura. Las coordenadas y tamaños se adaptan a cada formato; no se coloca el texto del caso en una franja externa debajo de la imagen.
+- El contenido original del anuncio queda cubierto únicamente en esa zona por el caso educativo. El resto de la captura (marco, navegación y controles de plataforma) se mantiene como referencia real.
 - Si una imagen falta, el juego muestra un aviso de recurso no importado. No sustituye la imagen por una ilustración inventada.
 
 ## Importación
