@@ -347,39 +347,47 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
     private void BuildPlatformMockup(int platform, AdScenario scenario, int placementIndex)
     {
-        if (platform == 1)
+        int placement = placementIndex % 3;
+
+        if (platform == 0)
         {
-            string playStoreReference = placementIndex % 3 == 0
-                ? "GooglePlay_SearchSponsored_2025"
-                : placementIndex % 3 == 1
-                    ? "GooglePlay_SuggestedDark_2026"
-                    : "GooglePlay_SuggestedLight_2024";
-
-            if (CreateReferenceImage("PlayStoreRealReference", new Vector2(0.07f, 0.29f), new Vector2(0.93f, 0.82f), playStoreReference))
-            {
-                CreateCard(screenRoot, "PlayStoreScenarioOverlay", new Vector2(0.07f, 0.215f), new Vector2(0.93f, 0.29f), Hex("#182438"));
-                AddText(screenRoot, "PlayStoreScenarioTitle", "CASO FICTICIO: " + scenario.title, new Vector2(0.09f, 0.25f), new Vector2(0.91f, 0.285f), Vector2.zero, Vector2.zero, 16, Color.white, TextAlignmentOptions.Left);
-                AddText(screenRoot, "PlayStoreScenarioMessage", scenario.message, new Vector2(0.09f, 0.218f), new Vector2(0.91f, 0.25f), Vector2.zero, Vector2.zero, 12, Hex("#D6E2F0"), TextAlignmentOptions.Left);
-                return;
-            }
-
-            CreateCard(screenRoot, "MissingPlayStoreReference", new Vector2(0.07f, 0.29f), new Vector2(0.93f, 0.82f), Hex("#243A50"));
-            AddText(screenRoot, "MissingPlayStoreReferenceText", "FALTA IMPORTAR LA CAPTURA REAL DE GOOGLE PLAY.\nEn Unity: Click Inteligente > Importar referencias visuales.", new Vector2(0.12f, 0.43f), new Vector2(0.88f, 0.68f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+            string youtubeReference = placement == 0 ? "YouTube_InFeed_2023" : placement == 1 ? "YouTube_InStream_2025" : "YouTube_Shorts_Interactive_2025";
+            BuildReferencePlatformScreen(scenario, youtubeReference, "YOUTUBE");
             return;
         }
 
-        Color page = platform == 2 ? Hex("#101014") : Hex("#F8F9FA");
-        Color ink = platform == 2 ? Color.white : Hex("#202124");
-        Color muted = platform == 2 ? Hex("#B9BBC3") : Hex("#60646B");
-        CreateCard(screenRoot, "PlatformPage", new Vector2(0.015f, 0.215f), new Vector2(0.985f, 0.91f), page);
+        if (platform == 1)
+        {
+            string playStoreReference = placement == 0 ? "GooglePlay_SearchSponsored_2025" : placement == 1 ? "GooglePlay_SuggestedDark_2026" : "GooglePlay_SuggestedLight_2024";
+            BuildReferencePlatformScreen(scenario, playStoreReference, "GOOGLE PLAY");
+            return;
+        }
 
-        if (platform == 0)
-            BuildYouTubeAdPage(scenario, placementIndex, ink, muted);
-        else if (platform == 1)
-            BuildPlayStoreAdPage(scenario, placementIndex, ink, muted);
-        else
-            BuildTikTokAdPage(scenario, placementIndex);
+        if (placement == 1 || placement == 2)
+        {
+            string tikTokReference = placement == 1 ? "TikTok_Carousel_2025" : "TikTok_TopView_2022";
+            BuildReferencePlatformScreen(scenario, tikTokReference, "TIKTOK");
+            return;
+        }
+
+        CreateCard(screenRoot, "PlatformPage", new Vector2(0.015f, 0.215f), new Vector2(0.985f, 0.91f), Hex("#101014"));
+        BuildTikTokAdPage(scenario, placementIndex);
     }
+
+    private void BuildReferencePlatformScreen(AdScenario scenario, string referenceName, string platformName)
+    {
+        if (!CreateReferenceImage("RealPlatformReference", new Vector2(0.07f, 0.31f), new Vector2(0.93f, 0.82f), referenceName))
+        {
+            CreateCard(screenRoot, "MissingPlatformReference", new Vector2(0.07f, 0.31f), new Vector2(0.93f, 0.82f), Hex("#243A50"));
+            AddText(screenRoot, "MissingPlatformReferenceText", "FALTA IMPORTAR LA REFERENCIA REAL DE " + platformName + ".\nEn Unity: Click Inteligente > Importar referencias visuales.", new Vector2(0.12f, 0.43f), new Vector2(0.88f, 0.68f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+        }
+
+        CreateCard(screenRoot, "FictionalScenarioOverlay", new Vector2(0.07f, 0.215f), new Vector2(0.93f, 0.31f), Hex("#182438"));
+        AddText(screenRoot, "FictionalScenarioLabel", platformName + " · REFERENCIA REAL / CASO FICTICIO", new Vector2(0.09f, 0.278f), new Vector2(0.91f, 0.305f), Vector2.zero, Vector2.zero, 13, Hex("#BCEBFF"), TextAlignmentOptions.Left);
+        AddText(screenRoot, "FictionalScenarioTitle", scenario.title, new Vector2(0.09f, 0.245f), new Vector2(0.91f, 0.28f), Vector2.zero, Vector2.zero, 17, Color.white, TextAlignmentOptions.Left);
+        AddText(screenRoot, "FictionalScenarioMessage", scenario.message, new Vector2(0.09f, 0.216f), new Vector2(0.91f, 0.245f), Vector2.zero, Vector2.zero, 12, Hex("#D6E2F0"), TextAlignmentOptions.Left);
+    }
+
     private void BuildYouTubeAdPage(AdScenario scenario, int placementIndex, Color ink, Color muted)
     {
         CreateCard(screenRoot, "YouTubeHeader", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Color.white);
