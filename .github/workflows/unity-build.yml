@@ -1,0 +1,56 @@
+name: Unity Build
+
+on:
+  push:
+    branches:
+      - improve/click-inteligente-flow
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unity-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Click Inteligente (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Validate Unity license secret
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        run: |
+          if [ -z "$UNITY_LICENSE" ]; then
+            echo "::error::Falta configurar el secreto UNITY_LICENSE en Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: .
+          unityVersion: 2022.3.62f3
+          targetPlatform: StandaloneLinux64
+          buildName: ClickInteligente
+          buildsPath: build
+          allowDirtyBuild: true
+
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClickInteligente-Linux
+          path: build/StandaloneLinux64
+          if-no-files-found: error
+          retention-days: 14
