@@ -10,8 +10,8 @@ Las pantallas de práctica cargan imágenes reales de referencia desde `Assets/R
 | YouTube | In-stream | `YouTube_InStream_2025` | [ComputerHoy](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg) |
 | YouTube | Shorts | `YouTube_Shorts_Interactive_2025` | [Squarespace CDN](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png) |
 | Google Play | Búsqueda patrocinada | `GooglePlay_SearchSponsored_2025` | [Indian Express](https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg) |
-| Google Play | Sugerencias oscuras | `GooglePlay_SuggestedDark_2026` | [AppTweak](https://www.apptweak.com/img/2026/01/image8.png) |
-| Google Play | Sugerencias claras | `GooglePlay_SuggestedLight_2024` | [Digital Trends](https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720) |
+| Google Play | Sugerencias oscuras (recorte derecho de la imagen comparativa) | `GooglePlay_SuggestedDark_2026` | [AppTweak](https://www.apptweak.com/img/2026/01/image8.png) |
+| Google Play | Sugerencias claras (recorte izquierdo de la imagen comparativa) | `GooglePlay_SuggestedLight_2026` | [Digital Trends](https://www.apptweak.com/img/2026/01/image8.png) |
 | TikTok | In-feed | `TikTok_InFeed_Screen_2025` | [TikTok for Business](https://support.ecwid.com/hc/article_attachments/15645628291996) |
 | TikTok | TopView | `TikTok_TopView_2022` | [MegaDigital](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png) |
 | TikTok | Carrusel | `TikTok_Carousel_2025` | [Webflow CDN](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png) |
@@ -22,7 +22,7 @@ Los casos, títulos y mensajes que aparecen en el ejercicio siguen siendo fictic
 
 - `BuildPlatformMockup` selecciona capturas reales para las tres variantes de YouTube, las tres de Google Play y las variantes TikTok Carrusel/TopView.
 - `BuildPlatformMockup` selecciona una captura real distinta para las tres variantes de TikTok; no dibuja una segunda interfaz alrededor de esas capturas.
-- `CreateReferenceImage` carga los archivos desde `Resources/AdReferences` y ajusta la relación de aspecto.
+- `CreateReferenceImage` carga los archivos desde `Resources/AdReferences`, recorta las mitades clara/oscura de la captura comparativa de Play Store y ajusta la relación de aspecto.
 - Si una imagen falta, el juego muestra un aviso de recurso no importado. No sustituye la imagen por una ilustración inventada.
 
 ## Importación
