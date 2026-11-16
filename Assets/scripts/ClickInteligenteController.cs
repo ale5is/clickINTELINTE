@@ -214,17 +214,25 @@ public sealed class ClickInteligenteController : MonoBehaviour
         imageRect.offsetMax = Vector2.zero;
 
         videoTexture = new RenderTexture(640, 360, 0);
+        videoTexture.Create();
         imageObject.GetComponent<RawImage>().texture = videoTexture;
+        imageObject.AddComponent<AspectRatioFitter>().aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+        imageObject.GetComponent<AspectRatioFitter>().aspectRatio = 16f / 9f;
 
         GameObject playerObject = new GameObject("TutorialVideoPlayer");
         playerObject.transform.SetParent(screenRoot, false);
         videoPlayer = playerObject.AddComponent<VideoPlayer>();
+        AudioSource audioSource = playerObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         videoPlayer.playOnAwake = false;
         videoPlayer.source = VideoSource.VideoClip;
         videoPlayer.clip = clip;
         videoPlayer.renderMode = VideoRenderMode.RenderTexture;
         videoPlayer.targetTexture = videoTexture;
-        videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        videoPlayer.controlledAudioTrackCount = 1;
+        videoPlayer.EnableAudioTrack(0, true);
+        videoPlayer.SetTargetAudioSource(0, audioSource);
         videoPlayer.isLooping = false;
         videoPlayer.prepareCompleted += player => player.Play();
         videoPlayer.Prepare();
