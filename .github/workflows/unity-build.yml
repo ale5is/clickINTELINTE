@@ -1,9 +1,6 @@
 name: Unity Build
 
 on:
-  push:
-    branches:
-      - improve/click-inteligente-flow
   pull_request:
     branches:
       - main
