@@ -31,9 +31,9 @@ Los escenarios trabajan señales como:
 ## Pantallas simuladas de plataformas
 
 Durante la práctica, cada anuncio aparece dentro de una recreación de la interfaz de la plataforma y de su ubicación publicitaria:
-- **YouTube:** in-feed dentro de una cuadrícula de recomendaciones, in-stream dentro de un reproductor con temporizador y opción de omitir, y Shorts en un visor vertical con acciones laterales.
-- **Google Play:** resultado patrocinado dentro de la lista de búsqueda, tarjetas de anuncios sugeridos y ficha de aplicación con desarrollador, valoración, descargas, botón de instalación y capturas promocionales.
-- **TikTok:** feed vertical Para ti con barra de estado, pestañas, video, perfil, etiqueta de publicidad, acciones laterales, CTA y navegación inferior; el carrusel muestra varias piezas y TopView se identifica como anuncio de apertura.
+- **YouTube:** cada práctica muestra una captura real distinta para In-feed, In-stream o Shorts.
+- **Google Play:** cada práctica muestra una captura real distinta para búsqueda patrocinada o sugerencias en tema oscuro/claro.
+- **TikTok:** In-feed conserva el feed vertical y usa una creatividad real; Carrusel y TopView muestran sus referencias visuales reales sin envolverlas en otra interfaz inventada.
 
 **Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y sugerencias; TikTok usa creatividades reales para in-feed, carrusel y TopView. Los textos superpuestos que describen el caso siguen siendo ficticios y están identificados como tales.
 
