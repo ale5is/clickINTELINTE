@@ -15,7 +15,7 @@ public static class AdReferenceImporter
         ("YouTube_Shorts_Interactive_2025", "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png"),
         ("GooglePlay_SearchSponsored_2025", "https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg"),
         ("GooglePlay_SuggestedDark_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
-        ("GooglePlay_SuggestedLight_2024", "https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720"),
+        ("GooglePlay_SuggestedLight_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("TikTok_InFeed_Screen_2025", "https://support.ecwid.com/hc/article_attachments/15645628291996"),
         ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png"),
         ("TikTok_Carousel_2025", "https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png")
