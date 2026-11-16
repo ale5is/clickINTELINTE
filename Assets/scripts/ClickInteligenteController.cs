@@ -411,15 +411,15 @@ public sealed class ClickInteligenteController : MonoBehaviour
         }
         else if (referenceName == "GooglePlay_SearchSponsored_2026")
         {
-            panelMin = new Vector2(0.02f, 0.38f);
-            panelMax = new Vector2(0.49f, 0.70f);
+            panelMin = new Vector2(0.02f, 0.50f);
+            panelMax = new Vector2(0.49f, 0.71f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "GooglePlay_SuggestedLight_2026" || referenceName == "GooglePlay_SuggestedDark_2026")
         {
-            panelMin = new Vector2(0.05f, 0.18f);
-            panelMax = new Vector2(0.95f, 0.50f);
+            panelMin = new Vector2(0.05f, 0.23f);
+            panelMax = new Vector2(0.95f, 0.54f);
             titleSize = 13f;
             messageSize = 9f;
         }
@@ -439,18 +439,29 @@ public sealed class ClickInteligenteController : MonoBehaviour
         }
         else if (referenceName == "TikTok_TopView_2022")
         {
-            panelMin = new Vector2(0.04f, 0.28f);
-            panelMax = new Vector2(0.34f, 0.62f);
+            panelMin = new Vector2(0.39f, 0.14f);
+            panelMax = new Vector2(0.68f, 0.31f);
             titleSize = 12f;
             messageSize = 9f;
         }
 
-        CreateCard(imageRoot, "ScenarioAdContent", panelMin, panelMax, new Color(0.035f, 0.055f, 0.085f, 0.94f));
+        bool lightPlayStore = referenceName == "GooglePlay_SuggestedLight_2026";
+        Color panelColor = lightPlayStore ? new Color(0.96f, 0.97f, 0.99f, 0.98f) : new Color(0.035f, 0.055f, 0.085f, 0.96f);
+        Color advertiserColor = lightPlayStore ? Hex("#5F6368") : Hex("#BCEBFF");
+        Color titleColor = lightPlayStore ? Hex("#202124") : Color.white;
+        Color messageColor = lightPlayStore ? Hex("#3C4043") : Hex("#E1E8F0");
+        Color actionColor = Color.white;
+        Color actionButtonColor = lightPlayStore ? Hex("#1A73E8") : Hex("#2878B8");
+
+        CreateCard(imageRoot, "ScenarioAdContent", panelMin, panelMax, panelColor);
         float panelHeight = panelMax.y - panelMin.y;
-        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", new Vector2(panelMin.x + 0.025f, panelMax.y - panelHeight * 0.25f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.05f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), Hex("#BCEBFF"), TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdTitle", scenario.title, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.48f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.29f), Vector2.zero, Vector2.zero, titleSize, Color.white, TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdMessage", scenario.message, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.18f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.46f), Vector2.zero, Vector2.zero, messageSize, Hex("#E1E8F0"), TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.02f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.17f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 3f), Hex("#8FD4FF"), TextAlignmentOptions.Right);
+        Vector2 actionMin = new Vector2(panelMin.x + 0.54f, panelMin.y + panelHeight * 0.015f);
+        Vector2 actionMax = new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.19f);
+        CreateCard(imageRoot, "ScenarioAdActionButton", actionMin, actionMax, actionButtonColor);
+        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", new Vector2(panelMin.x + 0.025f, panelMax.y - panelHeight * 0.25f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.05f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), advertiserColor, TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdTitle", scenario.title, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.48f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.29f), Vector2.zero, Vector2.zero, titleSize, titleColor, TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdMessage", scenario.message, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.18f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.46f), Vector2.zero, Vector2.zero, messageSize, messageColor, TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, actionMin, actionMax, new Vector2(5f, 1f), new Vector2(-5f, -1f), Mathf.Max(9f, titleSize - 3f), actionColor, TextAlignmentOptions.Center);
     }
 
     private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName, out RectTransform rect)
