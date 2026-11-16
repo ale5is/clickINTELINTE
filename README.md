@@ -30,7 +30,7 @@ Los escenarios trabajan señales como:
 
 ## Pantallas simuladas de plataformas
 
-Durante la práctica, cada anuncio aparece dentro de una recreación de la interfaz de la plataforma y de su ubicación publicitaria:
+Durante la práctica, las variantes de anuncio se presentan con capturas reales de la plataforma; TikTok In-Feed conserva una recreación del feed y utiliza una creatividad fotográfica real:
 - **YouTube:** cada práctica muestra una captura real distinta para In-feed, In-stream o Shorts.
 - **Google Play:** cada práctica muestra una captura real distinta para búsqueda patrocinada o sugerencias en tema oscuro/claro.
 - **TikTok:** In-feed conserva el feed vertical y usa una creatividad real; Carrusel y TopView muestran sus referencias visuales reales sin envolverlas en otra interfaz inventada.
