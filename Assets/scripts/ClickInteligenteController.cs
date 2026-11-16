@@ -363,15 +363,12 @@ public sealed class ClickInteligenteController : MonoBehaviour
             return;
         }
 
-        if (placement == 1 || placement == 2)
-        {
-            string tikTokReference = placement == 1 ? "TikTok_Carousel_2025" : "TikTok_TopView_2022";
-            BuildReferencePlatformScreen(scenario, tikTokReference, "TIKTOK");
-            return;
-        }
-
-        CreateCard(screenRoot, "PlatformPage", new Vector2(0.015f, 0.215f), new Vector2(0.985f, 0.91f), Hex("#101014"));
-        BuildTikTokAdPage(scenario, placementIndex);
+        string tikTokReference = placement == 0
+            ? "TikTok_InFeed_Screen_2025"
+            : placement == 1
+                ? "TikTok_Carousel_2025"
+                : "TikTok_TopView_2022";
+        BuildReferencePlatformScreen(scenario, tikTokReference, "TIKTOK");
     }
 
     private void BuildReferencePlatformScreen(AdScenario scenario, string referenceName, string platformName)
