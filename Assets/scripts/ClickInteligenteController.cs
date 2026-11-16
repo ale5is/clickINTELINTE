@@ -608,7 +608,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         text.color = color;
         text.alignment = alignment;
         text.enableAutoSizing = true;
-        text.fontSizeMin = Mathf.Max(14, fontSize * 0.65f);
+        text.fontSizeMin = Mathf.Min(fontSize, Mathf.Max(10, fontSize * 0.65f));
         text.fontSizeMax = fontSize;
         text.enableWordWrapping = true;
         text.raycastTarget = false;
