@@ -357,7 +357,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
         if (platform == 1)
         {
-            string playStoreReference = placement == 0 ? "GooglePlay_SearchSponsored_2025" : placement == 1 ? "GooglePlay_SuggestedDark_2026" : "GooglePlay_SuggestedLight_2026";
+            string playStoreReference = placement == 0 ? "GooglePlay_SearchSponsored_2026" : placement == 1 ? "GooglePlay_SuggestedDark_2026" : "GooglePlay_SuggestedLight_2026";
             BuildReferencePlatformScreen(scenario, playStoreReference, "GOOGLE PLAY");
             return;
         }
