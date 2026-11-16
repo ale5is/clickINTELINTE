@@ -446,10 +446,11 @@ public sealed class ClickInteligenteController : MonoBehaviour
         }
 
         CreateCard(imageRoot, "ScenarioAdContent", panelMin, panelMax, new Color(0.035f, 0.055f, 0.085f, 0.94f));
-        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", panelMin + new Vector2(0.025f, 0.72f), panelMax - new Vector2(0.025f, 0.02f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), Hex("#BCEBFF"), TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdTitle", scenario.title, panelMin + new Vector2(0.025f, 0.48f), panelMax - new Vector2(0.025f, 0.24f), Vector2.zero, Vector2.zero, titleSize, Color.white, TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdMessage", scenario.message, panelMin + new Vector2(0.025f, 0.13f), panelMax - new Vector2(0.025f, 0.49f), Vector2.zero, Vector2.zero, messageSize, Hex("#E1E8F0"), TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, panelMin + new Vector2(0.56f, 0.01f), panelMin + new Vector2(0.98f, 0.13f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 3f), Hex("#8FD4FF"), TextAlignmentOptions.Right);
+        float panelHeight = panelMax.y - panelMin.y;
+        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", new Vector2(panelMin.x + 0.025f, panelMax.y - panelHeight * 0.25f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.05f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), Hex("#BCEBFF"), TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdTitle", scenario.title, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.48f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.29f), Vector2.zero, Vector2.zero, titleSize, Color.white, TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdMessage", scenario.message, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.18f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.46f), Vector2.zero, Vector2.zero, messageSize, Hex("#E1E8F0"), TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.02f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.17f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 3f), Hex("#8FD4FF"), TextAlignmentOptions.Right);
     }
 
     private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName, out RectTransform rect)
