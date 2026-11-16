@@ -30,19 +30,21 @@ Los escenarios trabajan señales como:
 
 ## Pantallas simuladas de plataformas
 
-Durante la práctica, cada anuncio aparece dentro de una interfaz ilustrativa distinta según la plataforma y la ubicación publicitaria:
-- **YouTube:** anuncios in-feed, in-stream y Shorts, con reproductor, miniatura, canal, etiqueta de patrocinado, descripción y llamada a la acción.
-- **Google Play:** anuncios en búsqueda, recomendaciones y promoción de aplicaciones, con icono, ficha, valoración, descripción y botón de instalación ficticio.
-- **TikTok:** anuncios in-feed, carrusel y TopView, con composición vertical, identidad del anunciante, texto, acciones sociales y llamada a la acción.
+Durante la práctica, cada anuncio aparece dentro de una recreación de la interfaz de la plataforma y de su ubicación publicitaria:
+- **YouTube:** in-feed dentro de una cuadrícula de recomendaciones, in-stream dentro de un reproductor con temporizador y opción de omitir, y Shorts en un visor vertical con acciones laterales.
+- **Google Play:** resultado patrocinado dentro de la lista de búsqueda, tarjetas de anuncios sugeridos y ficha de aplicación con desarrollador, valoración, descargas, botón de instalación y capturas promocionales.
+- **TikTok:** feed vertical Para ti con barra de estado, pestañas, video, perfil, etiqueta de publicidad, acciones laterales, CTA y navegación inferior; el carrusel muestra varias piezas y TopView se identifica como anuncio de apertura.
 
-Las creatividades incluyen ilustraciones originales para premios falsos, alertas de virus, actualizaciones urgentes, descargas de juegos, aplicaciones y propuestas educativas. Se diseñaron tomando como referencia la estructura de anuncios y las capturas públicas de las plataformas, sin copiar imágenes, marcas de terceros ni publicidad ajena. Los recursos se dibujan con elementos UI de Unity: no requieren conexión a internet, imágenes remotas ni cuentas reales. Los botones publicitarios son simulados y no ejecutan descargas.
+Las creatividades de los anuncios son composiciones originales dibujadas con Unity UI. Se adaptan al espacio de cada formato y representan premios falsos, alertas, descargas y propuestas educativas. Las capturas externas se usan como referencia de distribución y jerarquía visual, no se incorporan al juego como fondos ni se descargan en tiempo de ejecución. Los botones publicitarios son simulados y no ejecutan descargas ni abren enlaces.
 
-### Referencias visuales y de formatos
+### Referencias visuales consultadas
 
-- [Formatos de anuncios de vídeo de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es)
-- [Anuncios de vídeo in-feed de YouTube](https://support.google.com/google-ads/answer/6227733?hl=es)
-- [Anuncios In-Feed de TikTok](https://ads.tiktok.com/help/article/tiktok-auction-in-feed-ads?lang=es)
-- [Anuncios carrusel de TikTok](https://ads.tiktok.com/resources/help/article/carousel-ads?lang=es)
+- [Captura de la página principal y página de reproducción de YouTube (PDF, figuras 1 y 3)](https://www.accc.gov.au/system/files/Digital%20Platform%20Services%20Inquiry%20-%20Social%20Media%20Interim%20Report%20-%20Public%20Submission%20-%20Google%20Australia%20-%20November%202022.pdf?download=y)
+- [Formatos oficiales de anuncios de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es)
+- [Capturas de resultados patrocinados y sugerencias de Google Play](https://www.radaso.com/blog/google-play-store-advertising-android-app-promotion-in-2024)
+- [Guía oficial de capturas y superficies de Google Play](https://support.google.com/googleplay/android-developer/answer/9866151)
+- [Capturas de TikTok For You y etiqueta de publicidad (Anexo 5, PDF)](https://commission.europa.eu/document/download/bb70bfd5-7a26-471a-b265-7a59f0426a57_en?filename=2022.06.15_tiktok_updated_commitments.pdf&prefLang=hu)
+- [Diseño web modular de TikTok para escritorio](https://newsroom.tiktok.com/new-features-bring-tiktok-magic-to-desktop?lang=en)
 - [Ejemplos de ventanas emergentes fraudulentas y malware móvil](https://www.welivesecurity.com/la-es/2020/01/15/como-funciona-el-malware-dirigido-a-dispositivos-moviles/)
 
 ## Videos tutoriales
