@@ -9,7 +9,7 @@ Las pantallas de práctica cargan imágenes reales de referencia desde `Assets/R
 | YouTube | In-feed | `YouTube_InFeed_2023` | [Strike Social](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png) |
 | YouTube | In-stream | `YouTube_InStream_2025` | [ComputerHoy](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg) |
 | YouTube | Shorts | `YouTube_Shorts_Interactive_2025` | [Squarespace CDN](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png) |
-| Google Play | Búsqueda patrocinada | `GooglePlay_SearchSponsored_2026` | [Indian Express](https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904%26width=874) |
+| Google Play | Búsqueda patrocinada | `GooglePlay_SearchSponsored_2026` | [Vodafone device guide](https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874) |
 | Google Play | Sugerencias oscuras (recorte derecho de la imagen comparativa) | `GooglePlay_SuggestedDark_2026` | [AppTweak](https://www.apptweak.com/img/2026/01/image8.png) |
 | Google Play | Sugerencias claras (recorte izquierdo de la imagen comparativa) | `GooglePlay_SuggestedLight_2026` | [AppTweak](https://www.apptweak.com/img/2026/01/image8.png) |
 | TikTok | In-feed | `TikTok_InFeed_Screen_2025` | [Ecwid support article](https://support.ecwid.com/hc/article_attachments/15645628291996) |
