@@ -26,12 +26,20 @@ jobs:
         with:
           lfs: true
 
-      - name: Validate Unity license secret
+      - name: Validate Unity secrets
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         run: |
-          if [ -z "$UNITY_LICENSE" ]; then
-            echo "::error::Falta configurar el secreto UNITY_LICENSE en Settings > Secrets and variables > Actions."
+          missing=0
+          for secret_name in UNITY_LICENSE UNITY_EMAIL UNITY_PASSWORD; do
+            if [ -z "${!secret_name}" ]; then
+              echo "::error::Falta configurar el secreto ${secret_name} en Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
             exit 1
           fi
 
@@ -39,6 +47,8 @@ jobs:
         uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           projectPath: .
           unityVersion: 2022.3.62f3
