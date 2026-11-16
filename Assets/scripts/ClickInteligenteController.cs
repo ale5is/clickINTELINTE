@@ -372,26 +372,95 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
     private void BuildReferencePlatformScreen(AdScenario scenario, string referenceName, string platformName)
     {
-        if (!CreateReferenceImage("RealPlatformReference", new Vector2(0.07f, 0.31f), new Vector2(0.93f, 0.82f), referenceName))
+        RectTransform referenceRect;
+        if (!CreateReferenceImage("RealPlatformReference", new Vector2(0.07f, 0.215f), new Vector2(0.93f, 0.90f), referenceName, out referenceRect))
         {
             CreateCard(screenRoot, "MissingPlatformReference", new Vector2(0.07f, 0.31f), new Vector2(0.93f, 0.82f), Hex("#243A50"));
-            AddText(screenRoot, "MissingPlatformReferenceText", "FALTA IMPORTAR LA REFERENCIA REAL DE " + platformName + ".\nEn Unity: Click Inteligente > Importar referencias visuales.", new Vector2(0.12f, 0.43f), new Vector2(0.88f, 0.68f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+            AddText(screenRoot, "MissingPlatformReferenceText", "FALTA IMPORTAR LA REFERENCIA REAL DE " + platformName + ".\\nEn Unity: Click Inteligente > Importar referencias visuales.", new Vector2(0.12f, 0.43f), new Vector2(0.88f, 0.68f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+            return;
         }
 
-        CreateCard(screenRoot, "FictionalScenarioOverlay", new Vector2(0.07f, 0.215f), new Vector2(0.93f, 0.31f), Hex("#182438"));
-        AddText(screenRoot, "FictionalScenarioLabel", platformName + " · REFERENCIA REAL / CASO FICTICIO", new Vector2(0.09f, 0.278f), new Vector2(0.91f, 0.305f), Vector2.zero, Vector2.zero, 13, Hex("#BCEBFF"), TextAlignmentOptions.Left);
-        AddText(screenRoot, "FictionalScenarioTitle", scenario.title, new Vector2(0.09f, 0.245f), new Vector2(0.91f, 0.28f), Vector2.zero, Vector2.zero, 17, Color.white, TextAlignmentOptions.Left);
-        AddText(screenRoot, "FictionalScenarioMessage", scenario.message, new Vector2(0.09f, 0.216f), new Vector2(0.91f, 0.245f), Vector2.zero, Vector2.zero, 12, Hex("#D6E2F0"), TextAlignmentOptions.Left);
+        CreateScenarioAdOverlay(referenceRect, scenario, referenceName);
     }
 
-    private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName)
+    private void CreateScenarioAdOverlay(RectTransform imageRoot, AdScenario scenario, string referenceName)
     {
+        Vector2 panelMin = new Vector2(0.08f, 0.08f);
+        Vector2 panelMax = new Vector2(0.92f, 0.30f);
+        float titleSize = 17f;
+        float messageSize = 12f;
+
+        if (referenceName == "YouTube_InFeed_2023")
+        {
+            panelMin = new Vector2(0.02f, 0.53f);
+            panelMax = new Vector2(0.82f, 0.68f);
+        }
+        else if (referenceName == "YouTube_InStream_2025")
+        {
+            panelMin = new Vector2(0.02f, 0.76f);
+            panelMax = new Vector2(0.48f, 0.88f);
+            titleSize = 13f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "YouTube_Shorts_Interactive_2025")
+        {
+            panelMin = new Vector2(0.30f, 0.10f);
+            panelMax = new Vector2(0.70f, 0.27f);
+            titleSize = 13f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "GooglePlay_SearchSponsored_2026")
+        {
+            panelMin = new Vector2(0.02f, 0.39f);
+            panelMax = new Vector2(0.49f, 0.61f);
+            titleSize = 13f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "GooglePlay_SuggestedLight_2026" || referenceName == "GooglePlay_SuggestedDark_2026")
+        {
+            panelMin = new Vector2(0.05f, 0.30f);
+            panelMax = new Vector2(0.95f, 0.48f);
+            titleSize = 13f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "TikTok_InFeed_Screen_2025")
+        {
+            panelMin = new Vector2(0.27f, 0.16f);
+            panelMax = new Vector2(0.72f, 0.34f);
+            titleSize = 12f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "TikTok_Carousel_2025")
+        {
+            panelMin = new Vector2(0.12f, 0.12f);
+            panelMax = new Vector2(0.88f, 0.36f);
+            titleSize = 13f;
+            messageSize = 9f;
+        }
+        else if (referenceName == "TikTok_TopView_2022")
+        {
+            panelMin = new Vector2(0.04f, 0.30f);
+            panelMax = new Vector2(0.34f, 0.58f);
+            titleSize = 12f;
+            messageSize = 9f;
+        }
+
+        CreateCard(imageRoot, "ScenarioAdContent", panelMin, panelMax, new Color(0.035f, 0.055f, 0.085f, 0.94f));
+        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", panelMin + new Vector2(0.025f, 0.72f), panelMax - new Vector2(0.025f, 0.02f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), Hex("#BCEBFF"), TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdTitle", scenario.title, panelMin + new Vector2(0.025f, 0.48f), panelMax - new Vector2(0.025f, 0.24f), Vector2.zero, Vector2.zero, titleSize, Color.white, TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdMessage", scenario.message, panelMin + new Vector2(0.025f, 0.13f), panelMax - new Vector2(0.025f, 0.49f), Vector2.zero, Vector2.zero, messageSize, Hex("#E1E8F0"), TextAlignmentOptions.Left);
+        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, panelMin + new Vector2(0.56f, 0.01f), panelMin + new Vector2(0.98f, 0.13f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 3f), Hex("#8FD4FF"), TextAlignmentOptions.Right);
+    }
+
+    private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName, out RectTransform rect)
+    {
+        rect = null;
         Texture2D texture = Resources.Load<Texture2D>("AdReferences/" + resourceName);
         if (texture == null)
             return false;
 
         GameObject imageObject = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage));
-        RectTransform rect = imageObject.GetComponent<RectTransform>();
+        rect = imageObject.GetComponent<RectTransform>();
         rect.SetParent(screenRoot, false);
         rect.anchorMin = anchorMin;
         rect.anchorMax = anchorMax;
