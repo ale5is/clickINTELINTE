@@ -35,11 +35,11 @@ Durante la práctica, cada anuncio aparece dentro de una recreación de la inter
 - **Google Play:** resultado patrocinado dentro de la lista de búsqueda, tarjetas de anuncios sugeridos y ficha de aplicación con desarrollador, valoración, descargas, botón de instalación y capturas promocionales.
 - **TikTok:** feed vertical Para ti con barra de estado, pestañas, video, perfil, etiqueta de publicidad, acciones laterales, CTA y navegación inferior; el carrusel muestra varias piezas y TopView se identifica como anuncio de apertura.
 
-**Estado de los recursos visuales:** el controlador todavía contiene miniaturas dibujadas por código. Esa parte está pendiente de reemplazo; no se considera terminada ni se deben confundir las referencias de investigación con imágenes ya integradas al juego.
+**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y sugerencias; TikTok usa creatividades reales para in-feed, carrusel y TopView. Los textos superpuestos que describen el caso siguen siendo ficticios y están identificados como tales.
 
 ### Referencias visuales actuales
 
-Las referencias se eligieron para comparar cada formato con capturas reales de las aplicaciones. El importador de Unity permite descargarlas al proyecto para inspección local; no las descarga durante el juego ni las incorpora automáticamente al HUD.
+Las referencias se usan como imágenes de las pantallas de práctica, no como contenido generado. El juego las carga localmente desde `Resources/AdReferences`; no realiza solicitudes de red mientras se ejecuta.
 
 - YouTube In-feed: [captura de anuncio dentro del feed](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png).
 - YouTube In-stream: [captura móvil de la interfaz de anuncio y omisión](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg).
@@ -47,6 +47,7 @@ Las referencias se eligieron para comparar cada formato con capturas reales de l
 - Google Play Search: [captura de resultados de búsqueda con ubicación patrocinada (2025)](https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg).
 - Google Play Suggested: [captura de recomendaciones patrocinadas en interfaz reciente (2026)](https://www.apptweak.com/img/2026/01/image8.png).
 - Google Play Suggested, tema oscuro: [captura de sección Sponsored · Suggested for you](https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720).
+- TikTok In-Feed: [creatividad fotográfica de la guía oficial de TikTok for Business](https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-52DY2FWG6YW1lkjzUCrIi7.jpg).
 - TikTok TopView: [ejemplo visual de TopView](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png).
 - TikTok Carousel: [ejemplo visual de anuncio carrusel](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png).
 
@@ -55,16 +56,17 @@ Documentación oficial para comprobar el comportamiento y los elementos de cada 
 - [Anuncios de Shorts y ubicaciones compatibles](https://support.google.com/google-ads/answer/16040527).
 - [Superficies y recursos visuales de Google Play](https://support.google.com/googleplay/android-developer/answer/9866151).
 
-Las capturas externas son referencias de interfaz de terceros. Antes de distribuirlas dentro del juego hay que comprobar sus licencias y permisos; el importador las guarda en una carpeta de referencia, no las añade al build.
+Las capturas y creatividades pertenecen a sus respectivos titulares. Su integración técnica no concede derechos de redistribución: antes de publicar o distribuir el juego hay que comprobar permisos/licencias o reemplazar cualquier recurso no autorizado. Las referencias se descargan durante la preparación del proyecto/build y se empaquetan localmente; el juego no consulta esos sitios en tiempo de ejecución.
 
 ### Importar las referencias en Unity
 
 1. Abrir el proyecto con Unity 2022.3.62f3.
 2. Esperar a que compile el script del Editor.
 3. Ejecutar **Click Inteligente > Importar referencias visuales**.
-4. Revisar los archivos descargados en `Assets/ReferenceScreenshots/Platforms`.
+4. Revisar los archivos descargados en `Assets/Resources/AdReferences`.
+5. Ejecutar la escena `Menu`; las pantallas de práctica cargarán las imágenes desde `Resources`.
 
-El importador informa qué descargas fallaron. No sustituye todavía las miniaturas del HUD; esa integración debe realizarse después de inspeccionar las imágenes importadas y seleccionar recursos utilizables con permisos adecuados.
+El workflow de GitHub Actions también intenta descargar las referencias antes de compilar Windows. Si una fuente externa no responde, el build continúa y la pantalla muestra qué referencia falta, en lugar de sustituirla por una ilustración inventada.
 
 ## Videos tutoriales
 
