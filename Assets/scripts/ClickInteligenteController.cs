@@ -273,7 +273,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         AdScenario scenario = round[questionIndex];
         AddText(screenRoot, "PracticeBrand", "CLICK INTELIGENTE  ·  APRENDÉ A NAVEGAR SEGURO", new Vector2(0.025f, 0.925f), new Vector2(0.70f, 0.985f), Vector2.zero, Vector2.zero, 22, Hex("#70D6FF"), TextAlignmentOptions.Left);
         AddText(screenRoot, "PracticeProgress", "ANUNCIO " + (questionIndex + 1) + " / " + round.Count, new Vector2(0.78f, 0.925f), new Vector2(0.975f, 0.985f), Vector2.zero, Vector2.zero, 19, Color.white, TextAlignmentOptions.Right);
-        BuildPlatformMockup(questionIndex % 3, scenario);
+        BuildPlatformMockup(questionIndex % 3, scenario, questionIndex);
         AddButton(screenRoot, "Parece seguro", new Vector2(0.12f, 0.085f), new Vector2(0.47f, 0.18f), Hex("#237A58"), () => Answer(false));
         AddButton(screenRoot, "Reportar como sospechoso", new Vector2(0.53f, 0.085f), new Vector2(0.88f, 0.18f), Hex("#A74646"), () => Answer(true));
         AddText(screenRoot, "PracticeSafety", "CONSEJO: frená, revisá quién publica y no descargues archivos desde anuncios.", new Vector2(0.06f, 0.015f), new Vector2(0.94f, 0.065f), Vector2.zero, Vector2.zero, 16, Hex("#BCEBFF"), TextAlignmentOptions.Center);
@@ -340,78 +340,148 @@ public sealed class ClickInteligenteController : MonoBehaviour
     }
 
 
-    private void BuildPlatformMockup(int platform, AdScenario scenario)
+    private void BuildPlatformMockup(int platform, AdScenario scenario, int placementIndex)
     {
-        Color page = platform == 2 ? Hex("#17191F") : Hex("#F8F9FA");
+        Color page = platform == 2 ? Hex("#101014") : Hex("#F8F9FA");
         Color ink = platform == 2 ? Color.white : Hex("#202124");
-        Color muted = platform == 2 ? Hex("#C8CBD2") : Hex("#5F6368");
-        CreateCard(screenRoot, "PlatformPage", new Vector2(0.02f, 0.22f), new Vector2(0.98f, 0.90f), page);
-        CreateCard(screenRoot, "PlatformTopBar", new Vector2(0.02f, 0.82f), new Vector2(0.98f, 0.90f), platform == 2 ? Hex("#202127") : Color.white);
-        string brand = platform == 0 ? "▶  YouTube" : platform == 1 ? "▶  Play Store" : "♪  TikTok  ·  Para vos";
-        AddText(screenRoot, "PlatformBrand", brand, new Vector2(0.045f, 0.835f), new Vector2(0.25f, 0.885f), Vector2.zero, Vector2.zero, 23, platform == 0 ? Hex("#E62117") : ink, TextAlignmentOptions.Left);
-        CreateCard(screenRoot, "PlatformSearch", new Vector2(0.34f, 0.838f), new Vector2(0.72f, 0.882f), platform == 2 ? Hex("#34363D") : Hex("#EEF0F2"));
-        AddText(screenRoot, "PlatformSearchText", platform == 2 ? "Buscar" : platform == 1 ? "Buscar aplicaciones y juegos" : "Buscar videos...", new Vector2(0.355f, 0.84f), new Vector2(0.70f, 0.88f), Vector2.zero, Vector2.zero, 16, muted, TextAlignmentOptions.Left);
-        CreateCard(screenRoot, "PlatformSidebar", new Vector2(0.025f, 0.25f), new Vector2(0.135f, 0.80f), platform == 2 ? Hex("#202127") : Hex("#EEF1F5"));
-        string[] nav = platform == 0 ? new[] { "⌂  Inicio", "▶  Shorts", "▣  Suscripciones", "◷  Historial" } : platform == 1 ? new[] { "⌂  Juegos", "▦  Aplicaciones", "★  Premium", "◷  Colección" } : new[] { "⌂  Para vos", "♧  Siguiendo", "＋  Crear", "▣  Bandeja" };
-        for (int i = 0; i < nav.Length; i++)
-            AddText(screenRoot, "Nav" + i, nav[i], new Vector2(0.035f, 0.70f - i * 0.105f), new Vector2(0.13f, 0.755f - i * 0.105f), Vector2.zero, Vector2.zero, 15, ink, TextAlignmentOptions.Left);
+        Color muted = platform == 2 ? Hex("#B9BBC3") : Hex("#60646B");
+        CreateCard(screenRoot, "PlatformPage", new Vector2(0.015f, 0.215f), new Vector2(0.985f, 0.91f), page);
 
         if (platform == 0)
-        {
-            string[] chips = { "Todos", "Videojuegos", "Música", "En vivo" };
-            for (int i = 0; i < chips.Length; i++)
-            {
-                float x = 0.15f + i * 0.125f;
-                CreateCard(screenRoot, "VideoChip" + i, new Vector2(x, 0.765f), new Vector2(x + 0.115f, 0.805f), i == 0 ? Hex("#252A32") : Hex("#E7E9EC"));
-                AddText(screenRoot, "VideoChipText" + i, chips[i], new Vector2(x + 0.005f, 0.77f), new Vector2(x + 0.11f, 0.80f), Vector2.zero, Vector2.zero, 14, i == 0 ? Color.white : ink, TextAlignmentOptions.Center);
-            }
-            string[] videos = { "Minecraft: nueva aventura", "Los mejores momentos", "Música para jugar", "Trucos y consejos" };
-            Color[] colors = { Hex("#4A8B58"), Hex("#C58A4A"), Hex("#586FAD"), Hex("#A45C83") };
-            for (int i = 0; i < videos.Length; i++)
-            {
-                int col = i % 2;
-                int row = i / 2;
-                float x = 0.155f + col * 0.285f;
-                float y = 0.555f - row * 0.205f;
-                CreateCard(screenRoot, "VideoThumb" + i, new Vector2(x, y), new Vector2(x + 0.265f, y + 0.135f), colors[i]);
-                AddText(screenRoot, "VideoPlay" + i, "▶", new Vector2(x + 0.09f, y + 0.04f), new Vector2(x + 0.175f, y + 0.105f), Vector2.zero, Vector2.zero, 30, Color.white, TextAlignmentOptions.Center);
-                AddText(screenRoot, "VideoTitle" + i, videos[i], new Vector2(x, y - 0.045f), new Vector2(x + 0.265f, y + 0.005f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
-            }
-        }
+            BuildYouTubeAdPage(scenario, placementIndex, ink, muted);
         else if (platform == 1)
+            BuildPlayStoreAdPage(scenario, placementIndex, ink, muted);
+        else
+            BuildTikTokAdPage(scenario, placementIndex);
+    }
+
+    private void BuildYouTubeAdPage(AdScenario scenario, int placementIndex, Color ink, Color muted)
+    {
+        CreateCard(screenRoot, "YouTubeHeader", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Color.white);
+        AddText(screenRoot, "YouTubeLogo", "▶ YouTube", new Vector2(0.035f, 0.85f), new Vector2(0.22f, 0.895f), Vector2.zero, Vector2.zero, 25, Hex("#E62117"), TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "YouTubeSearch", new Vector2(0.34f, 0.852f), new Vector2(0.72f, 0.892f), Hex("#F1F1F1"));
+        AddText(screenRoot, "YouTubeSearchText", "Buscar", new Vector2(0.36f, 0.855f), new Vector2(0.70f, 0.89f), Vector2.zero, Vector2.zero, 16, Hex("#60646B"), TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "YouTubeSidebar", new Vector2(0.025f, 0.245f), new Vector2(0.14f, 0.82f), Hex("#F1F3F4"));
+        string[] nav = { "⌂  Inicio", "▶  Shorts", "▣  Suscripciones", "◷  Historial", "▤  Biblioteca" };
+        for (int i = 0; i < nav.Length; i++)
+            AddText(screenRoot, "YouTubeNav" + i, nav[i], new Vector2(0.035f, 0.735f - i * 0.09f), new Vector2(0.135f, 0.785f - i * 0.09f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
+
+        bool inStream = placementIndex % 3 == 1;
+        bool shorts = placementIndex % 3 == 2;
+        string format = shorts ? "ANUNCIO EN SHORTS" : inStream ? "ANUNCIO IN-STREAM" : "ANUNCIO IN-FEED";
+        AddText(screenRoot, "YouTubeAdFormat", format, new Vector2(0.16f, 0.785f), new Vector2(0.76f, 0.82f), Vector2.zero, Vector2.zero, 15, Hex("#B3261E"), TextAlignmentOptions.Left);
+
+        if (shorts)
         {
-            AddText(screenRoot, "StoreSection", "Aplicaciones recomendadas", new Vector2(0.155f, 0.755f), new Vector2(0.70f, 0.80f), Vector2.zero, Vector2.zero, 20, ink, TextAlignmentOptions.Left);
-            string[] apps = { "Juego Pixel", "Editor creativo", "Música Fácil", "App desconocida" };
-            Color[] colors = { Hex("#42A66C"), Hex("#6389D8"), Hex("#D7A15D"), Hex("#D94B43") };
-            for (int i = 0; i < apps.Length; i++)
-            {
-                int col = i % 2;
-                int row = i / 2;
-                float x = 0.16f + col * 0.285f;
-                float y = 0.575f - row * 0.205f;
-                CreateCard(screenRoot, "AppIcon" + i, new Vector2(x, y + 0.015f), new Vector2(x + 0.075f, y + 0.125f), colors[i]);
-                AddText(screenRoot, "AppIconGlyph" + i, "★", new Vector2(x + 0.01f, y + 0.04f), new Vector2(x + 0.065f, y + 0.10f), Vector2.zero, Vector2.zero, 23, Color.white, TextAlignmentOptions.Center);
-                AddText(screenRoot, "AppName" + i, apps[i], new Vector2(x + 0.085f, y + 0.075f), new Vector2(x + 0.26f, y + 0.13f), Vector2.zero, Vector2.zero, 16, ink, TextAlignmentOptions.Left);
-                AddText(screenRoot, "AppRating" + i, i == 3 ? "Anuncio · Revisar" : "4,5 ★ · Aplicación", new Vector2(x + 0.085f, y + 0.025f), new Vector2(x + 0.26f, y + 0.075f), Vector2.zero, Vector2.zero, 14, muted, TextAlignmentOptions.Left);
-            }
+            CreateCard(screenRoot, "YouTubeShortPlayer", new Vector2(0.34f, 0.255f), new Vector2(0.69f, 0.775f), Hex("#242A38"));
+            CreateAdArtwork(scenario, new Vector2(0.355f, 0.37f), new Vector2(0.675f, 0.75f));
+            AddText(screenRoot, "ShortsSponsored", "Patrocinado · " + scenario.advertiser, new Vector2(0.355f, 0.285f), new Vector2(0.67f, 0.34f), Vector2.zero, Vector2.zero, 15, Color.white, TextAlignmentOptions.Left);
+            AddText(screenRoot, "ShortsControls", "♡  12 mil     ◯     ↗", new Vector2(0.70f, 0.43f), new Vector2(0.85f, 0.53f), Vector2.zero, Vector2.zero, 15, ink, TextAlignmentOptions.Center);
         }
         else
         {
-            CreateCard(screenRoot, "ShortVideoFrame", new Vector2(0.34f, 0.275f), new Vector2(0.67f, 0.755f), Hex("#394B78"));
-            AddText(screenRoot, "ShortVideoPlay", "▶", new Vector2(0.44f, 0.48f), new Vector2(0.57f, 0.58f), Vector2.zero, Vector2.zero, 48, Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "ShortVideoCaption", "Video recomendado · Para vos", new Vector2(0.35f, 0.29f), new Vector2(0.66f, 0.34f), Vector2.zero, Vector2.zero, 15, Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "ShortVideoActions", "♡     ◯     ↗", new Vector2(0.68f, 0.45f), new Vector2(0.77f, 0.58f), Vector2.zero, Vector2.zero, 20, ink, TextAlignmentOptions.Center);
+            CreateCard(screenRoot, "YouTubePlayer", new Vector2(0.16f, 0.43f), new Vector2(0.70f, 0.765f), Hex("#151922"));
+            CreateAdArtwork(scenario, new Vector2(0.175f, 0.465f), new Vector2(0.685f, 0.75f));
+            AddText(screenRoot, "YouTubePlayerBadge", inStream ? "Anuncio · Omitir en 5" : "Vista previa patrocinada", new Vector2(0.18f, 0.435f), new Vector2(0.68f, 0.47f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Left);
+            AddText(screenRoot, "YouTubeVideoTitle", scenario.title, new Vector2(0.16f, 0.375f), new Vector2(0.70f, 0.425f), Vector2.zero, Vector2.zero, 19, ink, TextAlignmentOptions.Left);
+            AddText(screenRoot, "YouTubeChannel", scenario.advertiser + "  ·  Patrocinado", new Vector2(0.16f, 0.335f), new Vector2(0.70f, 0.375f), Vector2.zero, Vector2.zero, 15, muted, TextAlignmentOptions.Left);
+            AddText(screenRoot, "YouTubeDescription", scenario.message, new Vector2(0.16f, 0.245f), new Vector2(0.70f, 0.33f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
         }
 
-        CreateCard(screenRoot, "SponsoredPanel", new Vector2(0.755f, 0.275f), new Vector2(0.965f, 0.805f), Color.white);
-        CreateCard(screenRoot, "SponsoredHeader", new Vector2(0.765f, 0.735f), new Vector2(0.955f, 0.79f), Hex("#FCE8E6"));
-        AddText(screenRoot, "SponsoredLabel", "⚠  ANUNCIO", new Vector2(0.775f, 0.74f), new Vector2(0.945f, 0.785f), Vector2.zero, Vector2.zero, 17, Hex("#B3261E"), TextAlignmentOptions.Center);
-        AddText(screenRoot, "SponsoredAdvertiser", scenario.advertiser, new Vector2(0.775f, 0.69f), new Vector2(0.945f, 0.735f), Vector2.zero, Vector2.zero, 15, Hex("#5F6368"), TextAlignmentOptions.Center);
-        AddText(screenRoot, "SponsoredTitle", scenario.title, new Vector2(0.775f, 0.59f), new Vector2(0.945f, 0.685f), Vector2.zero, Vector2.zero, 20, Hex("#202124"), TextAlignmentOptions.Center);
-        AddText(screenRoot, "SponsoredMessage", scenario.message, new Vector2(0.78f, 0.405f), new Vector2(0.94f, 0.585f), Vector2.zero, Vector2.zero, 16, Hex("#30343B"), TextAlignmentOptions.Center);
-        CreateCard(screenRoot, "SponsoredCTA", new Vector2(0.785f, 0.315f), new Vector2(0.935f, 0.375f), Hex("#F9AB00"));
-        AddText(screenRoot, "SponsoredCTAText", scenario.callToAction, new Vector2(0.79f, 0.32f), new Vector2(0.93f, 0.37f), Vector2.zero, Vector2.zero, 14, Hex("#202124"), TextAlignmentOptions.Center);
-        AddText(screenRoot, "MockupDisclaimer", "INTERFAZ FICTICIA · NO ES UNA PÁGINA REAL", new Vector2(0.15f, 0.225f), new Vector2(0.95f, 0.255f), Vector2.zero, Vector2.zero, 14, muted, TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "YouTubeAdInfo", new Vector2(0.735f, 0.255f), new Vector2(0.965f, 0.775f), Color.white);
+        AddText(screenRoot, "YouTubeAdLabel", "Anuncio · Patrocinado", new Vector2(0.75f, 0.72f), new Vector2(0.95f, 0.765f), Vector2.zero, Vector2.zero, 14, Hex("#B3261E"), TextAlignmentOptions.Left);
+        AddText(screenRoot, "YouTubeAdvertiser", scenario.advertiser, new Vector2(0.75f, 0.665f), new Vector2(0.95f, 0.72f), Vector2.zero, Vector2.zero, 17, ink, TextAlignmentOptions.Left);
+        AddText(screenRoot, "YouTubeAdCopy", scenario.message, new Vector2(0.75f, 0.43f), new Vector2(0.95f, 0.66f), Vector2.zero, Vector2.zero, 15, muted, TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "YouTubeCTA", new Vector2(0.755f, 0.30f), new Vector2(0.945f, 0.38f), Hex("#065FD4"));
+        AddText(screenRoot, "YouTubeCTAText", scenario.callToAction, new Vector2(0.76f, 0.31f), new Vector2(0.94f, 0.37f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Center);
+    }
+
+    private void BuildPlayStoreAdPage(AdScenario scenario, int placementIndex, Color ink, Color muted)
+    {
+        CreateCard(screenRoot, "PlayStoreHeader", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Color.white);
+        AddText(screenRoot, "PlayStoreLogo", "▶ Google Play", new Vector2(0.04f, 0.85f), new Vector2(0.28f, 0.895f), Vector2.zero, Vector2.zero, 24, Hex("#188B55"), TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "PlayStoreSearch", new Vector2(0.43f, 0.852f), new Vector2(0.94f, 0.892f), Hex("#F1F3F4"));
+        AddText(screenRoot, "PlayStoreSearchText", "Buscar aplicaciones y juegos", new Vector2(0.45f, 0.855f), new Vector2(0.92f, 0.89f), Vector2.zero, Vector2.zero, 15, muted, TextAlignmentOptions.Left);
+        string format = placementIndex % 3 == 0 ? "Anuncio en resultados de búsqueda" : placementIndex % 3 == 1 ? "Patrocinado · Recomendado para vos" : "Promoción de aplicación";
+        AddText(screenRoot, "PlayStoreFormat", format, new Vector2(0.06f, 0.775f), new Vector2(0.94f, 0.82f), Vector2.zero, Vector2.zero, 18, ink, TextAlignmentOptions.Left);
+
+        CreateCard(screenRoot, "PlayStoreFeature", new Vector2(0.06f, 0.39f), new Vector2(0.94f, 0.755f), Color.white);
+        CreateAdArtwork(scenario, new Vector2(0.075f, 0.535f), new Vector2(0.925f, 0.74f));
+        AddText(screenRoot, "PlayStoreAppName", scenario.advertiser, new Vector2(0.08f, 0.475f), new Vector2(0.68f, 0.53f), Vector2.zero, Vector2.zero, 22, ink, TextAlignmentOptions.Left);
+        AddText(screenRoot, "PlayStoreAppDescription", scenario.message, new Vector2(0.08f, 0.405f), new Vector2(0.78f, 0.475f), Vector2.zero, Vector2.zero, 15, muted, TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "PlayStoreInstall", new Vector2(0.79f, 0.415f), new Vector2(0.92f, 0.475f), Hex("#188B55"));
+        AddText(screenRoot, "PlayStoreInstallText", placementIndex % 3 == 2 ? "VER APP" : "INSTALAR", new Vector2(0.795f, 0.42f), new Vector2(0.915f, 0.47f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Center);
+
+        AddText(screenRoot, "PlayStoreMoreTitle", "También te puede interesar", new Vector2(0.07f, 0.32f), new Vector2(0.90f, 0.37f), Vector2.zero, Vector2.zero, 18, ink, TextAlignmentOptions.Left);
+        string[] names = { "Juegos populares", "Herramientas útiles", "Contenido educativo" };
+        Color[] colors = { Hex("#4A8B58"), Hex("#6389D8"), Hex("#D7A15D") };
+        for (int i = 0; i < names.Length; i++)
+        {
+            float x = 0.08f + i * 0.29f;
+            CreateCard(screenRoot, "PlayStoreRelated" + i, new Vector2(x, 0.235f), new Vector2(x + 0.25f, 0.305f), colors[i]);
+            AddText(screenRoot, "PlayStoreRelatedName" + i, names[i], new Vector2(x, 0.225f), new Vector2(x + 0.25f, 0.24f), Vector2.zero, Vector2.zero, 13, muted, TextAlignmentOptions.Center);
+        }
+        AddText(screenRoot, "PlayStoreDisclaimer", "Vista educativa ficticia · verificá siempre el desarrollador y los permisos", new Vector2(0.06f, 0.22f), new Vector2(0.94f, 0.245f), Vector2.zero, Vector2.zero, 13, muted, TextAlignmentOptions.Left);
+    }
+
+    private void BuildTikTokAdPage(AdScenario scenario, int placementIndex)
+    {
+        CreateCard(screenRoot, "TikTokTopBar", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Hex("#17171B"));
+        AddText(screenRoot, "TikTokTabs", "Siguiendo                 Para vos", new Vector2(0.20f, 0.85f), new Vector2(0.80f, 0.895f), Vector2.zero, Vector2.zero, 19, Color.white, TextAlignmentOptions.Center);
+        bool carousel = placementIndex % 3 == 1;
+        bool topView = placementIndex % 3 == 2;
+        string format = carousel ? "ANUNCIO CARRUSEL" : topView ? "ANUNCIO TOPVIEW" : "ANUNCIO IN-FEED";
+        AddText(screenRoot, "TikTokAdFormat", format, new Vector2(0.04f, 0.785f), new Vector2(0.70f, 0.82f), Vector2.zero, Vector2.zero, 15, Hex("#FF6B76"), TextAlignmentOptions.Left);
+
+        CreateCard(screenRoot, "TikTokVideo", new Vector2(0.19f, 0.245f), new Vector2(0.78f, 0.775f), Hex("#242A38"));
+        CreateAdArtwork(scenario, new Vector2(0.205f, 0.36f), new Vector2(0.765f, 0.755f));
+        AddText(screenRoot, "TikTokSponsored", "Patrocinado", new Vector2(0.22f, 0.305f), new Vector2(0.55f, 0.35f), Vector2.zero, Vector2.zero, 15, Color.white, TextAlignmentOptions.Left);
+        AddText(screenRoot, "TikTokCaption", scenario.message, new Vector2(0.22f, 0.255f), new Vector2(0.75f, 0.305f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Left);
+        AddText(screenRoot, "TikTokActions", "♡\n12 mil\n\n◯\n\n↗", new Vector2(0.79f, 0.43f), new Vector2(0.95f, 0.68f), Vector2.zero, Vector2.zero, 16, Color.white, TextAlignmentOptions.Center);
+        CreateCard(screenRoot, "TikTokCTA", new Vector2(0.22f, 0.215f), new Vector2(0.75f, 0.25f), Hex("#FE2C55"));
+        AddText(screenRoot, "TikTokCTAText", carousel ? "Deslizá para ver más" : scenario.callToAction, new Vector2(0.23f, 0.218f), new Vector2(0.74f, 0.247f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Center);
+        AddText(screenRoot, "TikTokAccount", "♪  " + scenario.advertiser + "  ·  Publicidad", new Vector2(0.22f, 0.315f), new Vector2(0.75f, 0.35f), Vector2.zero, Vector2.zero, 14, Color.white, TextAlignmentOptions.Left);
+    }
+
+    private void CreateAdArtwork(AdScenario scenario, Vector2 anchorMin, Vector2 anchorMax)
+    {
+        string title = scenario.title.ToUpperInvariant();
+        Color baseColor = title.Contains("VIRUS") || title.Contains("BLOQUEADA") ? Hex("#7D1725")
+            : title.Contains("GANASTE") ? Hex("#7A3DB8")
+            : title.Contains("DESCARGA") ? Hex("#153B78")
+            : title.Contains("DIBUJO") || title.Contains("LECTURA") || title.Contains("CIENCIA") ? Hex("#167B75")
+            : Hex("#174A76");
+        CreateCard(screenRoot, "AdCreativeArtwork", anchorMin, anchorMax, baseColor);
+        CreateCard(screenRoot, "AdCreativeGlow", new Vector2(anchorMin.x + 0.02f, anchorMin.y + 0.04f), new Vector2(anchorMax.x - 0.02f, anchorMax.y - 0.04f), Color.Lerp(baseColor, Color.white, 0.16f));
+
+        if (title.Contains("GANASTE"))
+        {
+            CreateCard(screenRoot, "PrizeBox", new Vector2(0.34f, anchorMin.y + 0.04f), new Vector2(0.52f, anchorMin.y + 0.19f), Hex("#F7C843"));
+            AddText(screenRoot, "PrizeRibbon", "★", new Vector2(0.37f, anchorMin.y + 0.08f), new Vector2(0.49f, anchorMin.y + 0.16f), Vector2.zero, Vector2.zero, 38, Hex("#7A3DB8"), TextAlignmentOptions.Center);
+            AddText(screenRoot, "PrizeHeadline", "¡PREMIO SORPRESA!", new Vector2(anchorMin.x + 0.03f, anchorMax.y - 0.09f), new Vector2(anchorMax.x - 0.03f, anchorMax.y - 0.025f), Vector2.zero, Vector2.zero, 24, Color.white, TextAlignmentOptions.Center);
+        }
+        else if (title.Contains("VIRUS") || title.Contains("BLOQUEADA") || title.Contains("ACTUALIZACIÓN"))
+        {
+            CreateCard(screenRoot, "AlertPanel", new Vector2(0.34f, anchorMin.y + 0.04f), new Vector2(0.57f, anchorMin.y + 0.19f), Hex("#FCE8E6"));
+            AddText(screenRoot, "AlertIcon", "!", new Vector2(0.38f, anchorMin.y + 0.055f), new Vector2(0.53f, anchorMin.y + 0.18f), Vector2.zero, Vector2.zero, 64, Hex("#B3261E"), TextAlignmentOptions.Center);
+            AddText(screenRoot, "AlertHeadline", "¡ATENCIÓN!", new Vector2(anchorMin.x + 0.03f, anchorMax.y - 0.09f), new Vector2(anchorMax.x - 0.03f, anchorMax.y - 0.025f), Vector2.zero, Vector2.zero, 27, Color.white, TextAlignmentOptions.Center);
+        }
+        else if (title.Contains("DESCARGA"))
+        {
+            AddText(screenRoot, "GameGems", "◆  ◆  ◆", new Vector2(anchorMin.x + 0.04f, anchorMin.y + 0.07f), new Vector2(anchorMax.x - 0.04f, anchorMin.y + 0.19f), Vector2.zero, Vector2.zero, 46, Hex("#6BE7FF"), TextAlignmentOptions.Center);
+            AddText(screenRoot, "GameHeadline", "TODO GRATIS", new Vector2(anchorMin.x + 0.03f, anchorMax.y - 0.09f), new Vector2(anchorMax.x - 0.03f, anchorMax.y - 0.025f), Vector2.zero, Vector2.zero, 27, Color.white, TextAlignmentOptions.Center);
+        }
+        else if (title.Contains("DIBUJO") || title.Contains("LECTURA") || title.Contains("CIENCIA"))
+        {
+            AddText(screenRoot, "EducationArt", title.Contains("CIENCIA") ? "⚗  ✦  ⚛" : title.Contains("LECTURA") ? "▤  LIBROS  ▤" : "✎  ✿  ✎", new Vector2(anchorMin.x + 0.03f, anchorMin.y + 0.055f), new Vector2(anchorMax.x - 0.03f, anchorMin.y + 0.19f), Vector2.zero, Vector2.zero, 42, Hex("#F4F7E8"), TextAlignmentOptions.Center);
+            AddText(screenRoot, "EducationHeadline", "DESCUBRÍ ALGO NUEVO", new Vector2(anchorMin.x + 0.03f, anchorMax.y - 0.09f), new Vector2(anchorMax.x - 0.03f, anchorMax.y - 0.025f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+        }
+        else
+        {
+            AddText(screenRoot, "DefaultCreative", "▶  " + scenario.advertiser, new Vector2(anchorMin.x + 0.03f, anchorMin.y + 0.055f), new Vector2(anchorMax.x - 0.03f, anchorMin.y + 0.19f), Vector2.zero, Vector2.zero, 34, Color.white, TextAlignmentOptions.Center);
+            AddText(screenRoot, "DefaultHeadline", scenario.title, new Vector2(anchorMin.x + 0.03f, anchorMax.y - 0.09f), new Vector2(anchorMax.x - 0.03f, anchorMax.y - 0.025f), Vector2.zero, Vector2.zero, 23, Color.white, TextAlignmentOptions.Center);
+        }
+        AddText(screenRoot, "CreativeAdMark", "PUBLICIDAD", new Vector2(anchorMin.x + 0.015f, anchorMin.y + 0.005f), new Vector2(anchorMin.x + 0.19f, anchorMin.y + 0.045f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Left);
     }
 
     private void AddHeader(string section, string title, string subtitle)
