@@ -357,7 +357,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
         if (platform == 1)
         {
-            string playStoreReference = placement == 0 ? "GooglePlay_SearchSponsored_2025" : placement == 1 ? "GooglePlay_SuggestedDark_2026" : "GooglePlay_SuggestedLight_2024";
+            string playStoreReference = placement == 0 ? "GooglePlay_SearchSponsored_2025" : placement == 1 ? "GooglePlay_SuggestedDark_2026" : "GooglePlay_SuggestedLight_2026";
             BuildReferencePlatformScreen(scenario, playStoreReference, "GOOGLE PLAY");
             return;
         }
@@ -401,9 +401,17 @@ public sealed class ClickInteligenteController : MonoBehaviour
         RawImage image = imageObject.GetComponent<RawImage>();
         image.texture = texture;
         image.raycastTarget = false;
+
+        Rect crop = new Rect(0f, 0f, 1f, 1f);
+        if (resourceName == "GooglePlay_SuggestedLight_2026")
+            crop = new Rect(0f, 0f, 0.5f, 1f);
+        else if (resourceName == "GooglePlay_SuggestedDark_2026")
+            crop = new Rect(0.5f, 0f, 0.5f, 1f);
+        image.uvRect = crop;
+
         AspectRatioFitter fitter = imageObject.AddComponent<AspectRatioFitter>();
         fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
-        fitter.aspectRatio = (float)texture.width / texture.height;
+        fitter.aspectRatio = (float)texture.width * crop.width / (texture.height * crop.height);
         return true;
     }
 
