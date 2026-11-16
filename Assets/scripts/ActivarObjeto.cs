@@ -6,7 +6,12 @@ public class ActivarObjeto : MonoBehaviour
 
     public void Activar()
     {
-        if (objeto != null)
-            objeto.SetActive(true);
+        if (objeto == null)
+        {
+            Debug.LogWarning("No se puede activar el objeto: asigná una referencia en el Inspector.", this);
+            return;
+        }
+
+        objeto.SetActive(true);
     }
 }
