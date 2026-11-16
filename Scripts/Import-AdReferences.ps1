@@ -8,7 +8,7 @@ $sources = @(
     @{ Name = "YouTube_Shorts_Interactive_2025"; Url = "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png" },
     @{ Name = "GooglePlay_SearchSponsored_2025"; Url = "https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg" },
     @{ Name = "GooglePlay_SuggestedDark_2026"; Url = "https://www.apptweak.com/img/2026/01/image8.png" },
-    @{ Name = "GooglePlay_SuggestedLight_2024"; Url = "https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720" },
+    @{ Name = "GooglePlay_SuggestedLight_2026"; Url = "https://www.apptweak.com/img/2026/01/image8.png" },
     @{ Name = "TikTok_InFeed_Screen_2025"; Url = "https://support.ecwid.com/hc/article_attachments/15645628291996" },
     @{ Name = "TikTok_TopView_2022"; Url = "https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png" },
     @{ Name = "TikTok_Carousel_2025"; Url = "https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png" }
