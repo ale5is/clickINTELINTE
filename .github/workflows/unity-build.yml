@@ -18,8 +18,8 @@ concurrency:
 
 jobs:
   build:
-    name: Build Click Inteligente (Linux)
-    runs-on: ubuntu-latest
+    name: Build Click Inteligente (Windows)
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,6 +27,7 @@ jobs:
           lfs: true
 
       - name: Validate Unity secrets
+        shell: bash
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -52,15 +53,15 @@ jobs:
         with:
           projectPath: .
           unityVersion: 2022.3.62f3
-          targetPlatform: StandaloneLinux64
-          buildName: ClickInteligente
+          targetPlatform: StandaloneWindows64
+          buildName: ClickInteligente.exe
           buildsPath: build
           allowDirtyBuild: true
 
-      - name: Upload Linux build
+      - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
-          name: ClickInteligente-Linux
-          path: build/StandaloneLinux64
+          name: ClickInteligente-Windows
+          path: build/StandaloneWindows64
           if-no-files-found: error
           retention-days: 14
