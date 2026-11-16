@@ -20,8 +20,8 @@ Los casos, títulos y mensajes que aparecen en el ejercicio siguen siendo fictic
 
 ## Correspondencia con el código
 
-- `ClickInteligenteController.CreateAdArtwork` carga imágenes de YouTube y TikTok según plataforma y variante.
-- `BuildPlatformMockup` selecciona una captura real distinta para cada variante de Google Play.
+- `BuildPlatformMockup` selecciona capturas reales para las tres variantes de YouTube, las tres de Google Play y las variantes TikTok Carrusel/TopView.
+- `BuildTikTokAdPage` conserva la estructura vertical del feed In-Feed y `CreateAdArtwork` conecta allí la creatividad fotográfica real.
 - `CreateReferenceImage` carga los archivos desde `Resources/AdReferences` y ajusta la relación de aspecto.
 - Si una imagen falta, el juego muestra un aviso de recurso no importado. No sustituye la imagen por una ilustración inventada.
 
