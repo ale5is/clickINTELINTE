@@ -6,7 +6,12 @@ public class DesactivarObjeto : MonoBehaviour
 
     public void Desactivar()
     {
-        if (objeto != null)
-            objeto.SetActive(false);
+        if (objeto == null)
+        {
+            Debug.LogWarning("No se puede desactivar el objeto: asigná una referencia en el Inspector.", this);
+            return;
+        }
+
+        objeto.SetActive(false);
     }
 }
