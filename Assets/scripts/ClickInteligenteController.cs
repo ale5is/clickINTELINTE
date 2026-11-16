@@ -11,7 +11,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
 {
     [Header("Material educativo")]
     [SerializeField] private VideoClip[] videosTutoriales;
-    [SerializeField, Range(5, 10)] private int preguntasPorPartida = 8;
+    [SerializeField, Range(5, 10)] private int preguntasPorPartida = 9;
 
     private Canvas canvas;
     private RectTransform screenRoot;
@@ -58,7 +58,11 @@ public sealed class ClickInteligenteController : MonoBehaviour
         new AdScenario("TU CUENTA SERÁ BLOQUEADA", "Soporte de Cuenta", "Detectamos un problema. Descargá este archivo y escribí tu contraseña para evitar que tu cuenta sea eliminada hoy.", "SOLUCIONAR PROBLEMA", true,
             "Amenaza con bloquear una cuenta, solicita una contraseña y propone descargar un archivo.",
             "Las amenazas, la solicitud de contraseñas y las descargas inesperadas son señales muy importantes de alerta.",
-            "No compartas contraseñas ni descargues el archivo. Entrá a tu cuenta desde la aplicación o dirección oficial.")
+            "No compartas contraseñas ni descargues el archivo. Entrá a tu cuenta desde la aplicación o dirección oficial."),
+        new AdScenario("ACTIVÁ TU CUENTA PREMIUM GRATIS", "Beneficios Plus", "Tu cuenta puede recibir funciones premium sin costo. Iniciá sesión con tu correo y contraseña para activar el beneficio antes de que termine la promoción.", "ACTIVAR BENEFICIO", true,
+            "El anuncio ofrece un beneficio gratuito a cambio de iniciar sesión desde su propia promoción. Podría ser un intento de robar credenciales.",
+            "Los beneficios inesperados y los formularios de inicio de sesión abiertos desde anuncios son señales de riesgo.",
+            "No ingreses tu contraseña desde el anuncio. Abrí la aplicación oficial y comprobá allí si existe alguna promoción.")
     };
 
     private void Awake()
@@ -273,7 +277,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         AdScenario scenario = round[questionIndex];
         AddText(screenRoot, "PracticeBrand", "CLICK INTELIGENTE  ·  APRENDÉ A NAVEGAR SEGURO", new Vector2(0.025f, 0.925f), new Vector2(0.70f, 0.985f), Vector2.zero, Vector2.zero, 22, Hex("#70D6FF"), TextAlignmentOptions.Left);
         AddText(screenRoot, "PracticeProgress", "ANUNCIO " + (questionIndex + 1) + " / " + round.Count, new Vector2(0.78f, 0.925f), new Vector2(0.975f, 0.985f), Vector2.zero, Vector2.zero, 19, Color.white, TextAlignmentOptions.Right);
-        BuildPlatformMockup(questionIndex % 3, scenario, questionIndex);
+        BuildPlatformMockup(questionIndex % 3, scenario, questionIndex / 3);
         AddButton(screenRoot, "Parece seguro", new Vector2(0.12f, 0.085f), new Vector2(0.47f, 0.18f), Hex("#237A58"), () => Answer(false));
         AddButton(screenRoot, "Reportar como sospechoso", new Vector2(0.53f, 0.085f), new Vector2(0.88f, 0.18f), Hex("#A74646"), () => Answer(true));
         AddText(screenRoot, "PracticeSafety", "CONSEJO: frená, revisá quién publica y no descargues archivos desde anuncios.", new Vector2(0.06f, 0.015f), new Vector2(0.94f, 0.065f), Vector2.zero, Vector2.zero, 16, Hex("#BCEBFF"), TextAlignmentOptions.Center);
