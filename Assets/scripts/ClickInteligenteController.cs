@@ -87,11 +87,16 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
     private void EnsureEventSystem()
     {
-        if (FindObjectOfType<EventSystem>() != null)
+        EventSystem eventSystem = FindObjectOfType<EventSystem>();
+        if (eventSystem == null)
+        {
+            GameObject eventSystemObject = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+            DontDestroyOnLoad(eventSystemObject);
             return;
+        }
 
-        GameObject eventSystemObject = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        DontDestroyOnLoad(eventSystemObject);
+        if (eventSystem.GetComponent<BaseInputModule>() == null)
+            eventSystem.gameObject.AddComponent<StandaloneInputModule>();
     }
 
     private void ClearScreen()
