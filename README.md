@@ -30,12 +30,20 @@ Los escenarios trabajan señales como:
 
 ## Pantallas simuladas de plataformas
 
-Durante la práctica, cada anuncio aparece dentro de una interfaz ilustrativa que rota entre tres contextos reconocibles:
-- Feed de videos inspirado en plataformas como YouTube.
-- Tienda de aplicaciones inspirada en Play Store, con fichas y botones de instalación ficticios.
-- Feed vertical de videos cortos inspirado en TikTok, con publicaciones patrocinadas simuladas.
+Durante la práctica, cada anuncio aparece dentro de una interfaz ilustrativa distinta según la plataforma y la ubicación publicitaria:
+- **YouTube:** anuncios in-feed, in-stream y Shorts, con reproductor, miniatura, canal, etiqueta de patrocinado, descripción y llamada a la acción.
+- **Google Play:** anuncios en búsqueda, recomendaciones y promoción de aplicaciones, con icono, ficha, valoración, descripción y botón de instalación ficticio.
+- **TikTok:** anuncios in-feed, carrusel y TopView, con composición vertical, identidad del anunciante, texto, acciones sociales y llamada a la acción.
 
-Las pantallas se construyen con elementos de la interfaz de Unity, por lo que no requieren conexión a internet, imágenes remotas ni cuentas reales. Los botones de las publicidades son decorativos y no ejecutan descargas.
+Las creatividades incluyen ilustraciones originales para premios falsos, alertas de virus, actualizaciones urgentes, descargas de juegos, aplicaciones y propuestas educativas. Se diseñaron tomando como referencia la estructura de anuncios y las capturas públicas de las plataformas, sin copiar imágenes, marcas de terceros ni publicidad ajena. Los recursos se dibujan con elementos UI de Unity: no requieren conexión a internet, imágenes remotas ni cuentas reales. Los botones publicitarios son simulados y no ejecutan descargas.
+
+### Referencias visuales y de formatos
+
+- [Formatos de anuncios de vídeo de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es)
+- [Anuncios de vídeo in-feed de YouTube](https://support.google.com/google-ads/answer/6227733?hl=es)
+- [Anuncios In-Feed de TikTok](https://ads.tiktok.com/help/article/tiktok-auction-in-feed-ads?lang=es)
+- [Anuncios carrusel de TikTok](https://ads.tiktok.com/resources/help/article/carousel-ads?lang=es)
+- [Ejemplos de ventanas emergentes fraudulentas y malware móvil](https://www.welivesecurity.com/la-es/2020/01/15/como-funciona-el-malware-dirigido-a-dispositivos-moviles/)
 
 ## Videos tutoriales
 
