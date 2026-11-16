@@ -35,7 +35,7 @@ Durante la práctica, cada anuncio aparece dentro de una recreación de la inter
 - **Google Play:** resultado patrocinado dentro de la lista de búsqueda, tarjetas de anuncios sugeridos y ficha de aplicación con desarrollador, valoración, descargas, botón de instalación y capturas promocionales.
 - **TikTok:** feed vertical Para ti con barra de estado, pestañas, video, perfil, etiqueta de publicidad, acciones laterales, CTA y navegación inferior; el carrusel muestra varias piezas y TopView se identifica como anuncio de apertura.
 
-Las creatividades de los anuncios son composiciones originales dibujadas con Unity UI. Se adaptan al espacio de cada formato y representan premios falsos, alertas, descargas y propuestas educativas. Las capturas externas se usan como referencia de distribución y jerarquía visual, no se incorporan al juego como fondos ni se descargan en tiempo de ejecución. Los botones publicitarios son simulados y no ejecutan descargas ni abren enlaces.
+Las creatividades usan miniaturas ficticias originales generadas por el propio proyecto en tiempo de ejecución: 16 diseños visuales distintos (mascotas, autos, videojuegos, ciencia, comida, naturaleza, deportes, arte y otros temas), con paletas y composiciones variadas. Cada formato selecciona miniaturas diferentes para evitar repetir siempre la misma imagen. Las cabeceras incluyen marcas visuales reconocibles de YouTube, Google Play y TikTok, recreadas con elementos UI y sin depender de logos descargados. Las capturas externas se usan como referencia de distribución y jerarquía visual, no se incorporan al juego como fondos ni se descargan en tiempo de ejecución. Los botones publicitarios son simulados y no ejecutan descargas ni abren enlaces.
 
 ### Referencias visuales consultadas
 
