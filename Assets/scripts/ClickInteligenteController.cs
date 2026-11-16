@@ -226,8 +226,8 @@ public sealed class ClickInteligenteController : MonoBehaviour
         videoPlayer.targetTexture = videoTexture;
         videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
         videoPlayer.isLooping = false;
-        videoPlayer.Prepare();
         videoPlayer.prepareCompleted += player => player.Play();
+        videoPlayer.Prepare();
     }
 
     private void StartPractice()
