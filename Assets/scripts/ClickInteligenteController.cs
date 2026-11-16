@@ -530,7 +530,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         }
         else
         {
-            CreateAdArtwork(scenario, new Vector2(0.385f, 0.36f), new Vector2(0.615f, 0.685f));
+            CreateAdArtwork(scenario, new Vector2(0.385f, 0.445f), new Vector2(0.615f, 0.675f));
             if (topView)
                 AddText(screenRoot, "TikTokTopViewTag", "TOPVIEW · PATROCINADO", new Vector2(0.39f, 0.655f), new Vector2(0.61f, 0.69f), Vector2.zero, Vector2.zero, 11, Color.white, TextAlignmentOptions.Center);
         }
