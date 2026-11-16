@@ -28,6 +28,15 @@ Los escenarios trabajan señales como:
 - Pedidos de contraseñas, datos personales o pagos.
 - Verificación del anunciante y consulta de canales oficiales.
 
+## Pantallas simuladas de plataformas
+
+Durante la práctica, cada anuncio aparece dentro de una interfaz ilustrativa que rota entre tres contextos reconocibles:
+- Feed de videos inspirado en plataformas como YouTube.
+- Tienda de aplicaciones inspirada en Play Store, con fichas y botones de instalación ficticios.
+- Feed vertical de videos cortos inspirado en TikTok, con publicaciones patrocinadas simuladas.
+
+Las pantallas se construyen con elementos de la interfaz de Unity, por lo que no requieren conexión a internet, imágenes remotas ni cuentas reales. Los botones de las publicidades son decorativos y no ejecutan descargas.
+
 ## Videos tutoriales
 
 El controlador admite clips mediante el arreglo `videosTutoriales` del componente `ClickInteligenteController` en el Canvas de la escena `Menu`.
