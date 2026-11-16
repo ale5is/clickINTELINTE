@@ -12,7 +12,7 @@ Proyecto educativo de Unity orientado a enseñar a niños y adolescentes de 10 a
 
 1. Menú de inicio.
 2. Tutorial dividido en tres partes: detenerse antes de hacer clic, reconocer señales de alerta y elegir cómo protegerse.
-3. Práctica con ocho anuncios ficticios, mezclados aleatoriamente.
+3. Práctica con nueve anuncios ficticios, mezclados aleatoriamente.
 4. Retroalimentación inmediata después de cada clasificación.
 5. Resultados con respuestas correctas, incorrectas y porcentaje final.
 
