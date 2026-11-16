@@ -13,7 +13,7 @@ public static class AdReferenceImporter
         ("YouTube_InFeed_2023", "https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png"),
         ("YouTube_InStream_2025", "https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg"),
         ("YouTube_Shorts_Interactive_2025", "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png"),
-        ("GooglePlay_SearchSponsored_2025", "https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg"),
+        ("GooglePlay_SearchSponsored_2026", "https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874"),
         ("GooglePlay_SuggestedDark_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("GooglePlay_SuggestedLight_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("TikTok_InFeed_Screen_2025", "https://support.ecwid.com/hc/article_attachments/15645628291996"),
