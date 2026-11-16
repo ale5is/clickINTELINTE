@@ -275,7 +275,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         AddText(screenRoot, "FakeCallToActionText", scenario.callToAction, new Vector2(0.36f, 0.305f), new Vector2(0.64f, 0.365f), Vector2.zero, Vector2.zero, 18, Hex("#F3F7FB"), TextAlignmentOptions.Center);
         AddButton(screenRoot, "Parece seguro", new Vector2(0.12f, 0.12f), new Vector2(0.47f, 0.23f), Hex("#237A58"), () => Answer(false));
         AddButton(screenRoot, "Reportar como sospechoso", new Vector2(0.53f, 0.12f), new Vector2(0.88f, 0.23f), Hex("#A74646"), () => Answer(true));
-        AddText(screenRoot, "PracticeSafety", "No abras enlaces ni descargues nada: solo analizá el ejemplo.", new Vector2(0.10f, 0.045f), new Vector2(0.90f, 0.09f), Vector2.zero, Vector2.zero, 16, Hex("#9FB0C5"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "PracticeSafety", "“Parece seguro” no significa confiar a ciegas: verificá siempre la fuente. No abras enlaces ni descargues nada.", new Vector2(0.08f, 0.035f), new Vector2(0.92f, 0.09f), Vector2.zero, Vector2.zero, 15, Hex("#9FB0C5"), TextAlignmentOptions.Center);
     }
 
     private void Answer(bool reportedAsSuspicious)
