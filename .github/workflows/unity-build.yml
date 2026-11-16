@@ -44,6 +44,10 @@ jobs:
             exit 1
           fi
 
+      - name: Download real ad reference images
+        shell: pwsh
+        run: ./Scripts/Import-AdReferences.ps1
+
       - name: Build project
         uses: game-ci/unity-builder@v4
         env:
