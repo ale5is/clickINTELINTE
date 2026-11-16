@@ -392,55 +392,55 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
         if (referenceName == "YouTube_InFeed_2023")
         {
-            panelMin = new Vector2(0.02f, 0.53f);
-            panelMax = new Vector2(0.82f, 0.68f);
+            panelMin = new Vector2(0.02f, 0.54f);
+            panelMax = new Vector2(0.82f, 0.91f);
         }
         else if (referenceName == "YouTube_InStream_2025")
         {
-            panelMin = new Vector2(0.02f, 0.76f);
-            panelMax = new Vector2(0.48f, 0.88f);
+            panelMin = new Vector2(0.02f, 0.05f);
+            panelMax = new Vector2(0.48f, 0.38f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "YouTube_Shorts_Interactive_2025")
         {
             panelMin = new Vector2(0.30f, 0.10f);
-            panelMax = new Vector2(0.70f, 0.27f);
+            panelMax = new Vector2(0.70f, 0.38f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "GooglePlay_SearchSponsored_2026")
         {
-            panelMin = new Vector2(0.02f, 0.39f);
-            panelMax = new Vector2(0.49f, 0.61f);
+            panelMin = new Vector2(0.02f, 0.38f);
+            panelMax = new Vector2(0.49f, 0.70f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "GooglePlay_SuggestedLight_2026" || referenceName == "GooglePlay_SuggestedDark_2026")
         {
-            panelMin = new Vector2(0.05f, 0.30f);
-            panelMax = new Vector2(0.95f, 0.48f);
+            panelMin = new Vector2(0.05f, 0.18f);
+            panelMax = new Vector2(0.95f, 0.50f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "TikTok_InFeed_Screen_2025")
         {
-            panelMin = new Vector2(0.27f, 0.16f);
-            panelMax = new Vector2(0.72f, 0.34f);
+            panelMin = new Vector2(0.27f, 0.14f);
+            panelMax = new Vector2(0.72f, 0.40f);
             titleSize = 12f;
             messageSize = 9f;
         }
         else if (referenceName == "TikTok_Carousel_2025")
         {
             panelMin = new Vector2(0.12f, 0.12f);
-            panelMax = new Vector2(0.88f, 0.36f);
+            panelMax = new Vector2(0.88f, 0.40f);
             titleSize = 13f;
             messageSize = 9f;
         }
         else if (referenceName == "TikTok_TopView_2022")
         {
-            panelMin = new Vector2(0.04f, 0.30f);
-            panelMax = new Vector2(0.34f, 0.58f);
+            panelMin = new Vector2(0.04f, 0.28f);
+            panelMax = new Vector2(0.34f, 0.62f);
             titleSize = 12f;
             messageSize = 9f;
         }
