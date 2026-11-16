@@ -347,6 +347,27 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
     private void BuildPlatformMockup(int platform, AdScenario scenario, int placementIndex)
     {
+        if (platform == 1)
+        {
+            string playStoreReference = placementIndex % 3 == 0
+                ? "GooglePlay_SearchSponsored_2025"
+                : placementIndex % 3 == 1
+                    ? "GooglePlay_SuggestedDark_2026"
+                    : "GooglePlay_SuggestedLight_2024";
+
+            if (CreateReferenceImage("PlayStoreRealReference", new Vector2(0.07f, 0.29f), new Vector2(0.93f, 0.82f), playStoreReference))
+            {
+                CreateCard(screenRoot, "PlayStoreScenarioOverlay", new Vector2(0.07f, 0.215f), new Vector2(0.93f, 0.29f), Hex("#182438"));
+                AddText(screenRoot, "PlayStoreScenarioTitle", "CASO FICTICIO: " + scenario.title, new Vector2(0.09f, 0.25f), new Vector2(0.91f, 0.285f), Vector2.zero, Vector2.zero, 16, Color.white, TextAlignmentOptions.Left);
+                AddText(screenRoot, "PlayStoreScenarioMessage", scenario.message, new Vector2(0.09f, 0.218f), new Vector2(0.91f, 0.25f), Vector2.zero, Vector2.zero, 12, Hex("#D6E2F0"), TextAlignmentOptions.Left);
+                return;
+            }
+
+            CreateCard(screenRoot, "MissingPlayStoreReference", new Vector2(0.07f, 0.29f), new Vector2(0.93f, 0.82f), Hex("#243A50"));
+            AddText(screenRoot, "MissingPlayStoreReferenceText", "FALTA IMPORTAR LA CAPTURA REAL DE GOOGLE PLAY.\nEn Unity: Click Inteligente > Importar referencias visuales.", new Vector2(0.12f, 0.43f), new Vector2(0.88f, 0.68f), Vector2.zero, Vector2.zero, 22, Color.white, TextAlignmentOptions.Center);
+            return;
+        }
+
         Color page = platform == 2 ? Hex("#101014") : Hex("#F8F9FA");
         Color ink = platform == 2 ? Color.white : Hex("#202124");
         Color muted = platform == 2 ? Hex("#B9BBC3") : Hex("#60646B");
@@ -497,14 +518,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         AddText(screenRoot, "TikTokTabs", "LIVE     Siguiendo     Para ti     ⌕", new Vector2(0.375f, 0.705f), new Vector2(0.625f, 0.745f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
         if (carousel)
         {
-            CreateThumbnail("TikTokVideo", new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f), questionIndex * 5 + 6);
-            CreateThumbnail("TikTokCarouselPanel1", new Vector2(0.385f, 0.36f), new Vector2(0.455f, 0.66f), questionIndex + 1);
-            CreateThumbnail("TikTokCarouselPanel2", new Vector2(0.46f, 0.36f), new Vector2(0.535f, 0.66f), questionIndex + 7);
-            CreateThumbnail("TikTokCarouselPanel3", new Vector2(0.54f, 0.36f), new Vector2(0.615f, 0.66f), questionIndex + 13);
-            AddText(screenRoot, "TikTokCarouselText1", "01\nOFERTA", new Vector2(0.39f, 0.45f), new Vector2(0.45f, 0.57f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "TikTokCarouselText2", "02\nDETALLES", new Vector2(0.465f, 0.45f), new Vector2(0.53f, 0.57f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "TikTokCarouselText3", "03\nPREMIO", new Vector2(0.545f, 0.45f), new Vector2(0.61f, 0.57f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "TikTokCarouselDots", "●  ○  ○", new Vector2(0.40f, 0.31f), new Vector2(0.60f, 0.35f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
+            CreateAdArtwork(scenario, new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f));
         }
         else
         {
@@ -525,21 +539,50 @@ public sealed class ClickInteligenteController : MonoBehaviour
     }
     private void CreateAdArtwork(AdScenario scenario, Vector2 anchorMin, Vector2 anchorMax)
     {
-        int index = Mathf.Abs((questionIndex * 5 + 2) % 16);
-        CreateThumbnail("AdCreativeArtwork", anchorMin, anchorMax, index);
+        int platform = questionIndex % 3;
+        int placement = (questionIndex / 3) % 3;
+        string referenceName;
+
+        if (platform == 0)
+            referenceName = placement == 0 ? "YouTube_InFeed_2023" : placement == 1 ? "YouTube_InStream_2025" : "YouTube_Shorts_Interactive_2025";
+        else
+            referenceName = placement == 0 ? "TikTok_InFeed_Creative_2026" : placement == 1 ? "TikTok_Carousel_2025" : "TikTok_TopView_2022";
+
+        if (!CreateReferenceImage("AdCreativeArtwork", anchorMin, anchorMax, referenceName))
+        {
+            CreateCard(screenRoot, "MissingAdReference", anchorMin, anchorMax, Hex("#243A50"));
+            AddText(screenRoot, "MissingAdReferenceText", "REFERENCIA REAL NO IMPORTADA\n" + referenceName + "\nUsá Click Inteligente > Importar referencias visuales en Unity.", new Vector2(anchorMin.x + 0.02f, anchorMin.y + 0.08f), new Vector2(anchorMax.x - 0.02f, anchorMax.y - 0.08f), Vector2.zero, Vector2.zero, 16, Color.white, TextAlignmentOptions.Center);
+            return;
+        }
+
         float width = anchorMax.x - anchorMin.x;
         float height = anchorMax.y - anchorMin.y;
-        float centerX = (anchorMin.x + anchorMax.x) * 0.5f;
-        float centerY = (anchorMin.y + anchorMax.y) * 0.5f;
-        string title = scenario.title.ToUpperInvariant();
-        CreateCard(screenRoot, "AdCreativeShade", new Vector2(anchorMin.x, anchorMin.y), new Vector2(anchorMax.x, anchorMin.y + height * 0.22f), new Color(0f, 0f, 0f, 0.58f));
-        AddText(screenRoot, "CreativeAdMark", "PUBLICIDAD FICTICIA", new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.025f), new Vector2(anchorMin.x + width * 0.48f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 25f, 10f, 14f), Color.white, TextAlignmentOptions.Left);
-        if (title.Contains("VIRUS") || title.Contains("BLOQUEADA") || title.Contains("ACTUALIZACIÓN"))
-            AddText(screenRoot, "CreativeAlertTag", "⚠ ALERTA", new Vector2(anchorMin.x + width * 0.52f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 30f, 11f, 16f), Hex("#FFE27A"), TextAlignmentOptions.Right);
-        else if (title.Contains("GANASTE") || title.Contains("PREMIUM"))
-            AddText(screenRoot, "CreativeOfferTag", "OFERTA EXCLUSIVA", new Vector2(anchorMin.x + width * 0.42f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 26f, 10f, 14f), Hex("#FFF0A6"), TextAlignmentOptions.Right);
-        else
-            AddText(screenRoot, "CreativeTitle", scenario.title, new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.19f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 31f, 11f, 17f), Color.white, TextAlignmentOptions.Left);
+        CreateCard(screenRoot, "AdCreativeReferenceShade", new Vector2(anchorMin.x, anchorMin.y), new Vector2(anchorMax.x, anchorMin.y + height * 0.19f), new Color(0f, 0f, 0f, 0.66f));
+        AddText(screenRoot, "CreativeReferenceLabel", "REFERENCIA VISUAL REAL · CASO FICTICIO", new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.17f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 24f, 10f, 14f), Color.white, TextAlignmentOptions.Left);
+        AddText(screenRoot, "CreativeScenarioTitle", scenario.title, new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.19f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.34f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 28f, 11f, 17f), Color.white, TextAlignmentOptions.Left);
+    }
+
+    private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName)
+    {
+        Texture2D texture = Resources.Load<Texture2D>("AdReferences/" + resourceName);
+        if (texture == null)
+            return false;
+
+        GameObject imageObject = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage));
+        RectTransform rect = imageObject.GetComponent<RectTransform>();
+        rect.SetParent(screenRoot, false);
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        RawImage image = imageObject.GetComponent<RawImage>();
+        image.texture = texture;
+        image.raycastTarget = false;
+        AspectRatioFitter fitter = imageObject.AddComponent<AspectRatioFitter>();
+        fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+        fitter.aspectRatio = (float)texture.width / texture.height;
+        return true;
     }
 
     private void CreateThumbnail(string objectName, Vector2 anchorMin, Vector2 anchorMax, int index)
