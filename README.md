@@ -33,9 +33,9 @@ Los escenarios trabajan señales como:
 Durante la práctica, las variantes de anuncio se presentan con capturas reales de la plataforma; TikTok In-Feed conserva una recreación del feed y utiliza una creatividad fotográfica real:
 - **YouTube:** cada práctica muestra una captura real distinta para In-feed, In-stream o Shorts.
 - **Google Play:** cada práctica muestra una captura real distinta para búsqueda patrocinada o sugerencias en tema oscuro/claro.
-- **TikTok:** In-feed conserva el feed vertical y usa una creatividad real; Carrusel y TopView muestran sus referencias visuales reales sin envolverlas en otra interfaz inventada.
+- **TikTok:** In-feed, Carrusel y TopView muestran capturas reales de cada variante, sin envolverlas en otra interfaz inventada.
 
-**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y sugerencias; TikTok usa creatividades reales para in-feed, carrusel y TopView. Los textos superpuestos que describen el caso siguen siendo ficticios y están identificados como tales.
+**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y sugerencias; TikTok usa capturas reales distintas para in-feed, carrusel y TopView. Los textos superpuestos que describen el caso siguen siendo ficticios y están identificados como tales.
 
 ### Referencias visuales actuales
 
@@ -47,7 +47,7 @@ Las referencias se usan como imágenes de las pantallas de práctica, no como co
 - Google Play Search: [captura de resultados de búsqueda con ubicación patrocinada (2025)](https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg).
 - Google Play Suggested: [captura de recomendaciones patrocinadas en interfaz reciente (2026)](https://www.apptweak.com/img/2026/01/image8.png).
 - Google Play Suggested, tema oscuro: [captura de sección Sponsored · Suggested for you](https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720).
-- TikTok In-Feed: [creatividad fotográfica de la guía oficial de TikTok for Business](https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-52DY2FWG6YW1lkjzUCrIi7.jpg).
+- TikTok In-Feed: [captura real de un anuncio In-Feed con etiqueta Sponsored y CTA](https://support.ecwid.com/hc/article_attachments/15645628291996).
 - TikTok TopView: [ejemplo visual de TopView](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png).
 - TikTok Carousel: [ejemplo visual de anuncio carrusel](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png).
 
