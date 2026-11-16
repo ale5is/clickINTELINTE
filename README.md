@@ -44,7 +44,7 @@ Las referencias se usan como imágenes de las pantallas de práctica, no como co
 - YouTube In-feed: [captura de anuncio dentro del feed](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png).
 - YouTube In-stream: [captura móvil de la interfaz de anuncio y omisión](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg).
 - YouTube Shorts: [captura de anuncio vertical con sticker interactivo](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png).
-- Google Play Search: [captura real de búsqueda patrocinada en interfaz plegable (2026)](https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904%26width=874).
+- Google Play Search: [captura real de búsqueda patrocinada en interfaz plegable (2026)](https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874).
 - Google Play Suggested: [captura de recomendaciones patrocinadas en interfaz reciente (2026)](https://www.apptweak.com/img/2026/01/image8.png).
 - Google Play Suggested, tema claro/oscuro: [captura comparativa moderna de Google Play (2026)](https://www.apptweak.com/img/2026/01/image8.png).
 - TikTok In-Feed: [captura real de un anuncio In-Feed con etiqueta Sponsored y CTA](https://support.ecwid.com/hc/article_attachments/15645628291996).
