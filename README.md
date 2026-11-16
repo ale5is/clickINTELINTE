@@ -35,17 +35,36 @@ Durante la práctica, cada anuncio aparece dentro de una recreación de la inter
 - **Google Play:** resultado patrocinado dentro de la lista de búsqueda, tarjetas de anuncios sugeridos y ficha de aplicación con desarrollador, valoración, descargas, botón de instalación y capturas promocionales.
 - **TikTok:** feed vertical Para ti con barra de estado, pestañas, video, perfil, etiqueta de publicidad, acciones laterales, CTA y navegación inferior; el carrusel muestra varias piezas y TopView se identifica como anuncio de apertura.
 
-Las creatividades usan miniaturas ficticias originales generadas por el propio proyecto en tiempo de ejecución: 16 diseños visuales distintos (mascotas, autos, videojuegos, ciencia, comida, naturaleza, deportes, arte y otros temas), con paletas y composiciones variadas. Cada formato selecciona miniaturas diferentes para evitar repetir siempre la misma imagen. Las cabeceras incluyen marcas visuales reconocibles de YouTube, Google Play y TikTok, recreadas con elementos UI y sin depender de logos descargados. Las capturas externas se usan como referencia de distribución y jerarquía visual, no se incorporan al juego como fondos ni se descargan en tiempo de ejecución. Los botones publicitarios son simulados y no ejecutan descargas ni abren enlaces.
+**Estado de los recursos visuales:** el controlador todavía contiene miniaturas dibujadas por código. Esa parte está pendiente de reemplazo; no se considera terminada ni se deben confundir las referencias de investigación con imágenes ya integradas al juego.
 
-### Referencias visuales consultadas
+### Referencias visuales actuales
 
-- [Captura de la página principal y página de reproducción de YouTube (PDF, figuras 1 y 3)](https://www.accc.gov.au/system/files/Digital%20Platform%20Services%20Inquiry%20-%20Social%20Media%20Interim%20Report%20-%20Public%20Submission%20-%20Google%20Australia%20-%20November%202022.pdf?download=y)
-- [Formatos oficiales de anuncios de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es)
-- [Capturas de resultados patrocinados y sugerencias de Google Play](https://www.radaso.com/blog/google-play-store-advertising-android-app-promotion-in-2024)
-- [Guía oficial de capturas y superficies de Google Play](https://support.google.com/googleplay/android-developer/answer/9866151)
-- [Capturas de TikTok For You y etiqueta de publicidad (Anexo 5, PDF)](https://commission.europa.eu/document/download/bb70bfd5-7a26-471a-b265-7a59f0426a57_en?filename=2022.06.15_tiktok_updated_commitments.pdf&prefLang=hu)
-- [Diseño web modular de TikTok para escritorio](https://newsroom.tiktok.com/new-features-bring-tiktok-magic-to-desktop?lang=en)
-- [Ejemplos de ventanas emergentes fraudulentas y malware móvil](https://www.welivesecurity.com/la-es/2020/01/15/como-funciona-el-malware-dirigido-a-dispositivos-moviles/)
+Las referencias se eligieron para comparar cada formato con capturas reales de las aplicaciones. El importador de Unity permite descargarlas al proyecto para inspección local; no las descarga durante el juego ni las incorpora automáticamente al HUD.
+
+- YouTube In-feed: [captura de anuncio dentro del feed](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png).
+- YouTube In-stream: [captura móvil de la interfaz de anuncio y omisión](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg).
+- YouTube Shorts: [captura de anuncio vertical con sticker interactivo](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png).
+- Google Play Search: [captura de resultados de búsqueda con ubicación patrocinada (2025)](https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg).
+- Google Play Suggested: [captura de recomendaciones patrocinadas en interfaz reciente (2026)](https://www.apptweak.com/img/2026/01/image8.png).
+- Google Play Suggested, tema oscuro: [captura de sección Sponsored · Suggested for you](https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720).
+- TikTok TopView: [ejemplo visual de TopView](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png).
+- TikTok Carousel: [ejemplo visual de anuncio carrusel](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png).
+
+Documentación oficial para comprobar el comportamiento y los elementos de cada formato:
+- [Formatos oficiales de anuncios de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es).
+- [Anuncios de Shorts y ubicaciones compatibles](https://support.google.com/google-ads/answer/16040527).
+- [Superficies y recursos visuales de Google Play](https://support.google.com/googleplay/android-developer/answer/9866151).
+
+Las capturas externas son referencias de interfaz de terceros. Antes de distribuirlas dentro del juego hay que comprobar sus licencias y permisos; el importador las guarda en una carpeta de referencia, no las añade al build.
+
+### Importar las referencias en Unity
+
+1. Abrir el proyecto con Unity 2022.3.62f3.
+2. Esperar a que compile el script del Editor.
+3. Ejecutar **Click Inteligente > Importar referencias visuales**.
+4. Revisar los archivos descargados en `Assets/ReferenceScreenshots/Platforms`.
+
+El importador informa qué descargas fallaron. No sustituye todavía las miniaturas del HUD; esa integración debe realizarse después de inspeccionar las imágenes importadas y seleccionar recursos utilizables con permisos adecuados.
 
 ## Videos tutoriales
 
