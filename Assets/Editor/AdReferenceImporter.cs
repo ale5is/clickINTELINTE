@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public static class AdReferenceImporter
 {
-    private const string Destination = "Assets/ReferenceScreenshots/Platforms";
+    private const string Destination = "Assets/Resources/AdReferences";
 
     private static readonly (string fileName, string url)[] Sources =
     {
@@ -16,6 +16,7 @@ public static class AdReferenceImporter
         ("GooglePlay_SearchSponsored_2025", "https://images.indianexpress.com/2025/09/Play-Store-Search-bar.jpeg"),
         ("GooglePlay_SuggestedDark_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("GooglePlay_SuggestedLight_2024", "https://www.digitaltrends.com/tachyon/2024/06/Screenshot_20240606_160856_Google-Play-Store.jpg?resize=720%2C720"),
+        ("TikTok_InFeed_Creative_2026", "https://lf-tt4b.tiktokcdn.com/obj/i18nblog/tt4b_cms/en-US/tipdilz7wysq-52DY2FWG6YW1lkjzUCrIi7.jpg"),
         ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png"),
         ("TikTok_Carousel_2025", "https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png")
     };
