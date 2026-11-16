@@ -525,7 +525,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
     }
     private void CreateAdArtwork(AdScenario scenario, Vector2 anchorMin, Vector2 anchorMax)
     {
-        int index = Mathf.Abs((questionIndex * 7 + scenario.title.Length * 3 + scenario.advertiser.Length) % 16);
+        int index = Mathf.Abs((questionIndex * 5 + 2) % 16);
         CreateThumbnail("AdCreativeArtwork", anchorMin, anchorMax, index);
         float width = anchorMax.x - anchorMin.x;
         float height = anchorMax.y - anchorMin.y;
@@ -600,7 +600,6 @@ public sealed class ClickInteligenteController : MonoBehaviour
                 DrawRect(pixels, width, height, 68, 57, 84, 63, Hex("#9B4B48"));
                 break;
             case 1:
-            case 8:
                 DrawCircle(pixels, width, height, 75, 35, 19, Hex("#10151D"));
                 DrawCircle(pixels, width, height, 175, 35, 19, Hex("#10151D"));
                 DrawTriangle(pixels, width, height, 30, 42, 220, 42, 165, 91, Hex("#1AA8E8"));
@@ -646,6 +645,15 @@ public sealed class ClickInteligenteController : MonoBehaviour
                 DrawRect(pixels, width, height, 185, 0, 221, 100, Hex("#2087B5"));
                 DrawRect(pixels, width, height, 0, 0, 256, 26, Hex("#49C8DF"));
                 break;
+            case 8:
+                DrawRect(pixels, width, height, 34, 39, 222, 105, Hex("#141A24"));
+                DrawRect(pixels, width, height, 50, 50, 206, 94, Hex("#283A50"));
+                DrawCircle(pixels, width, height, 85, 72, 19, Hex("#111820"));
+                DrawCircle(pixels, width, height, 85, 72, 11, Hex("#647D99"));
+                DrawCircle(pixels, width, height, 169, 66, 8, Hex("#FE5A66"));
+                DrawCircle(pixels, width, height, 190, 80, 8, Hex("#F6D15B"));
+                DrawCircle(pixels, width, height, 169, 88, 8, Hex("#62D9A5"));
+                break;
             case 9:
                 DrawTriangle(pixels, width, height, 42, 22, 213, 22, 128, 133, Hex("#79A74C"));
                 DrawCircle(pixels, width, height, 128, 82, 48, Hex("#7B9A45"));
@@ -681,6 +689,14 @@ public sealed class ClickInteligenteController : MonoBehaviour
                 DrawCircle(pixels, width, height, 128, 75, 48, Hex("#F2C66D"));
                 DrawRect(pixels, width, height, 48, 22, 208, 36, Hex("#7B3C2D"));
                 DrawTriangle(pixels, width, height, 95, 86, 160, 86, 128, 118, Hex("#EF6E55"));
+                break;
+            case 15:
+                DrawCircle(pixels, width, height, 128, 72, 43, Hex("#D8A66F"));
+                DrawTriangle(pixels, width, height, 83, 104, 112, 104, 89, 139, Hex("#8B5A3B"));
+                DrawTriangle(pixels, width, height, 145, 104, 173, 104, 167, 139, Hex("#8B5A3B"));
+                DrawCircle(pixels, width, height, 111, 82, 5, Color.black);
+                DrawCircle(pixels, width, height, 145, 82, 5, Color.black);
+                DrawCircle(pixels, width, height, 128, 61, 10, Hex("#25252A"));
                 break;
         }
 
