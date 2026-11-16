@@ -18,6 +18,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
     private VideoPlayer videoPlayer;
     private RenderTexture videoTexture;
     private readonly List<AdScenario> round = new List<AdScenario>();
+    private static readonly Texture2D[] thumbnailCache = new Texture2D[16];
     private int tutorialPage;
     private int questionIndex;
     private int correctAnswers;
@@ -362,7 +363,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
     {
         CreateCard(screenRoot, "YouTubeHeader", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Color.white);
         AddText(screenRoot, "YouTubeMenu", "☰", new Vector2(0.025f, 0.85f), new Vector2(0.06f, 0.895f), Vector2.zero, Vector2.zero, 23, ink, TextAlignmentOptions.Center);
-        AddText(screenRoot, "YouTubeLogo", "▶ YouTube", new Vector2(0.065f, 0.85f), new Vector2(0.23f, 0.895f), Vector2.zero, Vector2.zero, 23, Hex("#E62117"), TextAlignmentOptions.Left);
+        BuildYouTubeLogo(new Vector2(0.065f, 0.85f), new Vector2(0.23f, 0.895f));
         CreateCard(screenRoot, "YouTubeSearch", new Vector2(0.34f, 0.852f), new Vector2(0.72f, 0.892f), Hex("#F1F1F1"));
         AddText(screenRoot, "YouTubeSearchText", "Buscar", new Vector2(0.36f, 0.855f), new Vector2(0.70f, 0.89f), Vector2.zero, Vector2.zero, 16, Hex("#60646B"), TextAlignmentOptions.Left);
         AddText(screenRoot, "YouTubeSignIn", "Iniciar sesión", new Vector2(0.82f, 0.85f), new Vector2(0.97f, 0.895f), Vector2.zero, Vector2.zero, 15, Hex("#065FD4"), TextAlignmentOptions.Center);
@@ -415,8 +416,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
                 }
                 else
                 {
-                    CreateCard(screenRoot, "YouTubeOrganicThumb" + i, new Vector2(x + 0.008f, 0.565f), new Vector2(x + 0.237f, 0.75f), i == 1 ? Hex("#355B72") : Hex("#765B42"));
-                    AddText(screenRoot, "YouTubeOrganicArt" + i, i == 1 ? "GUÍA DE SEGURIDAD" : "NUEVO CONTENIDO", new Vector2(x + 0.015f, 0.62f), new Vector2(x + 0.23f, 0.70f), Vector2.zero, Vector2.zero, 16, Color.white, TextAlignmentOptions.Center);
+                    CreateThumbnail("YouTubeOrganicThumb" + i, new Vector2(x + 0.008f, 0.565f), new Vector2(x + 0.237f, 0.75f), questionIndex * 3 + i + 4);
                     AddText(screenRoot, "YouTubeOrganicTitle" + i, titles[i], new Vector2(x + 0.01f, 0.49f), new Vector2(x + 0.235f, 0.56f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
                     AddText(screenRoot, "YouTubeOrganicMeta" + i, i == 1 ? "Canal educativo · 24 mil vistas" : "Canal recomendado · 8 mil vistas", new Vector2(x + 0.01f, 0.45f), new Vector2(x + 0.235f, 0.49f), Vector2.zero, Vector2.zero, 11, muted, TextAlignmentOptions.Left);
                 }
@@ -428,7 +428,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
     private void BuildPlayStoreAdPage(AdScenario scenario, int placementIndex, Color ink, Color muted)
     {
         CreateCard(screenRoot, "PlayStoreHeader", new Vector2(0.015f, 0.835f), new Vector2(0.985f, 0.91f), Color.white);
-        AddText(screenRoot, "PlayStoreLogo", "▶ Google Play", new Vector2(0.04f, 0.85f), new Vector2(0.25f, 0.895f), Vector2.zero, Vector2.zero, 22, Hex("#188B55"), TextAlignmentOptions.Left);
+        BuildPlayStoreLogo(new Vector2(0.04f, 0.85f), new Vector2(0.25f, 0.895f));
         CreateCard(screenRoot, "PlayStoreSearch", new Vector2(0.42f, 0.852f), new Vector2(0.94f, 0.892f), Hex("#F1F3F4"));
         AddText(screenRoot, "PlayStoreSearchText", "Buscar aplicaciones y juegos", new Vector2(0.44f, 0.855f), new Vector2(0.92f, 0.89f), Vector2.zero, Vector2.zero, 14, muted, TextAlignmentOptions.Left);
         AddText(screenRoot, "PlayStoreTabs", "Para ti       Top charts       Niños       Categorías", new Vector2(0.06f, 0.785f), new Vector2(0.94f, 0.82f), Vector2.zero, Vector2.zero, 15, ink, TextAlignmentOptions.Left);
@@ -440,8 +440,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
             {
                 float top = 0.715f - i * 0.12f;
                 CreateCard(screenRoot, "PlayStoreResult" + i, new Vector2(0.07f, top - 0.105f), new Vector2(0.93f, top), Color.white);
-                CreateCard(screenRoot, "PlayStoreAppIcon" + i, new Vector2(0.085f, top - 0.09f), new Vector2(0.16f, top - 0.02f), i == 0 ? Hex("#6B4DB8") : new Color(0.2f + i * 0.12f, 0.45f, 0.65f, 1f));
-                AddText(screenRoot, "PlayStoreAppIconText" + i, i == 0 ? "★" : "●", new Vector2(0.09f, top - 0.085f), new Vector2(0.155f, top - 0.025f), Vector2.zero, Vector2.zero, 23, Color.white, TextAlignmentOptions.Center);
+                CreateThumbnail("PlayStoreAppIcon" + i, new Vector2(0.085f, top - 0.09f), new Vector2(0.16f, top - 0.02f), questionIndex * 2 + i + 2);
                 AddText(screenRoot, "PlayStoreResultName" + i, i == 0 ? scenario.advertiser : new[] { "Puzzle Diario", "Aprender en Casa", "Editor de Fotos" }[i - 1], new Vector2(0.18f, top - 0.045f), new Vector2(0.58f, top - 0.012f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
                 AddText(screenRoot, "PlayStoreResultMeta" + i, i == 0 ? "Patrocinado · " + scenario.message : "Aplicación · 4," + (8 - i) + " ★ · 10 M+ descargas", new Vector2(0.18f, top - 0.09f), new Vector2(0.70f, top - 0.047f), Vector2.zero, Vector2.zero, 11, muted, TextAlignmentOptions.Left);
                 if (i == 0)
@@ -458,8 +457,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
             {
                 float x = 0.08f + i * 0.295f;
                 CreateCard(screenRoot, "PlayStoreSuggested" + i, new Vector2(x, 0.39f), new Vector2(x + 0.26f, 0.71f), Color.white);
-                CreateCard(screenRoot, "PlayStoreSuggestedArt" + i, new Vector2(x + 0.012f, 0.53f), new Vector2(x + 0.248f, 0.695f), i == 0 ? Hex("#6B4DB8") : i == 1 ? Hex("#267A73") : Hex("#3C659A"));
-                AddText(screenRoot, "PlayStoreSuggestedSymbol" + i, i == 0 ? "★" : i == 1 ? "✦" : "◆", new Vector2(x + 0.025f, 0.56f), new Vector2(x + 0.235f, 0.67f), Vector2.zero, Vector2.zero, 44, Color.white, TextAlignmentOptions.Center);
+                CreateThumbnail("PlayStoreSuggestedArt" + i, new Vector2(x + 0.012f, 0.53f), new Vector2(x + 0.248f, 0.695f), questionIndex * 3 + i + 5);
                 AddText(screenRoot, "PlayStoreSuggestedName" + i, i == 0 ? scenario.advertiser : new[] { "", "Hábitos Plus", "Foto Fácil" }[i], new Vector2(x + 0.015f, 0.485f), new Vector2(x + 0.245f, 0.53f), Vector2.zero, Vector2.zero, 14, ink, TextAlignmentOptions.Left);
                 AddText(screenRoot, "PlayStoreSuggestedInfo" + i, i == 0 ? "Patrocinado · " + scenario.title : "4," + (9 - i) + " ★ · Gratis", new Vector2(x + 0.015f, 0.44f), new Vector2(x + 0.245f, 0.485f), Vector2.zero, Vector2.zero, 11, muted, TextAlignmentOptions.Left);
                 AddText(screenRoot, "PlayStoreSuggestedCategory" + i, i == 0 ? "Contiene anuncios" : "Compras en la aplicación", new Vector2(x + 0.015f, 0.405f), new Vector2(x + 0.245f, 0.44f), Vector2.zero, Vector2.zero, 10, muted, TextAlignmentOptions.Left);
@@ -470,8 +468,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         else
         {
             CreateCard(screenRoot, "PlayStoreDetail", new Vector2(0.07f, 0.29f), new Vector2(0.93f, 0.75f), Color.white);
-            CreateCard(screenRoot, "PlayStoreDetailIcon", new Vector2(0.10f, 0.61f), new Vector2(0.23f, 0.73f), Hex("#5B4AA5"));
-            AddText(screenRoot, "PlayStoreDetailIconSymbol", "★", new Vector2(0.11f, 0.62f), new Vector2(0.22f, 0.72f), Vector2.zero, Vector2.zero, 48, Color.white, TextAlignmentOptions.Center);
+            CreateThumbnail("PlayStoreDetailIcon", new Vector2(0.10f, 0.61f), new Vector2(0.23f, 0.73f), questionIndex + 8);
             AddText(screenRoot, "PlayStoreDetailName", scenario.advertiser, new Vector2(0.26f, 0.675f), new Vector2(0.75f, 0.735f), Vector2.zero, Vector2.zero, 22, ink, TextAlignmentOptions.Left);
             AddText(screenRoot, "PlayStoreDetailDeveloper", "Desarrollador no verificado · Contiene anuncios", new Vector2(0.26f, 0.63f), new Vector2(0.76f, 0.675f), Vector2.zero, Vector2.zero, 13, muted, TextAlignmentOptions.Left);
             AddText(screenRoot, "PlayStoreDetailStats", "4,8 ★       10 M+ descargas       Para mayores de 3", new Vector2(0.10f, 0.56f), new Vector2(0.88f, 0.61f), Vector2.zero, Vector2.zero, 13, muted, TextAlignmentOptions.Left);
@@ -481,8 +478,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 float x = 0.10f + i * 0.275f;
-                CreateCard(screenRoot, "PlayStorePreview" + i, new Vector2(x, 0.315f), new Vector2(x + 0.24f, 0.415f), i == 0 ? Hex("#355D8A") : i == 1 ? Hex("#2E7D72") : Hex("#76559A"));
-                AddText(screenRoot, "PlayStorePreviewText" + i, i == 0 ? "FUNCIONES" : i == 1 ? "BENEFICIOS" : "CAPTURAS", new Vector2(x + 0.01f, 0.34f), new Vector2(x + 0.23f, 0.39f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
+                CreateThumbnail("PlayStorePreview" + i, new Vector2(x, 0.315f), new Vector2(x + 0.24f, 0.415f), questionIndex * 3 + i + 10);
             }
         }
         AddText(screenRoot, "PlayStoreBottomNav", "Juegos                         Aplicaciones                         Libros", new Vector2(0.08f, 0.235f), new Vector2(0.92f, 0.27f), Vector2.zero, Vector2.zero, 12, muted, TextAlignmentOptions.Center);
@@ -490,6 +486,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
     private void BuildTikTokAdPage(AdScenario scenario, int placementIndex)
     {
         CreateCard(screenRoot, "TikTokAppBackground", new Vector2(0.015f, 0.225f), new Vector2(0.985f, 0.91f), Hex("#08080A"));
+        BuildTikTokLogo(new Vector2(0.08f, 0.84f), new Vector2(0.29f, 0.90f));
         bool carousel = placementIndex % 3 == 1;
         bool topView = placementIndex % 3 == 2;
         string format = carousel ? "ANUNCIO DE COLECCIÓN / CARRUSEL" : topView ? "TOPVIEW · ANUNCIO AL ABRIR LA APLICACIÓN" : "IN-FEED · PÁGINA PARA TI";
@@ -498,12 +495,12 @@ public sealed class ClickInteligenteController : MonoBehaviour
         CreateCard(screenRoot, "TikTokPhone", new Vector2(0.365f, 0.245f), new Vector2(0.635f, 0.775f), Hex("#17171B"));
         AddText(screenRoot, "TikTokStatus", "9:41                                  ●  Wi-Fi  ▰", new Vector2(0.375f, 0.745f), new Vector2(0.625f, 0.77f), Vector2.zero, Vector2.zero, 10, Color.white, TextAlignmentOptions.Center);
         AddText(screenRoot, "TikTokTabs", "LIVE     Siguiendo     Para ti     ⌕", new Vector2(0.375f, 0.705f), new Vector2(0.625f, 0.745f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
-        CreateCard(screenRoot, "TikTokVideo", new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f), Hex("#24344A"));
+        CreateThumbnail("TikTokVideo", new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f), questionIndex * 5 + 6);
         if (carousel)
         {
-            CreateCard(screenRoot, "TikTokCarouselPanel1", new Vector2(0.385f, 0.36f), new Vector2(0.455f, 0.66f), Hex("#6B4A9A"));
-            CreateCard(screenRoot, "TikTokCarouselPanel2", new Vector2(0.46f, 0.36f), new Vector2(0.535f, 0.66f), Hex("#286C79"));
-            CreateCard(screenRoot, "TikTokCarouselPanel3", new Vector2(0.54f, 0.36f), new Vector2(0.615f, 0.66f), Hex("#9A633C"));
+            CreateThumbnail("TikTokCarouselPanel1", new Vector2(0.385f, 0.36f), new Vector2(0.455f, 0.66f), questionIndex + 1);
+            CreateThumbnail("TikTokCarouselPanel2", new Vector2(0.46f, 0.36f), new Vector2(0.535f, 0.66f), questionIndex + 7);
+            CreateThumbnail("TikTokCarouselPanel3", new Vector2(0.54f, 0.36f), new Vector2(0.615f, 0.66f), questionIndex + 13);
             AddText(screenRoot, "TikTokCarouselText1", "01\nOFERTA", new Vector2(0.39f, 0.45f), new Vector2(0.45f, 0.57f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Center);
             AddText(screenRoot, "TikTokCarouselText2", "02\nDETALLES", new Vector2(0.465f, 0.45f), new Vector2(0.53f, 0.57f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
             AddText(screenRoot, "TikTokCarouselText3", "03\nPREMIO", new Vector2(0.545f, 0.45f), new Vector2(0.61f, 0.57f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Center);
@@ -528,49 +525,231 @@ public sealed class ClickInteligenteController : MonoBehaviour
     }
     private void CreateAdArtwork(AdScenario scenario, Vector2 anchorMin, Vector2 anchorMax)
     {
-        string title = scenario.title.ToUpperInvariant();
-        Color baseColor = title.Contains("VIRUS") || title.Contains("BLOQUEADA") || title.Contains("ACTUALIZACIÓN") ? Hex("#7D1725")
-            : title.Contains("GANASTE") ? Hex("#7A3DB8")
-            : title.Contains("DESCARGA") ? Hex("#153B78")
-            : title.Contains("DIBUJO") || title.Contains("LECTURA") || title.Contains("CIENCIA") ? Hex("#167B75")
-            : Hex("#174A76");
+        int index = Mathf.Abs((questionIndex * 7 + scenario.title.Length * 3 + scenario.advertiser.Length) % 16);
+        CreateThumbnail("AdCreativeArtwork", anchorMin, anchorMax, index);
         float width = anchorMax.x - anchorMin.x;
         float height = anchorMax.y - anchorMin.y;
         float centerX = (anchorMin.x + anchorMax.x) * 0.5f;
         float centerY = (anchorMin.y + anchorMax.y) * 0.5f;
-        CreateCard(screenRoot, "AdCreativeArtwork", anchorMin, anchorMax, baseColor);
-        CreateCard(screenRoot, "AdCreativeGlow", new Vector2(anchorMin.x + width * 0.04f, anchorMin.y + height * 0.08f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.08f), Color.Lerp(baseColor, Color.white, 0.16f));
-
-        if (title.Contains("GANASTE"))
-        {
-            CreateCard(screenRoot, "PrizeBox", new Vector2(centerX - width * 0.16f, centerY - height * 0.16f), new Vector2(centerX + width * 0.16f, centerY + height * 0.16f), Hex("#F7C843"));
-            AddText(screenRoot, "PrizeRibbon", "★", new Vector2(centerX - width * 0.12f, centerY - height * 0.12f), new Vector2(centerX + width * 0.12f, centerY + height * 0.12f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 110f, 22f, 42f), Hex("#7A3DB8"), TextAlignmentOptions.Center);
-            AddText(screenRoot, "PrizeHeadline", "¡PREMIO SORPRESA!", new Vector2(anchorMin.x + width * 0.04f, anchorMax.y - height * 0.24f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.05f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 55f, 15f, 24f), Color.white, TextAlignmentOptions.Center);
-        }
-        else if (title.Contains("VIRUS") || title.Contains("BLOQUEADA") || title.Contains("ACTUALIZACIÓN"))
-        {
-            CreateCard(screenRoot, "AlertPanel", new Vector2(centerX - width * 0.20f, centerY - height * 0.18f), new Vector2(centerX + width * 0.20f, centerY + height * 0.18f), Hex("#FCE8E6"));
-            AddText(screenRoot, "AlertIcon", "!", new Vector2(centerX - width * 0.16f, centerY - height * 0.16f), new Vector2(centerX + width * 0.16f, centerY + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 125f, 28f, 64f), Hex("#B3261E"), TextAlignmentOptions.Center);
-            AddText(screenRoot, "AlertHeadline", "¡ATENCIÓN!", new Vector2(anchorMin.x + width * 0.04f, anchorMax.y - height * 0.24f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.05f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 58f, 16f, 27f), Color.white, TextAlignmentOptions.Center);
-        }
-        else if (title.Contains("DESCARGA"))
-        {
-            AddText(screenRoot, "GameGems", "◆  ◆  ◆", new Vector2(anchorMin.x + width * 0.05f, centerY - height * 0.12f), new Vector2(anchorMax.x - width * 0.05f, centerY + height * 0.12f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 90f, 24f, 46f), Hex("#6BE7FF"), TextAlignmentOptions.Center);
-            AddText(screenRoot, "GameHeadline", "TODO GRATIS", new Vector2(anchorMin.x + width * 0.04f, anchorMax.y - height * 0.24f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.05f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 60f, 17f, 28f), Color.white, TextAlignmentOptions.Center);
-        }
-        else if (title.Contains("DIBUJO") || title.Contains("LECTURA") || title.Contains("CIENCIA"))
-        {
-            string symbol = title.Contains("CIENCIA") ? "⚗  ✦  ⚛" : title.Contains("LECTURA") ? "▤  LIBROS  ▤" : "✎  ✿  ✎";
-            AddText(screenRoot, "EducationArt", symbol, new Vector2(anchorMin.x + width * 0.04f, centerY - height * 0.16f), new Vector2(anchorMax.x - width * 0.04f, centerY + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 85f, 22f, 42f), Hex("#F4F7E8"), TextAlignmentOptions.Center);
-            AddText(screenRoot, "EducationHeadline", "DESCUBRÍ ALGO NUEVO", new Vector2(anchorMin.x + width * 0.04f, anchorMax.y - height * 0.24f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.05f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 48f, 14f, 22f), Color.white, TextAlignmentOptions.Center);
-        }
+        string title = scenario.title.ToUpperInvariant();
+        CreateCard(screenRoot, "AdCreativeShade", new Vector2(anchorMin.x, anchorMin.y), new Vector2(anchorMax.x, anchorMin.y + height * 0.22f), new Color(0f, 0f, 0f, 0.58f));
+        AddText(screenRoot, "CreativeAdMark", "PUBLICIDAD FICTICIA", new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.025f), new Vector2(anchorMin.x + width * 0.48f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 25f, 10f, 14f), Color.white, TextAlignmentOptions.Left);
+        if (title.Contains("VIRUS") || title.Contains("BLOQUEADA") || title.Contains("ACTUALIZACIÓN"))
+            AddText(screenRoot, "CreativeAlertTag", "⚠ ALERTA", new Vector2(anchorMin.x + width * 0.52f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 30f, 11f, 16f), Hex("#FFE27A"), TextAlignmentOptions.Right);
+        else if (title.Contains("GANASTE") || title.Contains("PREMIUM"))
+            AddText(screenRoot, "CreativeOfferTag", "OFERTA EXCLUSIVA", new Vector2(anchorMin.x + width * 0.42f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.16f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 26f, 10f, 14f), Hex("#FFF0A6"), TextAlignmentOptions.Right);
         else
-        {
-            AddText(screenRoot, "DefaultCreative", "▶  " + scenario.advertiser, new Vector2(anchorMin.x + width * 0.04f, centerY - height * 0.14f), new Vector2(anchorMax.x - width * 0.04f, centerY + height * 0.14f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 65f, 18f, 34f), Color.white, TextAlignmentOptions.Center);
-            AddText(screenRoot, "DefaultHeadline", scenario.title, new Vector2(anchorMin.x + width * 0.04f, anchorMax.y - height * 0.24f), new Vector2(anchorMax.x - width * 0.04f, anchorMax.y - height * 0.05f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 52f, 15f, 23f), Color.white, TextAlignmentOptions.Center);
-        }
-        AddText(screenRoot, "CreativeAdMark", "PUBLICIDAD", new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.015f), new Vector2(anchorMin.x + width * 0.34f, anchorMin.y + height * 0.12f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 26f, 10f, 14f), Color.white, TextAlignmentOptions.Left);
+            AddText(screenRoot, "CreativeTitle", scenario.title, new Vector2(anchorMin.x + width * 0.025f, anchorMin.y + height * 0.025f), new Vector2(anchorMax.x - width * 0.025f, anchorMin.y + height * 0.19f), Vector2.zero, Vector2.zero, Mathf.Clamp(width * 31f, 11f, 17f), Color.white, TextAlignmentOptions.Left);
     }
+
+    private void CreateThumbnail(string objectName, Vector2 anchorMin, Vector2 anchorMax, int index)
+    {
+        GameObject thumbnail = new GameObject(objectName, typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage));
+        RectTransform rect = thumbnail.GetComponent<RectTransform>();
+        rect.SetParent(screenRoot, false);
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+        RawImage image = thumbnail.GetComponent<RawImage>();
+        image.texture = GetThumbnailTexture(index);
+        image.raycastTarget = false;
+    }
+
+    private Texture2D GetThumbnailTexture(int index)
+    {
+        int slot = Mathf.Abs(index) % thumbnailCache.Length;
+        if (thumbnailCache[slot] != null)
+            return thumbnailCache[slot];
+
+        const int width = 256;
+        const int height = 144;
+        Texture2D texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
+        texture.name = "FakeVideoThumbnail_" + slot;
+        texture.filterMode = FilterMode.Bilinear;
+        texture.wrapMode = TextureWrapMode.Clamp;
+        Color[] pixels = new Color[width * height];
+        Color[] palettes =
+        {
+            Hex("#172C58"), Hex("#F17A32"), Hex("#245D43"), Hex("#30205F"),
+            Hex("#0E4774"), Hex("#8D3D26"), Hex("#165E70"), Hex("#31558C"),
+            Hex("#4D287D"), Hex("#426A35"), Hex("#263B61"), Hex("#8B4B24"),
+            Hex("#26343D"), Hex("#087C86"), Hex("#B05C35"), Hex("#4E7A46")
+        };
+        Color baseColor = palettes[slot];
+        for (int y = 0; y < height; y++)
+        {
+            float t = (float)y / height;
+            Color row = Color.Lerp(baseColor * 0.55f, Color.Lerp(baseColor, Color.white, 0.20f), t);
+            for (int x = 0; x < width; x++)
+                pixels[y * width + x] = row;
+        }
+
+        Color accent = palettes[(slot + 5) % palettes.Length];
+        Color light = Color.Lerp(accent, Color.white, 0.45f);
+        DrawCircle(pixels, width, height, 205, 108, 30, new Color(1f, 0.88f, 0.48f, 0.75f));
+        DrawRect(pixels, width, height, 0, 0, width, 28, new Color(0f, 0f, 0f, 0.16f));
+        switch (slot)
+        {
+            case 0:
+            case 15:
+                DrawTriangle(pixels, width, height, 76, 48, 106, 112, 47, 112, light);
+                DrawCircle(pixels, width, height, 76, 74, 36, Hex("#F4B27A"));
+                DrawCircle(pixels, width, height, 64, 79, 4, Color.black);
+                DrawCircle(pixels, width, height, 88, 79, 4, Color.black);
+                DrawRect(pixels, width, height, 68, 57, 84, 63, Hex("#9B4B48"));
+                break;
+            case 1:
+            case 8:
+                DrawCircle(pixels, width, height, 75, 35, 19, Hex("#10151D"));
+                DrawCircle(pixels, width, height, 175, 35, 19, Hex("#10151D"));
+                DrawTriangle(pixels, width, height, 30, 42, 220, 42, 165, 91, Hex("#1AA8E8"));
+                DrawTriangle(pixels, width, height, 70, 49, 180, 49, 148, 76, light);
+                break;
+            case 2:
+                DrawRect(pixels, width, height, 42, 38, 214, 112, Hex("#8A542D"));
+                DrawTriangle(pixels, width, height, 30, 105, 226, 105, 128, 142, Hex("#C97939"));
+                for (int i = 0; i < 5; i++)
+                    DrawRect(pixels, width, height, 48 + i * 31, 40, 55 + i * 31, 105, Hex("#D9A45E"));
+                break;
+            case 3:
+                DrawRect(pixels, width, height, 55, 36, 91, 108, Hex("#5BC7FF"));
+                DrawRect(pixels, width, height, 112, 30, 148, 105, Hex("#E95ACD"));
+                DrawRect(pixels, width, height, 169, 36, 205, 108, Hex("#7AEF8D"));
+                DrawCircle(pixels, width, height, 73, 110, 11, light);
+                DrawCircle(pixels, width, height, 130, 108, 11, light);
+                DrawCircle(pixels, width, height, 187, 110, 11, light);
+                break;
+            case 4:
+                DrawCircle(pixels, width, height, 128, 76, 43, Hex("#D7E8F4"));
+                DrawCircle(pixels, width, height, 128, 76, 31, Hex("#1A4E9A"));
+                DrawCircle(pixels, width, height, 128, 76, 15, Hex("#49B9F5"));
+                DrawRect(pixels, width, height, 105, 23, 151, 34, Hex("#D7E8F4"));
+                break;
+            case 5:
+                DrawRect(pixels, width, height, 48, 30, 208, 51, Hex("#63331D"));
+                DrawRect(pixels, width, height, 54, 52, 202, 65, Hex("#F1C44C"));
+                DrawRect(pixels, width, height, 56, 66, 200, 80, Hex("#5AA447"));
+                DrawRect(pixels, width, height, 53, 81, 203, 96, Hex("#8D3E25"));
+                DrawRect(pixels, width, height, 48, 98, 208, 111, Hex("#E8B56D"));
+                break;
+            case 6:
+                DrawRect(pixels, width, height, 67, 25, 190, 95, Hex("#D99A43"));
+                DrawCircle(pixels, width, height, 128, 94, 30, Hex("#BCEEFF"));
+                DrawCircle(pixels, width, height, 116, 97, 4, Hex("#17314D"));
+                DrawCircle(pixels, width, height, 140, 97, 4, Hex("#17314D"));
+                DrawTriangle(pixels, width, height, 94, 94, 162, 94, 128, 132, Hex("#F6D65D"));
+                break;
+            case 7:
+                DrawRect(pixels, width, height, 32, 0, 72, 104, Hex("#1B9BC5"));
+                DrawRect(pixels, width, height, 105, 0, 151, 116, Hex("#5CD6ED"));
+                DrawRect(pixels, width, height, 185, 0, 221, 100, Hex("#2087B5"));
+                DrawRect(pixels, width, height, 0, 0, 256, 26, Hex("#49C8DF"));
+                break;
+            case 9:
+                DrawTriangle(pixels, width, height, 42, 22, 213, 22, 128, 133, Hex("#79A74C"));
+                DrawCircle(pixels, width, height, 128, 82, 48, Hex("#7B9A45"));
+                DrawCircle(pixels, width, height, 174, 84, 22, Hex("#E8C67B"));
+                DrawCircle(pixels, width, height, 181, 88, 5, Color.black);
+                break;
+            case 10:
+                DrawCircle(pixels, width, height, 128, 78, 45, Hex("#D8A34A"));
+                DrawRect(pixels, width, height, 118, 18, 138, 50, Hex("#D8A34A"));
+                DrawCircle(pixels, width, height, 128, 78, 25, Hex("#F4F0DE"));
+                DrawCircle(pixels, width, height, 128, 78, 7, Hex("#C64B35"));
+                break;
+            case 11:
+                DrawRect(pixels, width, height, 42, 28, 214, 99, Hex("#A85D28"));
+                DrawRect(pixels, width, height, 34, 95, 222, 115, Hex("#D89B42"));
+                DrawCircle(pixels, width, height, 128, 78, 34, Hex("#FFD76A"));
+                DrawCircle(pixels, width, height, 98, 64, 10, Hex("#44D8FF"));
+                DrawCircle(pixels, width, height, 153, 91, 11, Hex("#B98AFF"));
+                break;
+            case 12:
+                DrawRect(pixels, width, height, 82, 28, 174, 101, Hex("#1C242D"));
+                DrawRect(pixels, width, height, 95, 103, 160, 118, Hex("#111820"));
+                DrawCircle(pixels, width, height, 128, 68, 26, Hex("#D8A37C"));
+                DrawRect(pixels, width, height, 112, 32, 144, 45, Hex("#10151C"));
+                break;
+            case 13:
+                DrawCircle(pixels, width, height, 128, 70, 53, Hex("#3D997C"));
+                DrawCircle(pixels, width, height, 128, 70, 39, Hex("#7CC5A0"));
+                DrawCircle(pixels, width, height, 128, 70, 16, Hex("#E8D4A0"));
+                DrawTriangle(pixels, width, height, 28, 32, 85, 32, 55, 10, Hex("#48C8E9"));
+                break;
+            case 14:
+                DrawCircle(pixels, width, height, 128, 75, 48, Hex("#F2C66D"));
+                DrawRect(pixels, width, height, 48, 22, 208, 36, Hex("#7B3C2D"));
+                DrawTriangle(pixels, width, height, 95, 86, 160, 86, 128, 118, Hex("#EF6E55"));
+                break;
+        }
+
+        texture.SetPixels(pixels);
+        texture.Apply(false, true);
+        thumbnailCache[slot] = texture;
+        return texture;
+    }
+
+    private void DrawRect(Color[] pixels, int width, int height, int x0, int y0, int x1, int y1, Color color)
+    {
+        for (int y = Mathf.Clamp(y0, 0, height); y < Mathf.Clamp(y1, 0, height); y++)
+            for (int x = Mathf.Clamp(x0, 0, width); x < Mathf.Clamp(x1, 0, width); x++)
+                pixels[y * width + x] = color;
+    }
+
+    private void DrawCircle(Color[] pixels, int width, int height, int cx, int cy, int radius, Color color)
+    {
+        int r2 = radius * radius;
+        for (int y = Mathf.Max(0, cy - radius); y < Mathf.Min(height, cy + radius); y++)
+            for (int x = Mathf.Max(0, cx - radius); x < Mathf.Min(width, cx + radius); x++)
+            {
+                int dx = x - cx;
+                int dy = y - cy;
+                if (dx * dx + dy * dy <= r2)
+                    pixels[y * width + x] = color;
+            }
+    }
+
+    private void DrawTriangle(Color[] pixels, int width, int height, int x0, int y0, int x1, int y1, int x2, int y2, Color color)
+    {
+        int minX = Mathf.Max(0, Mathf.Min(x0, Mathf.Min(x1, x2)));
+        int maxX = Mathf.Min(width - 1, Mathf.Max(x0, Mathf.Max(x1, x2)));
+        int minY = Mathf.Max(0, Mathf.Min(y0, Mathf.Min(y1, y2)));
+        int maxY = Mathf.Min(height - 1, Mathf.Max(y0, Mathf.Max(y1, y2)));
+        float area = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+        if (Mathf.Abs(area) < 0.001f)
+            return;
+        for (int y = minY; y <= maxY; y++)
+            for (int x = minX; x <= maxX; x++)
+            {
+                float a = ((x1 - x) * (y2 - y) - (x2 - x) * (y1 - y)) / area;
+                float b = ((x2 - x) * (y0 - y) - (x0 - x) * (y2 - y)) / area;
+                float c = 1f - a - b;
+                if (a >= 0f && b >= 0f && c >= 0f)
+                    pixels[y * width + x] = color;
+            }
+    }
+
+    private void BuildYouTubeLogo(Vector2 anchorMin, Vector2 anchorMax)
+    {
+        CreateCard(screenRoot, "YouTubeLogoMark", new Vector2(anchorMin.x, anchorMin.y + 0.08f), new Vector2(anchorMin.x + 0.045f, anchorMax.y - 0.08f), Hex("#FF0033"));
+        AddText(screenRoot, "YouTubeLogoPlay", "▶", new Vector2(anchorMin.x + 0.003f, anchorMin.y + 0.09f), new Vector2(anchorMin.x + 0.042f, anchorMax.y - 0.09f), Vector2.zero, Vector2.zero, 13, Color.white, TextAlignmentOptions.Center);
+        AddText(screenRoot, "YouTubeLogoWord", "YouTube", new Vector2(anchorMin.x + 0.05f, anchorMin.y), new Vector2(anchorMax.x, anchorMax.y), Vector2.zero, Vector2.zero, 22, Hex("#202124"), TextAlignmentOptions.Left);
+    }
+
+    private void BuildPlayStoreLogo(Vector2 anchorMin, Vector2 anchorMax)
+    {
+        AddText(screenRoot, "PlayStoreLogoMark", "▶", anchorMin, new Vector2(anchorMin.x + 0.055f, anchorMax.y), Vector2.zero, Vector2.zero, 29, Hex("#20A464"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "PlayStoreLogoWord", "Google Play", new Vector2(anchorMin.x + 0.06f, anchorMin.y), anchorMax, Vector2.zero, Vector2.zero, 22, Hex("#3C4043"), TextAlignmentOptions.Left);
+    }
+
+    private void BuildTikTokLogo(Vector2 anchorMin, Vector2 anchorMax)
+    {
+        AddText(screenRoot, "TikTokLogoCyan", "♪", anchorMin, anchorMax, new Vector2(2, 0), new Vector2(0, 0), 34, Hex("#25F4EE"), TextAlignmentOptions.Left);
+        AddText(screenRoot, "TikTokLogoRed", "♪", anchorMin, anchorMax, new Vector2(-2, 2), new Vector2(0, 0), 34, Hex("#FE2C55"), TextAlignmentOptions.Left);
+        AddText(screenRoot, "TikTokLogoWhite", "♪ TikTok", anchorMin, anchorMax, Vector2.zero, Vector2.zero, 30, Color.white, TextAlignmentOptions.Left);
+    }
+
     private void AddHeader(string section, string title, string subtitle)
     {
         AddText(screenRoot, "Section", section, new Vector2(0.07f, 0.91f), new Vector2(0.93f, 0.97f), Vector2.zero, Vector2.zero, 18, Hex("#70D6FF"), TextAlignmentOptions.Left);
