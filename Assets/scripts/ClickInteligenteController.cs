@@ -495,9 +495,9 @@ public sealed class ClickInteligenteController : MonoBehaviour
         CreateCard(screenRoot, "TikTokPhone", new Vector2(0.365f, 0.245f), new Vector2(0.635f, 0.775f), Hex("#17171B"));
         AddText(screenRoot, "TikTokStatus", "9:41                                  ●  Wi-Fi  ▰", new Vector2(0.375f, 0.745f), new Vector2(0.625f, 0.77f), Vector2.zero, Vector2.zero, 10, Color.white, TextAlignmentOptions.Center);
         AddText(screenRoot, "TikTokTabs", "LIVE     Siguiendo     Para ti     ⌕", new Vector2(0.375f, 0.705f), new Vector2(0.625f, 0.745f), Vector2.zero, Vector2.zero, 12, Color.white, TextAlignmentOptions.Center);
-        CreateThumbnail("TikTokVideo", new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f), questionIndex * 5 + 6);
         if (carousel)
         {
+            CreateThumbnail("TikTokVideo", new Vector2(0.375f, 0.285f), new Vector2(0.625f, 0.70f), questionIndex * 5 + 6);
             CreateThumbnail("TikTokCarouselPanel1", new Vector2(0.385f, 0.36f), new Vector2(0.455f, 0.66f), questionIndex + 1);
             CreateThumbnail("TikTokCarouselPanel2", new Vector2(0.46f, 0.36f), new Vector2(0.535f, 0.66f), questionIndex + 7);
             CreateThumbnail("TikTokCarouselPanel3", new Vector2(0.54f, 0.36f), new Vector2(0.615f, 0.66f), questionIndex + 13);
@@ -739,7 +739,9 @@ public sealed class ClickInteligenteController : MonoBehaviour
 
     private void BuildPlayStoreLogo(Vector2 anchorMin, Vector2 anchorMax)
     {
-        AddText(screenRoot, "PlayStoreLogoMark", "▶", anchorMin, new Vector2(anchorMin.x + 0.055f, anchorMax.y), Vector2.zero, Vector2.zero, 29, Hex("#20A464"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "PlayStoreLogoBlue", "▶", new Vector2(anchorMin.x - 0.003f, anchorMin.y), new Vector2(anchorMin.x + 0.055f, anchorMax.y), new Vector2(1, 0), Vector2.zero, 29, Hex("#4285F4"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "PlayStoreLogoGreen", "▶", new Vector2(anchorMin.x + 0.002f, anchorMin.y), new Vector2(anchorMin.x + 0.055f, anchorMax.y), new Vector2(0, 0), Vector2.zero, 29, Hex("#34A853"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "PlayStoreLogoYellow", "▶", new Vector2(anchorMin.x + 0.004f, anchorMin.y), new Vector2(anchorMin.x + 0.055f, anchorMax.y), new Vector2(-1, 0), Vector2.zero, 29, Hex("#FBBC04"), TextAlignmentOptions.Center);
         AddText(screenRoot, "PlayStoreLogoWord", "Google Play", new Vector2(anchorMin.x + 0.06f, anchorMin.y), anchorMax, Vector2.zero, Vector2.zero, 22, Hex("#3C4043"), TextAlignmentOptions.Left);
     }
 
