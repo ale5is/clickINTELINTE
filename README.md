@@ -35,7 +35,7 @@ Durante la práctica, las variantes de anuncio se presentan con capturas reales 
 - **Google Play:** cada práctica muestra una captura real distinta para búsqueda patrocinada o sugerencias en tema oscuro/claro.
 - **TikTok:** In-feed, Carrusel y TopView muestran capturas reales de cada variante, sin envolverlas en otra interfaz inventada.
 
-**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y recorta las variantes clara/oscura de una referencia moderna de 2026; TikTok usa capturas reales distintas para in-feed, carrusel y TopView. Los textos superpuestos que describen el caso siguen siendo ficticios y están identificados como tales.
+**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y recorta las variantes clara/oscura de una referencia moderna de 2026; TikTok usa capturas reales distintas para in-feed, carrusel y TopView. El contenido publicitario ficticio (anunciante, título, mensaje y llamada a la acción) se compone dentro de la zona del anuncio de cada captura, con posiciones adaptadas a cada formato. La interfaz y los controles propios de la plataforma se conservan como referencia visual.
 
 ### Referencias visuales actuales
 
