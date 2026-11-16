@@ -592,7 +592,6 @@ public sealed class ClickInteligenteController : MonoBehaviour
         switch (slot)
         {
             case 0:
-            case 15:
                 DrawTriangle(pixels, width, height, 76, 48, 106, 112, 47, 112, light);
                 DrawCircle(pixels, width, height, 76, 74, 36, Hex("#F4B27A"));
                 DrawCircle(pixels, width, height, 64, 79, 4, Color.black);
