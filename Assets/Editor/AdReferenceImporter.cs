@@ -18,7 +18,7 @@ public static class AdReferenceImporter
         ("GooglePlay_SuggestedDark_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("GooglePlay_SuggestedLight_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("TikTok_InFeed_Screen_2025", "https://support.ecwid.com/hc/article_attachments/15645628291996"),
-        ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-quang-cao-top-view-tiktok-la-gi.png"),
+        ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png"),
         ("TikTok_Carousel_2025", "https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png")
     };
 
