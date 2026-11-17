@@ -35,9 +35,19 @@ public static class ClickInteligenteSceneGenerator
     private static void GenerateIfNeeded()
     {
         if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+        {
+            EditorApplication.delayCall += GenerateIfNeeded;
             return;
-        if (!System.IO.File.Exists(SceneFolder + "/Tutorial01.unity") || !System.IO.File.Exists(SceneFolder + "/Anuncio01.unity"))
-            GenerateAll();
+        }
+        string[] required = { "Menu", "Tutorial01", "Tutorial02", "Tutorial03", "Anuncio01", "Anuncio02", "Anuncio03", "Anuncio04", "Anuncio05", "Anuncio06", "Anuncio07", "Anuncio08", "Anuncio09", "Explicacion01", "Explicacion02", "Explicacion03", "Explicacion04", "Explicacion05", "Explicacion06", "Explicacion07", "Explicacion08", "Explicacion09", "Resultados" };
+        foreach (string sceneName in required)
+        {
+            if (!System.IO.File.Exists(SceneFolder + "/" + sceneName + ".unity"))
+            {
+                GenerateAll();
+                return;
+            }
+        }
     }
 
     private static void GenerateAll()
@@ -165,7 +175,6 @@ public static class ClickInteligenteSceneGenerator
     private static Scene NewScene(string name)
     {
         Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        scene.name = name;
         GameObject cameraObject = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
         cameraObject.tag = "MainCamera";
         cameraObject.transform.position = new Vector3(0, 0, -10);

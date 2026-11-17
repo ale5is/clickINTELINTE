@@ -53,6 +53,19 @@ El workflow de GitHub Actions ejecuta también `Scripts/Import-AdReferences.ps1`
 
 Las imágenes pertenecen a sus respectivos titulares. La disponibilidad pública no concede derechos de redistribución; verificar permisos y licencias antes de publicar o distribuir el juego.
 
+
+## Escenas independientes del juego
+
+La experiencia principal está organizada en escenas reales de Unity, con objetos de interfaz editables desde la jerarquía y el Inspector. El generador del Editor crea los archivos `.unity` al abrir el proyecto por primera vez (o desde **Click Inteligente > Generar escenas estáticas**):
+
+- `Menu`: pantalla de inicio.
+- `Tutorial01`, `Tutorial02`, `Tutorial03`: tres pantallas tutoriales independientes.
+- `Anuncio01` a `Anuncio09`: una escena independiente por cada anuncio.
+- `Explicacion01` a `Explicacion09`: una escena de retroalimentación por cada anuncio.
+- `Resultados`: pantalla final con el puntaje.
+
+La navegación entre escenas utiliza `SceneManager`. Los elementos visuales se crean en el Editor y quedan guardados como escenas; el script de flujo únicamente actualiza los datos de la partida y responde a los botones. No genera pantallas ni controles durante la ejecución.
+
 ## Videos tutoriales
 
 El controlador admite clips mediante el arreglo `videosTutoriales` del componente `ClickInteligenteController` en el Canvas de la escena `Menu`.
