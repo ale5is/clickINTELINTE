@@ -59,7 +59,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
             "El anuncio imita un aviso de soporte y busca que entregues la contraseña desde un enlace externo.",
             "Las amenazas de bloqueo, la urgencia y los pedidos de contraseña son señales claras de phishing.",
             "No uses el enlace. Abrí la aplicación oficial por tu cuenta y revisá allí el estado de la cuenta."),
-        new AdScenario("ACTIVÁ TU CUENTA PREMIUM GRATIS", "Beneficios Plus", "Tu cuenta puede recibir funciones premium sin costo. Iniciá sesión con tu correo y contraseña para activar el beneficio antes de que termine la promoción.", "ACTIVAR BENEFICIO", true,
+        new AdScenario("¡GANASTE BENEFICIOS PREMIUM!", "Beneficios Plus", "Tu cuenta puede recibir funciones premium sin costo. Iniciá sesión con tu correo y contraseña para activar el beneficio antes de que termine la promoción.", "ACTIVAR BENEFICIO", true,
             "El anuncio ofrece un beneficio gratuito a cambio de iniciar sesión desde su propia promoción. Podría ser un intento de robar credenciales.",
             "Los beneficios inesperados y los formularios de inicio de sesión abiertos desde anuncios son señales de riesgo.",
             "No ingreses tu contraseña desde el anuncio. Abrí la aplicación oficial y comprobá allí si existe alguna promoción.")
@@ -126,14 +126,14 @@ public sealed class ClickInteligenteController : MonoBehaviour
         ClearScreen();
         AddText(screenRoot, "Brand", "CLICK INTELIGENTE", new Vector2(0.06f, 0.89f), new Vector2(0.94f, 0.98f), Vector2.zero, Vector2.zero, 28, Hex("#70D6FF"), TextAlignmentOptions.Left);
         AddText(screenRoot, "Title", "Antes de hacer clic, pensá", new Vector2(0.08f, 0.63f), new Vector2(0.92f, 0.83f), Vector2.zero, Vector2.zero, 58, Color.white, TextAlignmentOptions.Center);
-        AddText(screenRoot, "Intro", "Aprendé a reconocer anuncios engañosos que intentan que descargues aplicaciones o archivos peligrosos. Vas a practicar con ejemplos ficticios y recibir explicaciones después de cada decisión.", new Vector2(0.16f, 0.40f), new Vector2(0.84f, 0.61f), Vector2.zero, Vector2.zero, 27, Hex("#D6E2F0"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "Intro", "Aprendé a reconocer anuncios engañosos que intentan que descargues aplicaciones o archivos peligrosos. Vas a practicar con campañas reales, anuncios fraudulentos documentados y ejemplos adaptados para el ejercicio.", new Vector2(0.16f, 0.40f), new Vector2(0.84f, 0.61f), Vector2.zero, Vector2.zero, 27, Hex("#D6E2F0"), TextAlignmentOptions.Center);
         AddText(screenRoot, "Audience", "Actividad educativa para chicos y chicas de 10 a 16 años", new Vector2(0.12f, 0.28f), new Vector2(0.88f, 0.36f), Vector2.zero, Vector2.zero, 21, Hex("#A8B8CC"), TextAlignmentOptions.Center);
         AddButton(screenRoot, "Comenzar tutorial", new Vector2(0.27f, 0.12f), new Vector2(0.73f, 0.23f), Hex("#147D92"), () =>
         {
             tutorialPage = 0;
             BuildTutorial();
         });
-        AddText(screenRoot, "Safety", "Todos los anuncios y ejemplos son simulados. No se descargan archivos ni se abren enlaces.", new Vector2(0.10f, 0.035f), new Vector2(0.90f, 0.085f), Vector2.zero, Vector2.zero, 17, Hex("#9FB0C5"), TextAlignmentOptions.Center);
+        AddText(screenRoot, "Safety", "Las imágenes son material educativo. Los botones no abren sitios ni descargan archivos.", new Vector2(0.10f, 0.035f), new Vector2(0.90f, 0.085f), Vector2.zero, Vector2.zero, 17, Hex("#9FB0C5"), TextAlignmentOptions.Center);
     }
 
     private void BuildTutorial()
