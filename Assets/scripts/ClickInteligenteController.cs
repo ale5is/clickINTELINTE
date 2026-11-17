@@ -35,30 +35,30 @@ public sealed class ClickInteligenteController : MonoBehaviour
             "Promete un premio inesperado y pide datos personales y un pago para reclamarlo.",
             "Los premios inesperados, la presión para actuar y las solicitudes de datos o pagos pueden indicar un engaño.",
             "No ingreses datos ni pagues. Consultá las promociones únicamente en canales oficiales."),
-        new AdScenario("CLASES GRATUITAS DE DIBUJO", "Centro Cultural", "Conocé los horarios y actividades del taller gratuito. La información está disponible en los canales oficiales del centro cultural.", "VER INFORMACIÓN", false,
-            "El mensaje no promete un premio extraordinario, no amenaza al usuario ni solicita instalar archivos o entregar datos para continuar.",
-            "No aparecen señales evidentes de descarga forzada o presión. Aun así, conviene verificar que el anunciante sea realmente el centro cultural.",
-            "Comprobá la identidad del anunciante y escribí la dirección oficial por tu cuenta antes de compartir información."),
+        new AdScenario("RUTINA FACIAL DERMA CONTROL", "L'Oréal Men Expert", "Conocé la línea Derma Control para el cuidado facial diario. Revisá los productos y sus indicaciones en los canales oficiales de la marca.", "CONOCER LA RUTINA", false,
+            "Es una campaña real de cuidado personal. El anuncio presenta productos identificables y no solicita contraseñas, pagos inesperados ni descargas externas.",
+            "La creatividad pertenece a una campaña de marca identificable. Aun así, verificá el sitio y el vendedor antes de comprar.",
+            "Buscá la página oficial de L'Oréal y revisá los detalles del producto antes de realizar una compra.")
         new AdScenario("¡SE DETECTARON 5 VIRUS!", "Alerta de Seguridad", "Tu dispositivo está infectado. Instalá nuestro limpiador desconocido en los próximos 30 segundos para evitar daños.", "LIMPIAR DISPOSITIVO", true,
             "Un anuncio no puede confirmar por sí solo que tu dispositivo tenga virus. Intenta asustarte y forzarte a instalar una aplicación desconocida.",
             "Las alertas alarmistas, las cuentas regresivas y las aplicaciones desconocidas son señales de riesgo.",
             "Cerrá el anuncio. Para revisar el dispositivo, utilizá las herramientas de seguridad que ya conocés y fuentes oficiales."),
-        new AdScenario("LECTURA PARA LA ESCUELA", "Biblioteca Digital", "Explorá recomendaciones de lectura y recursos gratuitos. Podés consultar el catálogo y verificar quién publica el contenido.", "CONOCER EL CATÁLOGO", false,
-            "La propuesta ofrece información sin exigir una descarga inmediata, un pago ni datos personales para reclamar algo.",
-            "El mensaje no presenta señales claras de engaño, pero siempre hay que comprobar la identidad del servicio y del desarrollador.",
-            "Buscá el nombre del servicio en una fuente oficial y revisá quién lo publica antes de instalar cualquier aplicación."),
+        new AdScenario("APRENDÉ A TU RITMO", "Khan Academy", "Fortalecé conceptos y practicá lo que aprendés. Explorá los recursos educativos gratuitos desde la página oficial.", "VER LECCIONES", false,
+            "La campaña promueve recursos educativos y no exige datos de pago ni descargas desde un enlace desconocido.",
+            "El anunciante es una organización educativa identificable y el mensaje invita a consultar recursos en su sitio oficial.",
+            "Escribí la dirección oficial de Khan Academy o buscá su aplicación en la tienda legítima.")
         new AdScenario("DESCARGA SECRETA", "Juegos Premium Gratis", "Obtené todos los juegos pagos gratis. Desactivá la protección del teléfono e instalá este archivo fuera de la tienda.", "DESCARGAR APK", true,
             "Pide desactivar una protección y descargar un archivo desde fuera de una tienda confiable.",
             "Desactivar la seguridad y descargar archivos desconocidos aumenta el riesgo de instalar software malicioso.",
             "No desactives las protecciones ni instales archivos de anuncios. Buscá aplicaciones en tiendas oficiales."),
-        new AdScenario("NUEVO TALLER DE CIENCIA", "Club de Ciencias", "Conocé experimentos y actividades para estudiantes. Consultá fechas, requisitos y responsables en la página oficial de la institución.", "VER ACTIVIDADES", false,
-            "Presenta información concreta y propone consultar los canales oficiales, sin pedir datos sensibles ni instalar archivos.",
-            "No se observan señales evidentes de presión o descarga sospechosa. La identidad del anunciante debe verificarse igualmente.",
-            "Comprobá que la página pertenezca a la institución antes de registrarte o compartir información."),
-        new AdScenario("TU CUENTA SERÁ BLOQUEADA", "Soporte de Cuenta", "Detectamos un problema. Descargá este archivo y escribí tu contraseña para evitar que tu cuenta sea eliminada hoy.", "SOLUCIONAR PROBLEMA", true,
-            "Amenaza con bloquear una cuenta, solicita una contraseña y propone descargar un archivo.",
-            "Las amenazas, la solicitud de contraseñas y las descargas inesperadas son señales muy importantes de alerta.",
-            "No compartas contraseñas ni descargues el archivo. Entrá a tu cuenta desde la aplicación o dirección oficial."),
+        new AdScenario("DESCUBRÍ ARGENTINA", "Visit Argentina", "Explorá paisajes, destinos y experiencias para planificar tu próximo viaje desde el sitio oficial de turismo.", "EXPLORAR DESTINOS", false,
+            "La pieza pertenece a una campaña turística identificable y dirige a información de destinos, sin exigir datos sensibles ni instalaciones externas.",
+            "El anuncio presenta un destino y una marca turística verificable, sin promesas extraordinarias ni presión para actuar.",
+            "Comprobá que el sitio sea el canal oficial de turismo antes de reservar o compartir información.")
+        new AdScenario("TU CUENTA SERÁ BLOQUEADA", "Centro de Soporte", "Detectamos un problema. Verificá tu identidad y escribí tu contraseña para evitar que tu cuenta sea eliminada hoy.", "VERIFICAR CUENTA", true,
+            "El anuncio imita un aviso de soporte y busca que entregues la contraseña desde un enlace externo.",
+            "Las amenazas de bloqueo, la urgencia y los pedidos de contraseña son señales claras de phishing.",
+            "No uses el enlace. Abrí la aplicación oficial por tu cuenta y revisá allí el estado de la cuenta.")
         new AdScenario("ACTIVÁ TU CUENTA PREMIUM GRATIS", "Beneficios Plus", "Tu cuenta puede recibir funciones premium sin costo. Iniciá sesión con tu correo y contraseña para activar el beneficio antes de que termine la promoción.", "ACTIVAR BENEFICIO", true,
             "El anuncio ofrece un beneficio gratuito a cambio de iniciar sesión desde su propia promoción. Podría ser un intento de robar credenciales.",
             "Los beneficios inesperados y los formularios de inicio de sesión abiertos desde anuncios son señales de riesgo.",
@@ -380,15 +380,13 @@ public sealed class ClickInteligenteController : MonoBehaviour
             return;
         }
 
-        CreateScenarioAdOverlay(referenceRect, scenario, referenceName);
+        CreateScenarioAdCreative(referenceRect, scenario, referenceName);
     }
 
-    private void CreateScenarioAdOverlay(RectTransform imageRoot, AdScenario scenario, string referenceName)
+    private void CreateScenarioAdCreative(RectTransform imageRoot, AdScenario scenario, string referenceName)
     {
         Vector2 panelMin = new Vector2(0.08f, 0.08f);
         Vector2 panelMax = new Vector2(0.92f, 0.30f);
-        float titleSize = 17f;
-        float messageSize = 12f;
 
         if (referenceName == "YouTube_InFeed_2023")
         {
@@ -399,69 +397,85 @@ public sealed class ClickInteligenteController : MonoBehaviour
         {
             panelMin = new Vector2(0.02f, 0.05f);
             panelMax = new Vector2(0.48f, 0.38f);
-            titleSize = 13f;
-            messageSize = 9f;
         }
         else if (referenceName == "YouTube_Shorts_Interactive_2025")
         {
             panelMin = new Vector2(0.30f, 0.10f);
             panelMax = new Vector2(0.70f, 0.38f);
-            titleSize = 13f;
-            messageSize = 9f;
         }
         else if (referenceName == "GooglePlay_SearchSponsored_2026")
         {
             panelMin = new Vector2(0.02f, 0.50f);
             panelMax = new Vector2(0.49f, 0.71f);
-            titleSize = 13f;
-            messageSize = 9f;
         }
         else if (referenceName == "GooglePlay_SuggestedLight_2026" || referenceName == "GooglePlay_SuggestedDark_2026")
         {
             panelMin = new Vector2(0.05f, 0.23f);
             panelMax = new Vector2(0.95f, 0.54f);
-            titleSize = 13f;
-            messageSize = 9f;
         }
         else if (referenceName == "TikTok_InFeed_Screen_2025")
         {
             panelMin = new Vector2(0.27f, 0.14f);
             panelMax = new Vector2(0.72f, 0.40f);
-            titleSize = 12f;
-            messageSize = 9f;
         }
         else if (referenceName == "TikTok_Carousel_2025")
         {
             panelMin = new Vector2(0.12f, 0.12f);
             panelMax = new Vector2(0.88f, 0.40f);
-            titleSize = 13f;
-            messageSize = 9f;
         }
         else if (referenceName == "TikTok_TopView_2022")
         {
             panelMin = new Vector2(0.39f, 0.14f);
             panelMax = new Vector2(0.68f, 0.31f);
-            titleSize = 12f;
-            messageSize = 9f;
         }
 
-        bool lightPlayStore = referenceName == "GooglePlay_SuggestedLight_2026";
-        Color panelColor = lightPlayStore ? new Color(0.96f, 0.97f, 0.99f, 0.98f) : new Color(0.035f, 0.055f, 0.085f, 0.96f);
-        Color advertiserColor = lightPlayStore ? Hex("#5F6368") : Hex("#BCEBFF");
-        Color titleColor = lightPlayStore ? Hex("#202124") : Color.white;
-        Color messageColor = lightPlayStore ? Hex("#3C4043") : Hex("#E1E8F0");
-        Color actionColor = Color.white;
-        Color actionButtonColor = lightPlayStore ? Hex("#1A73E8") : Hex("#2878B8");
+        string creativeName = GetScenarioCreativeName(scenario);
+        Texture2D creative = Resources.Load<Texture2D>("AdCreatives/" + creativeName);
+        if (creative == null)
+        {
+            Debug.LogWarning("No se encontró la creatividad publicitaria " + creativeName + " en Resources/AdCreatives.");
+            return;
+        }
 
-        CreateCard(imageRoot, "ScenarioAdContent", panelMin, panelMax, panelColor);
-        float panelHeight = panelMax.y - panelMin.y;
-        Vector2 actionMin = new Vector2(panelMin.x + 0.54f, panelMin.y + panelHeight * 0.015f);
-        Vector2 actionMax = new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.19f);
-        CreateCard(imageRoot, "ScenarioAdActionButton", actionMin, actionMax, actionButtonColor);
-        AddText(imageRoot, "ScenarioAdAdvertiser", scenario.advertiser + " · ANUNCIO", new Vector2(panelMin.x + 0.025f, panelMax.y - panelHeight * 0.25f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.05f), Vector2.zero, Vector2.zero, Mathf.Max(9f, titleSize - 4f), advertiserColor, TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdTitle", scenario.title, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.48f), new Vector2(panelMax.x - 0.025f, panelMax.y - panelHeight * 0.29f), Vector2.zero, Vector2.zero, titleSize, titleColor, TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdMessage", scenario.message, new Vector2(panelMin.x + 0.025f, panelMin.y + panelHeight * 0.18f), new Vector2(panelMax.x - 0.025f, panelMin.y + panelHeight * 0.46f), Vector2.zero, Vector2.zero, messageSize, messageColor, TextAlignmentOptions.Left);
-        AddText(imageRoot, "ScenarioAdCallToAction", scenario.callToAction, actionMin, actionMax, new Vector2(5f, 1f), new Vector2(-5f, -1f), Mathf.Max(9f, titleSize - 3f), actionColor, TextAlignmentOptions.Center);
+        GameObject creativeObject = new GameObject("AdCreative_" + creativeName, typeof(RectTransform), typeof(CanvasRenderer), typeof(RawImage));
+        RectTransform creativeRect = creativeObject.GetComponent<RectTransform>();
+        creativeRect.SetParent(imageRoot, false);
+        creativeRect.anchorMin = panelMin;
+        creativeRect.anchorMax = panelMax;
+        creativeRect.offsetMin = Vector2.zero;
+        creativeRect.offsetMax = Vector2.zero;
+
+        RawImage image = creativeObject.GetComponent<RawImage>();
+        image.texture = creative;
+        image.raycastTarget = false;
+
+        AspectRatioFitter fitter = creativeObject.AddComponent<AspectRatioFitter>();
+        fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+        fitter.aspectRatio = (float)creative.width / creative.height;
+    }
+
+    private string GetScenarioCreativeName(AdScenario scenario)
+    {
+        if (scenario.title.IndexOf("VIRUS", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            scenario.title.IndexOf("ACTUALIZACIÓN", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "FakeVirus_2020";
+
+        if (scenario.title.IndexOf("GANASTE", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "FakePrize_iPhone14_2023";
+
+        if (scenario.title.IndexOf("DESCARGA SECRETA", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "FakeAPK_SuperMario_2017";
+
+        if (scenario.title.IndexOf("CUENTA", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "FakeAccount_2023";
+
+        if (scenario.advertiser.IndexOf("Khan Academy", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "Real_KhanAcademy_2026";
+
+        if (scenario.advertiser.IndexOf("Visit Argentina", StringComparison.OrdinalIgnoreCase) >= 0)
+            return "Real_Argentina_Freedom_2025";
+
+        return "Real_Loreal_DermaControl_2025";
     }
 
     private bool CreateReferenceImage(string objectName, Vector2 anchorMin, Vector2 anchorMax, string resourceName, out RectTransform rect)
