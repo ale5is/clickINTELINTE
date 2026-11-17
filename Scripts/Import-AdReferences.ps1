@@ -70,7 +70,12 @@ function Import-ImageSources {
 
     Write-Host ("Recursos descargados: " + $downloaded + " / " + $Sources.Count + " en " + $Destination)
     Write-Host ("Recursos no disponibles: " + $failed)
+    return $downloaded
 }
 
-Import-ImageSources -Sources $referenceSources -Destination $referenceDestination
-Import-ImageSources -Sources $creativeSources -Destination $creativeDestination
+$referenceDownloaded = Import-ImageSources -Sources $referenceSources -Destination $referenceDestination
+$creativeDownloaded = Import-ImageSources -Sources $creativeSources -Destination $creativeDestination
+
+if ($creativeDownloaded -ne $creativeSources.Count) {
+    throw "No se descargaron todas las creatividades publicitarias. Descargadas: $creativeDownloaded / $($creativeSources.Count). Se cancela la compilación para no generar un ejecutable incompleto."
+}
