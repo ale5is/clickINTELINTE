@@ -13,12 +13,12 @@ public static class AdReferenceImporter
     {
         ("YouTube_InFeed_2023", "https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png"),
         ("YouTube_InStream_2025", "https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg"),
-        ("YouTube_Shorts_Interactive_2025", "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png"),
+        ("YouTube_Shorts_Interactive_2025", "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png?format=1000w"),
         ("GooglePlay_SearchSponsored_2026", "https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874"),
         ("GooglePlay_SuggestedDark_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("GooglePlay_SuggestedLight_2026", "https://www.apptweak.com/img/2026/01/image8.png"),
         ("TikTok_InFeed_Screen_2025", "https://support.ecwid.com/hc/article_attachments/15645628291996"),
-        ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png"),
+        ("TikTok_TopView_2022", "https://megadigital.ai/wp-content/uploads/2022/08/quang-quang-cao-top-view-tiktok-la-gi.png"),
         ("TikTok_Carousel_2025", "https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png")
     };
 
@@ -76,6 +76,7 @@ public static class AdReferenceImporter
             using (UnityWebRequest request = UnityWebRequest.Get(source.url))
             {
                 request.timeout = 30;
+                request.SetRequestHeader("Accept", "image/png,image/jpeg;q=0.9,*/*;q=0.1");
                 UnityWebRequestAsyncOperation operation = request.SendWebRequest();
 
                 while (!operation.isDone)
@@ -84,7 +85,18 @@ public static class AdReferenceImporter
                 byte[] data = request.downloadHandler == null ? null : request.downloadHandler.data;
                 if (request.result != UnityWebRequest.Result.Success || !IsSupportedImage(data))
                 {
-                    Debug.LogWarning("No se importó " + source.fileName + ": respuesta no válida o imagen PNG/JPEG no reconocida. " + request.error);
+                    string contentType = request.GetResponseHeader("Content-Type") ?? "(sin Content-Type)";
+                    int byteCount = data == null ? 0 : data.Length;
+                    string signature = data == null || data.Length < 4
+                        ? "(sin firma)"
+                        : data[0].ToString("X2") + " " + data[1].ToString("X2") + " " + data[2].ToString("X2") + " " + data[3].ToString("X2");
+                    Debug.LogWarning("No se importó " + source.fileName +
+                        ": HTTP " + request.responseCode +
+                        ", Content-Type " + contentType +
+                        ", bytes " + byteCount +
+                        ", firma " + signature +
+                        ", URL final " + request.url +
+                        ", error " + request.error);
                     continue;
                 }
 
