@@ -55,6 +55,7 @@ public sealed class ClickInteligenteSceneFlow : MonoBehaviour
     {
         WireButton("StartButton", StartGame);
         WireButton("ContinueButton", Continue);
+        WireButton("PreviousButton", Previous);
         WireButton("SafeButton", AnswerSafe);
         WireButton("ReportButton", AnswerSuspicious);
         WireButton("NextButton", Next);
@@ -64,9 +65,7 @@ public sealed class ClickInteligenteSceneFlow : MonoBehaviour
 
     private void WireButton(string objectName, UnityEngine.Events.UnityAction action)
     {
-        Transform target = transform.root.Find(objectName);
-        if (target == null)
-            target = FindChild(transform.root, objectName);
+        GameObject target = GameObject.Find(objectName);
         if (target == null)
             return;
         Button button = target.GetComponent<Button>();
@@ -124,7 +123,7 @@ public sealed class ClickInteligenteSceneFlow : MonoBehaviour
 
     private void SetText(string objectName, string value)
     {
-        Transform target = FindChild(transform.root, objectName);
+        GameObject target = GameObject.Find(objectName);
         if (target == null)
             return;
         TMP_Text text = target.GetComponent<TMP_Text>();
@@ -149,6 +148,14 @@ public sealed class ClickInteligenteSceneFlow : MonoBehaviour
             else
                 SceneManager.LoadScene("Anuncio01");
         }
+    }
+
+    public void Previous()
+    {
+        if (screenType == ScreenType.Tutorial && itemIndex > 1)
+            SceneManager.LoadScene("Tutorial0" + (itemIndex - 1));
+        else if (screenType == ScreenType.Tutorial)
+            SceneManager.LoadScene("Menu");
     }
 
     public void AnswerSafe() => RecordAnswer(false);

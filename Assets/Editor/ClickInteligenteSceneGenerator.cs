@@ -204,7 +204,7 @@ public static class ClickInteligenteSceneGenerator
     private static void AddPanel(Scene scene, string name, float bottom, float top, float left = 0.08f, float right = 0.92f)
     {
         GameObject panel = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-        panel.transform.SetParent(scene.GetRootGameObjects()[2].transform, false);
+        panel.transform.SetParent(GameObject.Find("Canvas").transform, false);
         RectTransform rect = panel.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(left, bottom);
         rect.anchorMax = new Vector2(right, top);
@@ -216,7 +216,7 @@ public static class ClickInteligenteSceneGenerator
     private static void AddText(Scene scene, string name, string value, float bottom, float top, float fontSize, Color color, TextAlignmentOptions alignment, float left = 0.08f, float right = 0.92f)
     {
         GameObject textObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(TextMeshProUGUI));
-        textObject.transform.SetParent(scene.GetRootGameObjects()[2].transform, false);
+        textObject.transform.SetParent(GameObject.Find("Canvas").transform, false);
         RectTransform rect = textObject.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(left, bottom);
         rect.anchorMax = new Vector2(right, top);
@@ -224,6 +224,7 @@ public static class ClickInteligenteSceneGenerator
         rect.offsetMax = new Vector2(-12, -4);
         TMP_Text text = textObject.GetComponent<TMP_Text>();
         text.text = value;
+        text.font = TMP_Settings.defaultFontAsset;
         text.fontSize = fontSize;
         text.color = color;
         text.alignment = alignment;
@@ -237,7 +238,7 @@ public static class ClickInteligenteSceneGenerator
     private static void AddButton(Scene scene, string name, string label, float bottom, float top, Color color, float left = 0.27f, float right = 0.73f)
     {
         GameObject buttonObject = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
-        buttonObject.transform.SetParent(scene.GetRootGameObjects()[2].transform, false);
+        buttonObject.transform.SetParent(GameObject.Find("Canvas").transform, false);
         RectTransform rect = buttonObject.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(left, bottom);
         rect.anchorMax = new Vector2(right, top);
@@ -261,6 +262,7 @@ public static class ClickInteligenteSceneGenerator
         rect.offsetMax = new Vector2(-10, -4);
         TMP_Text text = textObject.GetComponent<TMP_Text>();
         text.text = label;
+        text.font = TMP_Settings.defaultFontAsset;
         text.fontSize = 22;
         text.fontStyle = FontStyles.Bold;
         text.color = White;
