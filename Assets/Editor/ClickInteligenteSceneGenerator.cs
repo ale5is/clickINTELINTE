@@ -76,7 +76,7 @@ public static class ClickInteligenteSceneGenerator
         AddText(scene, "Brand", "CLICK INTELIGENTE", 0.91f, 0.97f, 30, Cyan, TextAlignmentOptions.Left);
         AddText(scene, "MainTitle", "Antes de hacer clic, pensá", 0.68f, 0.84f, 54, White, TextAlignmentOptions.Center);
         AddPanel(scene, "IntroPanel", 0.31f, 0.63f);
-        AddText(scene, "Intro", "Aprendé a reconocer anuncios engañosos que intentan que descargues aplicaciones o archivos peligrosos. Vas a practicar con campañas reales y ejemplos fraudulentos documentados.", 0.38f, 0.58f, 25, Muted, TextAlignmentOptions.Center);
+        AddText(scene, "Intro", "Aprendé a reconocer anuncios engañosos que intentan que descargues aplicaciones o archivos peligrosos. Vas a practicar con anuncios simulados y ejemplos de engaños frecuentes.", 0.38f, 0.58f, 25, Muted, TextAlignmentOptions.Center);
         AddText(scene, "Audience", "Actividad educativa para chicos y chicas de 10 a 16 años", 0.25f, 0.32f, 20, Muted, TextAlignmentOptions.Center);
         AddButton(scene, "StartButton", "COMENZAR", 0.12f, 0.23f, Teal);
         AddText(scene, "Safety", "Los botones son simulaciones educativas: no abren sitios ni descargan archivos.", 0.035f, 0.085f, 16, Muted, TextAlignmentOptions.Center);
