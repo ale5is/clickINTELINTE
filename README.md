@@ -12,7 +12,7 @@ Proyecto educativo de Unity orientado a enseñar a niños y adolescentes de 10 a
 
 1. Menú de inicio.
 2. Tutorial dividido en tres partes: detenerse antes de hacer clic, reconocer señales de alerta y elegir cómo protegerse.
-3. Práctica con nueve anuncios ficticios, mezclados aleatoriamente.
+3. Práctica con nueve casos que combinan anuncios fraudulentos documentados y campañas reales, mezclados aleatoriamente.
 4. Retroalimentación inmediata después de cada clasificación.
 5. Resultados con respuestas correctas, incorrectas y porcentaje final.
 
@@ -28,45 +28,30 @@ Los escenarios trabajan señales como:
 - Pedidos de contraseñas, datos personales o pagos.
 - Verificación del anunciante y consulta de canales oficiales.
 
-## Pantallas simuladas de plataformas
+## Anuncios reales, fraudulentos y adaptados
 
-Durante la práctica, las variantes de anuncio se presentan con capturas reales de la plataforma; TikTok In-Feed conserva una recreación del feed y utiliza una creatividad fotográfica real:
-- **YouTube:** cada práctica muestra una captura real distinta para In-feed, In-stream o Shorts.
-- **Google Play:** cada práctica muestra una captura real distinta para búsqueda patrocinada o sugerencias en tema oscuro/claro.
-- **TikTok:** In-feed, Carrusel y TopView muestran capturas reales de cada variante, sin envolverlas en otra interfaz inventada.
+Durante la práctica, cada captura auténtica de YouTube, Google Play o TikTok funciona como marco de plataforma. La creatividad publicitaria se carga como una imagen independiente dentro de la zona del anuncio: ya no se escriben titulares, mensajes ni botones encima de la captura.
 
-**Estado de integración:** las pantallas de práctica ya cargan referencias visuales reales desde `Resources/AdReferences`. YouTube usa una referencia distinta para in-feed, in-stream y Shorts; Google Play usa capturas separadas para búsqueda patrocinada y recorta las variantes clara/oscura de una referencia moderna de 2026; TikTok usa capturas reales distintas para in-feed, carrusel y TopView. El contenido publicitario ficticio (anunciante, título, mensaje y llamada a la acción) se compone dentro de la zona del anuncio de cada captura, con posiciones adaptadas a cada formato. La interfaz y los controles propios de la plataforma se conservan como referencia visual.
+El conjunto combina:
+- **Anuncios fraudulentos documentados:** falsas alertas de virus, premios inesperados, páginas de descarga APK y avisos falsos de suspensión de cuentas.
+- **Campañas reales:** L'Oréal Men Expert Derma Control, Khan Academy y Visit Argentina. Se ajustan al espacio publicitario para mostrar una pieza completa, sin sustituir sus marcas ni inventar una interfaz.
+- **Capturas reales de plataforma:** YouTube In-feed, In-stream y Shorts; Google Play búsqueda y sugerencias; TikTok In-feed, Carrusel y TopView.
 
-### Referencias visuales actuales
+Las fuentes, el nombre de cada recurso y la relación con los escenarios están documentados en [REFERENCIAS_VISUALES.md](REFERENCIAS_VISUALES.md). Los ejemplos fraudulentos se utilizan exclusivamente para enseñar a detectar señales de riesgo.
 
-Las referencias se usan como imágenes de las pantallas de práctica, no como contenido generado. El juego las carga localmente desde `Resources/AdReferences`; no realiza solicitudes de red mientras se ejecuta.
-
-- YouTube In-feed: [captura de anuncio dentro del feed](https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png).
-- YouTube In-stream: [captura móvil de la interfaz de anuncio y omisión](https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg).
-- YouTube Shorts: [captura de anuncio vertical con sticker interactivo](https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png).
-- Google Play Search: [captura real de búsqueda patrocinada en interfaz plegable (2026)](https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874).
-- Google Play Suggested: [captura de recomendaciones patrocinadas en interfaz reciente (2026)](https://www.apptweak.com/img/2026/01/image8.png).
-- Google Play Suggested, tema claro/oscuro: [captura comparativa moderna de Google Play (2026)](https://www.apptweak.com/img/2026/01/image8.png).
-- TikTok In-Feed: [captura real de un anuncio In-Feed con etiqueta Sponsored y CTA](https://support.ecwid.com/hc/article_attachments/15645628291996).
-- TikTok TopView: [ejemplo visual de TopView](https://megadigital.ai/wp-content/uploads/2022/08/quang-cao-top-view-tiktok-la-gi.png).
-- TikTok Carousel: [ejemplo visual de anuncio carrusel](https://cdn.prod.website-files.com/63343441a1da9b07cf060122/68dc12472457a9d475b28075_ccd4e5ad.png).
-
-Documentación oficial para comprobar el comportamiento y los elementos de cada formato:
-- [Formatos oficiales de anuncios de YouTube](https://support.google.com/google-ads/answer/2375464?hl=es).
-- [Anuncios de Shorts y ubicaciones compatibles](https://support.google.com/google-ads/answer/16040527).
-- [Superficies y recursos visuales de Google Play](https://support.google.com/googleplay/android-developer/answer/9866151).
-
-Las capturas y creatividades pertenecen a sus respectivos titulares. Su integración técnica no concede derechos de redistribución: antes de publicar o distribuir el juego hay que comprobar permisos/licencias o reemplazar cualquier recurso no autorizado. Las referencias se descargan durante la preparación del proyecto/build y se empaquetan localmente; el juego no consulta esos sitios en tiempo de ejecución.
-
-### Importar las referencias en Unity
+## Importar anuncios y referencias en Unity
 
 1. Abrir el proyecto con Unity 2022.3.62f3.
 2. Esperar a que compile el script del Editor.
-3. Ejecutar **Click Inteligente > Importar referencias visuales**.
-4. Revisar los archivos descargados en `Assets/Resources/AdReferences`.
+3. Ejecutar **Click Inteligente > Importar anuncios y referencias visuales**.
+4. Revisar los archivos descargados en:
+   - `Assets/Resources/AdReferences`
+   - `Assets/Resources/AdCreatives`
 5. Ejecutar la escena `Menu`; las pantallas de práctica cargarán las imágenes desde `Resources`.
 
-El workflow de GitHub Actions también intenta descargar las referencias antes de compilar Windows. Si una fuente externa no responde, el build continúa y la pantalla muestra qué referencia falta, en lugar de sustituirla por una ilustración inventada.
+El workflow de GitHub Actions ejecuta también `Scripts/Import-AdReferences.ps1` antes del build de Windows. La compilación se cancela si no se descargan todas las creatividades publicitarias, para evitar generar un ejecutable incompleto. El juego no consulta las fuentes externas en tiempo de ejecución.
+
+Las imágenes pertenecen a sus respectivos titulares. La disponibilidad pública no concede derechos de redistribución; verificar permisos y licencias antes de publicar o distribuir el juego.
 
 ## Videos tutoriales
 
