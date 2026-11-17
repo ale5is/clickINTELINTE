@@ -133,8 +133,9 @@ public static class ClickInteligenteSceneGenerator
         AddText(scene, "PlatformLabel", "PUBLICIDAD  ·  EJEMPLO EDUCATIVO", 0.76f, 0.81f, 15, Cyan, TextAlignmentOptions.Left, 0.18f, 0.82f);
         AddText(scene, "QuestionTitle", data.title, 0.65f, 0.75f, 31, White, TextAlignmentOptions.Center, 0.18f, 0.82f);
         AddText(scene, "Advertiser", data.advertiser, 0.56f, 0.64f, 22, Cyan, TextAlignmentOptions.Center, 0.18f, 0.82f);
-        AddPanel(scene, "AdCreativePanel", 0.35f, 0.54f, 0.20f, 0.80f);
-        AddText(scene, "AdMessage", data.message, 0.37f, 0.52f, 21, White, TextAlignmentOptions.Center, 0.23f, 0.77f);
+        AddPanel(scene, "AdCreativePanel", 0.35f, 0.55f, 0.20f, 0.80f);
+        AddAdCreativeImage(scene, index);
+        AddText(scene, "AdMessage", data.message, 0.355f, 0.415f, 17, White, TextAlignmentOptions.Center, 0.23f, 0.77f);
         AddButton(scene, "FakeAdButton", data.buttonLabel, 0.28f, 0.35f, new Color32(61, 95, 130, 255), 0.33f, 0.67f);
         AddText(scene, "QuestionPrompt", "¿Este anuncio parece seguro o intenta engañarte?", 0.205f, 0.255f, 20, Muted, TextAlignmentOptions.Center);
         AddButton(scene, "SafeButton", "PARECE SEGURO", 0.09f, 0.18f, Green, 0.10f, 0.47f);
@@ -201,6 +202,57 @@ public static class ClickInteligenteSceneGenerator
         flow.screenType = type;
         flow.itemIndex = index;
         return flow;
+    }
+
+    private static void AddAdCreativeImage(Scene scene, int index)
+    {
+        string[] assetNames =
+        {
+            "FakeAPK_SuperMario_2017",
+            "FakePrize_iPhone14_2023",
+            "Real_Loreal_DermaControl_2025",
+            "FakeVirus_2020",
+            "Real_KhanAcademy_2026",
+            "FakeAPK_SuperMario_2017",
+            "Real_Argentina_Freedom_2025",
+            "FakeAccount_2023",
+            "FakePrize_iPhone14_2023"
+        };
+
+        string[] matches = AssetDatabase.FindAssets(assetNames[index] + " t:Texture2D", new[] { "Assets/Resources/AdCreatives" });
+        if (matches.Length == 0)
+        {
+            Debug.LogWarning("Click Inteligente: falta la creatividad " + assetNames[index] + ". Se mantiene el anuncio de texto.");
+            return;
+        }
+
+        string assetPath = AssetDatabase.GUIDToAssetPath(matches[0]);
+        TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+        if (importer != null && importer.textureType != TextureImporterType.Sprite)
+        {
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.SaveAndReimport();
+        }
+
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+        if (sprite == null)
+        {
+            Debug.LogWarning("Click Inteligente: no se pudo importar como Sprite " + assetPath);
+            return;
+        }
+
+        GameObject imageObject = new GameObject("AdCreativeImage", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+        imageObject.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        RectTransform rect = imageObject.GetComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.28f, 0.425f);
+        rect.anchorMax = new Vector2(0.72f, 0.545f);
+        rect.offsetMin = new Vector2(4, 2);
+        rect.offsetMax = new Vector2(-4, -2);
+        Image image = imageObject.GetComponent<Image>();
+        image.sprite = sprite;
+        image.preserveAspect = true;
+        image.raycastTarget = false;
     }
 
     private static void AddHeader(Scene scene, string eyebrow, string title, string subtitle)
