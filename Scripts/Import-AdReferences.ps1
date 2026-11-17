@@ -6,7 +6,7 @@ $creativeDestination = Join-Path $PSScriptRoot "..\Assets\Resources\AdCreatives"
 $referenceSources = @(
     @{ Name = "YouTube_InFeed_2023"; Url = "https://strikesocial.com/wp-content/uploads/2023/10/youtube-video-view-campaign-safe-zone-in-feed-video-placement.png" },
     @{ Name = "YouTube_InStream_2025"; Url = "https://i.blogs.es/02f9cc/publicidad-youtube-2/450_1000.jpeg" },
-    @{ Name = "YouTube_Shorts_Interactive_2025"; Url = "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png" },
+    @{ Name = "YouTube_Shorts_Interactive_2025"; Url = "https://images.squarespace-cdn.com/content/v1/644354d16184622c5b9e06f6/ae95cbf9-dd19-4fce-b6ec-4db5d12e77b2/Stickers%2Bon%2BShorts.png?format=1000w" },
     @{ Name = "GooglePlay_SearchSponsored_2026"; Url = "https://cdn.sp-selfservice.com/ml/7200426-f-3dcd3bb1-7fa4-4714-97d0-3dbee21eaf98.png?height=904&width=874" },
     @{ Name = "GooglePlay_SuggestedDark_2026"; Url = "https://www.apptweak.com/img/2026/01/image8.png" },
     @{ Name = "GooglePlay_SuggestedLight_2026"; Url = "https://www.apptweak.com/img/2026/01/image8.png" },
@@ -38,7 +38,7 @@ function Import-ImageSources {
     foreach ($source in $Sources) {
         $temporary = Join-Path $Destination ($source.Name + ".download")
         try {
-            Invoke-WebRequest -Uri $source.Url -OutFile $temporary -TimeoutSec 30 -UseBasicParsing
+            Invoke-WebRequest -Uri $source.Url -OutFile $temporary -TimeoutSec 30 -UseBasicParsing -Headers @{ Accept = "image/png,image/jpeg,*/*;q=0.1" }
             $bytes = [System.IO.File]::ReadAllBytes($temporary)
             $isPng = $bytes.Length -ge 8 -and $bytes[0] -eq 0x89 -and $bytes[1] -eq 0x50 -and $bytes[2] -eq 0x4E -and $bytes[3] -eq 0x47 -and $bytes[4] -eq 0x0D -and $bytes[5] -eq 0x0A -and $bytes[6] -eq 0x1A -and $bytes[7] -eq 0x0A
             $isJpeg = $bytes.Length -ge 3 -and $bytes[0] -eq 0xFF -and $bytes[1] -eq 0xD8 -and $bytes[2] -eq 0xFF
