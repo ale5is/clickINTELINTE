@@ -9,6 +9,72 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: a53edcefbec006e4792e3eec428f06f7
   - enabled: 1
+    path: Assets/Scenes/Tutorial01.unity
+    guid: 175e60941bfe61844a2329baa743d811
+  - enabled: 1
+    path: Assets/Scenes/Tutorial02.unity
+    guid: 610832a54ec7ad34894e507632a87472
+  - enabled: 1
+    path: Assets/Scenes/Tutorial03.unity
+    guid: 6d8d9d564682cfc44a0c5758e53ca2c8
+  - enabled: 1
+    path: Assets/Scenes/Anuncio01.unity
+    guid: 6bcff7f4f1839b449890ac5eb09799bb
+  - enabled: 1
+    path: Assets/Scenes/Explicacion01.unity
+    guid: 256f928f3edf97b40b0a6f55da3cf7f0
+  - enabled: 1
+    path: Assets/Scenes/Anuncio02.unity
+    guid: 03e912e67432a9848a3035845e036413
+  - enabled: 1
+    path: Assets/Scenes/Explicacion02.unity
+    guid: ef9906e3f9896f748a2bc4faba595a91
+  - enabled: 1
+    path: Assets/Scenes/Anuncio03.unity
+    guid: 4cb818effbd955b4bbf11ccd70a78aaa
+  - enabled: 1
+    path: Assets/Scenes/Explicacion03.unity
+    guid: 23d428059c1607e48aa6c943138bf272
+  - enabled: 1
+    path: Assets/Scenes/Anuncio04.unity
+    guid: 409ed62bff6278444abc349d25220b52
+  - enabled: 1
+    path: Assets/Scenes/Explicacion04.unity
+    guid: 1da6650f8178ef248807496e4d547d5c
+  - enabled: 1
+    path: Assets/Scenes/Anuncio05.unity
+    guid: 3f53363ae3200b6469eb0fb1cd081023
+  - enabled: 1
+    path: Assets/Scenes/Explicacion05.unity
+    guid: 0ef371823df007a40a8011050d563b65
+  - enabled: 1
+    path: Assets/Scenes/Anuncio06.unity
+    guid: 23eaab1e23b049f45aad70d4e35ebaf6
+  - enabled: 1
+    path: Assets/Scenes/Explicacion06.unity
+    guid: 823868609aecb6042a3199db9064e97f
+  - enabled: 1
+    path: Assets/Scenes/Anuncio07.unity
+    guid: 49d1bba67f46fd845ad4fb274ace94ad
+  - enabled: 1
+    path: Assets/Scenes/Explicacion07.unity
+    guid: d4ee0bdfee95d224b94ba516d222a973
+  - enabled: 1
+    path: Assets/Scenes/Anuncio08.unity
+    guid: 76485d926b4b6f54aa5fb78899d8828d
+  - enabled: 1
+    path: Assets/Scenes/Explicacion08.unity
+    guid: c3c567daf5fbe734e9d41e0006c2d292
+  - enabled: 1
+    path: Assets/Scenes/Anuncio09.unity
+    guid: 858c078614779914f97de5f7bd5d5cf6
+  - enabled: 1
+    path: Assets/Scenes/Explicacion09.unity
+    guid: 48f5ddab5e5b93d4b8f5b2fe98692f82
+  - enabled: 1
+    path: Assets/Scenes/Resultados.unity
+    guid: dcbddae5bb8986e44aa3d2087a908864
+  - enabled: 1
     path: Assets/Scenes/Inicio.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
