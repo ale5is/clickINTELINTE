@@ -38,7 +38,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         new AdScenario("RUTINA FACIAL DERMA CONTROL", "L'Oréal Men Expert", "Conocé la línea Derma Control para el cuidado facial diario. Revisá los productos y sus indicaciones en los canales oficiales de la marca.", "CONOCER LA RUTINA", false,
             "Es una campaña real de cuidado personal. El anuncio presenta productos identificables y no solicita contraseñas, pagos inesperados ni descargas externas.",
             "La creatividad pertenece a una campaña de marca identificable. Aun así, verificá el sitio y el vendedor antes de comprar.",
-            "Buscá la página oficial de L'Oréal y revisá los detalles del producto antes de realizar una compra.")
+            "Buscá la página oficial de L'Oréal y revisá los detalles del producto antes de realizar una compra."),
         new AdScenario("¡SE DETECTARON 5 VIRUS!", "Alerta de Seguridad", "Tu dispositivo está infectado. Instalá nuestro limpiador desconocido en los próximos 30 segundos para evitar daños.", "LIMPIAR DISPOSITIVO", true,
             "Un anuncio no puede confirmar por sí solo que tu dispositivo tenga virus. Intenta asustarte y forzarte a instalar una aplicación desconocida.",
             "Las alertas alarmistas, las cuentas regresivas y las aplicaciones desconocidas son señales de riesgo.",
@@ -46,7 +46,7 @@ public sealed class ClickInteligenteController : MonoBehaviour
         new AdScenario("APRENDÉ A TU RITMO", "Khan Academy", "Fortalecé conceptos y practicá lo que aprendés. Explorá los recursos educativos gratuitos desde la página oficial.", "VER LECCIONES", false,
             "La campaña promueve recursos educativos y no exige datos de pago ni descargas desde un enlace desconocido.",
             "El anunciante es una organización educativa identificable y el mensaje invita a consultar recursos en su sitio oficial.",
-            "Escribí la dirección oficial de Khan Academy o buscá su aplicación en la tienda legítima.")
+            "Escribí la dirección oficial de Khan Academy o buscá su aplicación en la tienda legítima."),
         new AdScenario("DESCARGA SECRETA", "Juegos Premium Gratis", "Obtené todos los juegos pagos gratis. Desactivá la protección del teléfono e instalá este archivo fuera de la tienda.", "DESCARGAR APK", true,
             "Pide desactivar una protección y descargar un archivo desde fuera de una tienda confiable.",
             "Desactivar la seguridad y descargar archivos desconocidos aumenta el riesgo de instalar software malicioso.",
@@ -54,11 +54,11 @@ public sealed class ClickInteligenteController : MonoBehaviour
         new AdScenario("DESCUBRÍ ARGENTINA", "Visit Argentina", "Explorá paisajes, destinos y experiencias para planificar tu próximo viaje desde el sitio oficial de turismo.", "EXPLORAR DESTINOS", false,
             "La pieza pertenece a una campaña turística identificable y dirige a información de destinos, sin exigir datos sensibles ni instalaciones externas.",
             "El anuncio presenta un destino y una marca turística verificable, sin promesas extraordinarias ni presión para actuar.",
-            "Comprobá que el sitio sea el canal oficial de turismo antes de reservar o compartir información.")
+            "Comprobá que el sitio sea el canal oficial de turismo antes de reservar o compartir información."),
         new AdScenario("TU CUENTA SERÁ BLOQUEADA", "Centro de Soporte", "Detectamos un problema. Verificá tu identidad y escribí tu contraseña para evitar que tu cuenta sea eliminada hoy.", "VERIFICAR CUENTA", true,
             "El anuncio imita un aviso de soporte y busca que entregues la contraseña desde un enlace externo.",
             "Las amenazas de bloqueo, la urgencia y los pedidos de contraseña son señales claras de phishing.",
-            "No uses el enlace. Abrí la aplicación oficial por tu cuenta y revisá allí el estado de la cuenta.")
+            "No uses el enlace. Abrí la aplicación oficial por tu cuenta y revisá allí el estado de la cuenta."),
         new AdScenario("ACTIVÁ TU CUENTA PREMIUM GRATIS", "Beneficios Plus", "Tu cuenta puede recibir funciones premium sin costo. Iniciá sesión con tu correo y contraseña para activar el beneficio antes de que termine la promoción.", "ACTIVAR BENEFICIO", true,
             "El anuncio ofrece un beneficio gratuito a cambio de iniciar sesión desde su propia promoción. Podría ser un intento de robar credenciales.",
             "Los beneficios inesperados y los formularios de inicio de sesión abiertos desde anuncios son señales de riesgo.",
